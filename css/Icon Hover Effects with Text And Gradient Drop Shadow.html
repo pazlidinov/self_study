@@ -46,6 +46,7 @@
 
         ul li:hover {
             width: 180px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0);
         }
 
         ul li::before {
@@ -55,7 +56,7 @@
             border-radius: 60px;
             background: linear-gradient(45deg, var(--i), var(--j));
             opacity: 0;
-            transition: 00.5s;
+            transition: 0.5s;
         }
 
         ul li:hover::before {
@@ -93,32 +94,23 @@
             transition-delay: 0s;
         }
 
+        ul li span {
+            position: absolute;
+        }
+
         ul li .title {
             color: #fff;
             font-size: 1.1em;
             text-transform: uppercase;
             letter-spacing: 0.1em;
-            text-transform: scale(0);
+            transform: scale(0);
             transition: 00.5s;
             transition-delay: 0.25s;
         }
 
         ul li:hover .title {
             transform: scale(1);
-            transition-delay: 0.25d;
-        }
-
-        ul li:hover UL LI span {
-            position: absolute;
-
-        }
-
-        ul li .title {
-            color: 1.25def;
-            font-size: 1.25e;
-            text-transform: uppercase;
-
-
+            transition-delay: 0.25s;
         }
     </style>
 </head>
@@ -141,24 +133,22 @@
             <span class="icon">
                 <ion-icon name="heart-outline"></ion-icon>
             </span>
-            <span class="title">FAVOTIRLI</span>
+            <span class="title">FAVOURITE</span>
         </li>
         <li style="--i:#80ff72; --j:#7ee8fa;">
             <span class="icon">
                 <ion-icon name="heart-outline"></ion-icon>
             </span>
-            <span class="title"></span>
+            <span class="title">VIDEOS</span>
         </li>
         <li style="--i:#ffa9c6; --j:#f434e2;">
             <span class="icon">
                 <ion-icon name="camera-outline"></ion-icon>
             </span>
-            <span class="title"></span>
+            <span class="title">PHOTOS</span>
         </li>
 
     </ul>
-
-
 
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
