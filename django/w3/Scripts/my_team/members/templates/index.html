@@ -1,25 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "master.html" %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>index</title>
-</head>
+{% block title %}
+  My Tennis Club
+{% endblock %}
 
-<body>
 
-    <h1>Members</h1>
+{% block content %}
+  <h1>My Tennis Club</h1>
 
-    <ul>
-        {% for member in mymembers %}
-        <li><a href="details/{{member.id}}">
-                {{ member.first_name }} {{ member.last_name }}
-            </a>
-        </li>
-        {% endfor %}
-    </ul>
-</body>
-
-</html>
+  <h3>Members</h3>
+  
+  <p>Check out all our <a href="members/">members</a></p>
+  
+{% endblock %}
