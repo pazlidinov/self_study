@@ -1,9 +1,15 @@
 from django.shortcuts import render
-
+from .models import Category, Product
 # Create your views here.
 
 def homePageView(request):
-    return render(request, 'index.html')
+    products=Product.objects.all()
+    categories=Category.objects.all()
+    data={
+        'products': products,
+        'categories':categories,
+    }
+    return render(request, 'index.html', context=data)
 
 def apelsinsPageView(request):
     return render(request, 'apelsins.html')

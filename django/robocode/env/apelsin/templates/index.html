@@ -9,7 +9,18 @@
         <div class="col-3">
             {% include "companents/categories.html" %}
         </div>
-        <div class="col-9">sdlsnlnvs</div>
+        <div class="col-9">
+            <div class="p-3 my-5">
+                {% for category in categories %}
+                <li>{{ category.name }}</li>
+                {% endfor %}
+            </div>
+            <div class="p-3 my-5">
+                {% for product in products %}
+                <li>{{ product.name }}</li>
+                {% endfor %}
+            </div>
+        </div>
     </div>
 </main>
 {% endblock %}
