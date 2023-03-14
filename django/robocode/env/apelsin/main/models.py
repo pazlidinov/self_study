@@ -34,6 +34,7 @@ class Product(models.Model):
     #                         related_name='reviews')
 
     # views = models.PositiveIntegerField(default=0)
+
     description = models.TextField(blank=True)
     published = models.BooleanField(default=False)
     top = models.BooleanField(default=False)
