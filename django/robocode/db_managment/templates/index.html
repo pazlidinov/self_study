@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <main>
+        <div class="container">
+           <form action="{% url 'main_app:search' %}" method="get">
+            <input type="text" name="q" placeholder="Search...">
+            <input type="submit">
+           </form>
+        </div>
+        <div class="my">
+            {% if message %}
+            <h3>{{message}}</h3>
+            {% endif %}
+
+            {% if students %}
+            <h3>Students</h3>
+            <ul>
+                {% for obj in students %}
+                <li>{{obj.name}},{{obj.age}}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+
+            {% if course %}
+            <h3>Courses</h3>
+            <ul>
+                {% for obj in course %}
+                <li>{{obj.name}}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+
+            {% if stacks %}
+            <h3>Stacks</h3>
+            <ul>
+                {% for obj in stacks %}
+                <li>{{obj.name}}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+        </div>
+    </main>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            text-decoration: none;
+        }
+
+        .container {
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 10% 7%;
+        }
+        .my{
+            margin: 10px 20px;
+        }
+    </style>
+</body>
+
+</html>
