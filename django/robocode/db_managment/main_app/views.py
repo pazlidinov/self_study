@@ -3,7 +3,12 @@ from .models import Stacks, Course, Student
 # Create your views here.
 
 def testView(request):
-    return render(request, "index.html")
+    course=Course.objects.all()
+    datas={
+        "courses":course
+    }
+    print(course)
+    return render(request, "index.html", context=datas)
 
 def search(request):
     # your db managment is here
@@ -18,10 +23,12 @@ def search(request):
     # one_item=Student.objects.get(name='bekzod')
     # print(one_item)  #faqat bitta elmentchiqaradi
     if request.method =="GET":
+
         query=request.GET.get("q")
+
+        data_students=Student.objects.filter(name__icontains=query)
         data_stacks=Stacks.objects.filter(name__icontains=query)
         data_course=Course.objects.filter(name__icontains=query)
-        data_students=Student.objects.filter(name__icontains=query)
        
         if (data_stacks or data_students or data_course) and query!='':
             return render(request, 
