@@ -16,14 +16,14 @@
             <h3>Courses</h3>
             <ul>
                 {% for course in courses %}
-                    <li>
-                        {{ course.name }}
-                        <ol style="margin-left:50px">
-                            {% for std in course.students.all %}
-                            <li>{{ std.name }}</li>
-                            {% endfor %}
-                        </ol>
-                    </li>
+                <li>
+                    {{ course.name }}
+                    <ol style="margin-left:50px">
+                        {% for std in course.students.all %}
+                        <li>{{ std.name }}</li>
+                        {% endfor %}
+                    </ol>
+                </li>
                 {% endfor %}
             </ul>
             <br>
