@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block content %}
+
+{%for det in dets %}<br>
+<div style="border:2px solid black; display:inline-block">
+    {{det.name}}<br>
+    {{det.added_date}}<br>
+    {{det.category}}<br>
+    {{det.tag}}<br>
+    {{det.done}}<br>
+    {{det.description}}<br>
+    {{det.endtime}}<br>
+    {{det.priority}}<br>
+    {{det.author}}<br>
+</div>
+{% endfor %}
+
+{% endblock %}

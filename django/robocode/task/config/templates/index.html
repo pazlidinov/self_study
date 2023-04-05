@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+<center>
+    {% for item in object_list %}
+        <a style="border:2px solid black; display:inline-block" 
+        href="{% url 'main:detail' item.slug %}">
+        {{item.name}}
+        </a>
+    {% endfor %}
+
+    {% if massage %}
+        {{massage}}
+    {% endif %}
+</center>
+{% endblock %}

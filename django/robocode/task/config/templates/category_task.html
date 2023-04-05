@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+
+{%for tas in tasks %}
+<center>
+    <br>
+    <div style="border:2px solid black; display:inline-block">
+        <a href="{% url 'main:detail' tas.slug %}">
+            {{tas.name}}
+        </a>
+    </div>
+</center>
+{% endfor %}
+
+{% endblock %}
