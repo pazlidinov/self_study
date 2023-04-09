@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container">
+    {% for item in art %}
+    <h4><b>{{item.name}}</b></h4>
+    <br>
+    <br>
+    {{item.category}}/{{item.published_date}}/{{item.view}}
+    <br><br>
+    <center>
+        <img src="{{item.img.url}}" alt="">
+    </center>
+    <br><br>
+    <p>
+        {{item.body}}
+    </p>
+    {% endfor %}
+</div>
+
+
+
+{% endblock %}

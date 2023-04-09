@@ -1,0 +1,19 @@
+.cat {
+    margin-right   : 10px;
+    text-decoration: none;
+    color          : black;
+}
+
+.cat2 {
+    text-decoration: none;
+    color          : black;
+    display        : block;
+    
+
+}
+
+@media (max-width: 991px) {
+    .cat {
+        display: none;
+    }
+}

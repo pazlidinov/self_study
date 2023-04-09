@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        {% for item in articles %}
+
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 border" style="display: inline-block;margin:3%;">
+            <center>
+                <a href="{% url 'main:detail' item.slug %}">
+                    <div class="card" style="width: 18rem;">
+                        <img src="{{ item.img.url }}" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <p class="card-text text-truncate">
+                                {{ item.name }}
+                            </p>
+                            {{item.category}}/{{item.published_date}}/{{item.view}}
+                        </div>
+                    </div>
+                </a>
+            </center>
+        </div>
+
+
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}
