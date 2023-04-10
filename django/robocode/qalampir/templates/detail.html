@@ -17,6 +17,19 @@
         {{item.body}}
     </p>
     {% endfor %}
+    <br>
+    <br>
+    <hr>
+    {% for item in art_com %}
+    <div style="border:1px solid black;padding:10px;">
+        <b>{{item.author}}</b><br>
+        <p>
+            {{item.comment}}
+        </p>
+        <a href="{% url 'main:delete' item.id %}">delete</a>
+    </div>
+    {% endfor %}
+
 </div>
 
 

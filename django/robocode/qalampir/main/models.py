@@ -36,3 +36,6 @@ class Comment(models.Model):
     author = models.ForeignKey(
         User, on_delete=models.PROTECT, null=True, related_name="author")
     comment = models.TextField()
+
+    def __str__(self):
+        return str(self.article.slug)
