@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 
 from .models import Article, Category, Comment
 
@@ -37,13 +37,13 @@ def categorypage(request, category_slug):
 
 
 def deletepage(request, comment_id):
-    # com = Comment.objects.get(id=comment_id)
-    # com.delete()
-    # # print(com.article_slug)
-    # return redirect("/''/detail/"+com.article.slug)
-    try:
-        com = Comment.objects.get(pk=comment_id)
-        com.delete()
-    except Comment.DoesNotExist:
-        comment = None
-    return redirect('/')
+    com = Comment.objects.get(id=comment_id)
+    com.delete()
+    # print(com.article_slug)
+    return redirect("/detail/"+com.article.slug)
+    # try:
+    #     com = Comment.objects.get(pk=comment_id)
+    #     com.delete()
+    # except Comment.DoesNotExist:
+    #     comment = None
+    # return redirect('/')
