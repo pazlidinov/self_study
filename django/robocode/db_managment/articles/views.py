@@ -1,5 +1,6 @@
 from django.shortcuts import render
 
+from .forms import AddArticleForm
 from .models import *
 from .utils import check_article_view
 
@@ -38,3 +39,27 @@ def category_list(request, category_slug):
     articles = Article.objects.filter(category=category)
     return render(request, 'articles/category_posts.html', context={"posts": articles})
     # comm
+
+    
+from django.template.defaultfilters import slugify
+
+
+def add_article(request):
+    form = AddArticleForm()
+    print(form)
+    if request.method == "POST":
+        form = AddArticleForm(request.POST)
+
+        if form.is_valid():
+            f = form.save(commit=False)
+            f.slug = slugify(f.title)
+            f.tag = f.cleaned_data.get("tag")
+            print(f.tag)
+            f.author = request.user
+            f.save()
+            # messages.add_message(request, messages.SUCCESS, "Form saved!")
+            return redirect('/')
+        else:
+            pass
+            # messages.add_message(request, messages.ERROR, "Form not valid!")
+    return render(request, 'articles/add.html', {"form":form})
