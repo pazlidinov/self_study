@@ -1,4 +1,5 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render
+from django.template.defaultfilters import slugify
 
 from .forms import AddArticleForm
 from .models import *
@@ -40,26 +41,21 @@ def category_list(request, category_slug):
     return render(request, 'articles/category_posts.html', context={"posts": articles})
     # comm
 
-    
-from django.template.defaultfilters import slugify
-
 
 def add_article(request):
     form = AddArticleForm()
-    print(form)
+    # print(form)
     if request.method == "POST":
         form = AddArticleForm(request.POST)
-
         if form.is_valid():
             f = form.save(commit=False)
             f.slug = slugify(f.title)
-            f.tag = f.cleaned_data.get("tag")
-            print(f.tag)
+            # f.tag = f.cleaned_data.get('tag')
             f.author = request.user
             f.save()
-            # messages.add_message(request, messages.SUCCESS, "Form saved!")
+            messages.add_message(request, messages.SUCCESS, "Form saved!")
             return redirect('/')
         else:
             pass
-            # messages.add_message(request, messages.ERROR, "Form not valid!")
-    return render(request, 'articles/add.html', {"form":form})
+            messages.add_message(request, messages.ERROR, "Form not valid!")
+    return render(request, 'articles/add.html', {"form": form})
