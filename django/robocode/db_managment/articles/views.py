@@ -53,9 +53,9 @@ def add_article(request):
             # f.tag = f.cleaned_data.get('tag')
             f.author = request.user
             f.save()
-            messages.add_message(request, messages.SUCCESS, "Form saved!")
+            # messages.add_message(request, messages.SUCCESS, "Form saved!")
             return redirect('/')
         else:
             pass
-            messages.add_message(request, messages.ERROR, "Form not valid!")
+            # messages.add_message(request, messages.ERROR, "Form not valid!")
     return render(request, 'articles/add.html', {"form": form})
