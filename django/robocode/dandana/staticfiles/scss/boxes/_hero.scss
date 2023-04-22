@@ -1,0 +1,62 @@
+.hero-box {
+    padding: 10px 0;
+}
+.hero {
+    background-image: url(../../images/Mask\ Grouphero-backgraund.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 16px;
+    padding: 47px 52px;
+    width: 100%;
+    margin: 0 auto;
+}
+.hero-text {
+    @include textStyle(32px, 700, 48px, #fff);
+    font-family: "Poppins";
+    max-width: 385px;
+}
+.hero-info {
+    @include textStyle(14px, 400, 24px, #fff);
+    font-family: "Poppins";
+    max-width: 455px;
+    text-shadow: 6px 6px 6px $bg;
+}
+
+
+// ============================================
+// media start
+
+@media (max-width:580px) {
+    .hero-text {
+        @include textStyle(26px, 700, 35px, #fff);
+        text-shadow: 4px 4px 4px $bg;
+    }
+
+    .hero{
+        padding: 47px 30px ;
+    }
+    
+   
+}
+
+@media (max-width:434px) {
+    .hero{
+        padding: 30px 30px ;
+    }
+}
+
+@media (max-width:420px) {
+    .hero-text {
+        @include textStyle(23px, 700, 35px, #fff);
+        text-shadow: 4px 4px 4px $bg;
+    }
+    .hero-info {
+        @include textStyle(14px, 400, 20px, #fff);
+    }
+}
+
+@media (max-width:377px) {
+    .hero{
+        padding: 17px 23px;
+    }
+}

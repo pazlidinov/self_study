@@ -1,0 +1,74 @@
+
+
+
+.order-text-box {
+    @include flexBox(flex, space-between, center, nowrap);
+    padding: 10px 0;
+
+}
+.order-name {
+    @include textStyle(24px, 700, 36px, rgba(46, 46, 46, 1));
+    font-family: "Poppins";
+}
+.order-link {
+    @include textStyle(16px, 400, 27px,$bg);
+    font-family: "Poppins";
+}
+.order-line {
+    @include flexBox(flex, space-between, center, nowrap);
+    padding: 30px 0;;
+
+}
+.order-line-item {
+    margin-inline: 10px;
+    text-align: center;
+}
+.order-card-name {
+    @include textStyle(18px, 500, 27px,rgba(46, 46, 46, 1));
+    font-family: "Poppins";
+    margin-top: 10px;
+}
+.order-price {
+    @include textStyle(24px, 700, 36px,$bg);
+    font-family: "Poppins";
+}
+.order-times {
+    @include textStyle(18px, 400, 27px,rgba(160, 152, 174, 1));
+    font-family: "Poppins";
+}
+
+
+
+// =======================================================
+// Media start
+
+@media (max-width:980px) {
+    .order-line {
+       overflow-x: scroll;
+    }
+
+    
+}
+@media (max-width:610px) {
+    
+}
+
+
+@media (max-width:500px) {
+    
+    .order-name{
+        @include textStyle(20px, 500, 20px,rgba(46, 46, 46, 1));
+        margin-right: 10px;
+        }
+    .order-link{
+        @include textStyle(14px, 400, 17px,$bg);
+    
+        }
+} 
+
+@media (max-width:400px) {
+    
+    .order-link{
+        max-width: 120px;
+    }
+} 

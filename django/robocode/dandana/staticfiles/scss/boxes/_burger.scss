@@ -1,0 +1,126 @@
+.Hamburger-box {
+    padding: 20px 0;
+}
+
+.ham-text-box {
+    @include flexBox(flex, space-between, center, nowrap);
+
+}
+.hamBurger-name {
+    @include textStyle(24px, 700, 36px, rgba(46, 46, 46, 1));
+    font-family: "Poppins";
+}
+.hamBurger-link {
+    @include textStyle(16px, 400, 27px,$bg);
+    font-family: "Poppins";
+}
+.Burger-Card_line {
+    padding: 30px 0;
+    @include flexBox(flex, space-between, center, nowrap);
+
+}
+.ham-line-item {
+    width:272px;
+    height: 363px;
+    text-align: center;
+    padding: 28px 0;
+}
+.diskot {
+    padding-top: 6px;
+    @include textStyle(18px, 400, 20px,#fff);
+    font-family: "Poppins";
+    text-align: center;
+    background: #EB5757;
+border-radius: 0px 8px 8px 0px;
+width: 96px;
+height: 32px;
+
+}
+.ham-sale-buy {
+    @include flexBox(flex, space-between, center, nowrap);
+    padding: 0 32px;
+
+}
+
+.star-line {
+    @include flexBox(flex, start, end, nowrap);
+    padding: 5px 0;
+
+}
+.star-item {
+    cursor: pointer;
+    transition: all .3s ease;
+    margin-right: 4px;
+
+    &:hover{
+        transform: scale(1.1);
+    }
+
+    &:active{
+        transform: scale(1);
+    }
+}
+.ham-sale-name {
+    @include textStyle(18px, 500, 27px,rgba(46, 46, 46, 1));
+    font-family: "Poppins";
+    text-align: start;
+}
+.ham-sale-price {
+    @include textStyle(24px, 700, 36px,$bg);
+    font-family: "Poppins";
+    text-align: start;
+}
+.buy-hamBurger_btn {
+    @include allBtn($bg, 8px , none,10px 13px);
+    @include textStyle(30px, 700, 27px ,#fff);
+    transition: all .2s ease;
+    margin-top: 33px;
+
+    &:hover{
+        transform: scale(1.1);
+    }
+
+    &:active{
+        transform: scale(1);
+    }
+
+}
+
+@media (max-width:856px) {
+    .Burger-Card_line {
+        overflow-x: scroll;
+        padding: 13px 0;
+       
+    }
+
+    .Hamburger-box{
+        padding: 0;
+    padding-top: 25px;
+        
+    }
+} 
+
+@media (max-width:500px) {
+    .hamBurger-name{
+    @include textStyle(20px, 500, 20px,rgba(46, 46, 46, 1));
+    }
+
+    .hamBurger-link{
+    @include textStyle(14px, 400, 17px,$bg);
+
+    }
+} 
+
+@media (max-width:400px) {
+    
+    .hamBurger-link{
+        max-width: 120px;
+    }
+} 
+
+@media (max-width:290px) {
+    .ham-line-item{
+        transform: scale(0.9);
+        margin-left: -10px;
+    }
+} 

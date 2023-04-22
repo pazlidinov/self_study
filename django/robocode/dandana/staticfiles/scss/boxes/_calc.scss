@@ -1,0 +1,348 @@
+
+
+.calc {
+    padding: 20px 0;
+    padding-right: 100px;
+}
+.calc-text-box {
+    @include flexBox(flex, space-between, center, nowrap);
+    padding: 15px 0;
+
+}
+.calc--ordersname {
+    @include textStyle(24px, 700, 36px, rgba(46, 46, 46, 1));
+    font-family: "Poppins";
+}
+.food-name {
+    @include textStyle(18px, 400, 27px,rgba(46, 46, 46, 1));
+    font-family: "Poppins";
+    max-width: 300px;
+    text-align: start;
+
+}
+.num-orders {
+    @include textStyle(18px, 500, 24px,rgba(46, 46, 46, 1));
+    background-color: $bg;
+    padding-inline: 15px;
+    border-radius: 15px;
+    font-family: "Poppins";
+}
+
+
+.food-box {
+    @include flexBox(flex, space-between, start, nowrap);
+
+
+}
+.food {
+    @include flexBox(flex, space-between, start, nowrap);
+
+
+}
+.food-name {
+    padding-top: 20px;
+    margin-left: 20px;
+}
+.calc-box {
+    @include flexBox(flex, space-between, start, nowrap);
+
+}
+.minus {
+    margin-top: 20px;
+    @include allBtn(#fff, 50% , 2px solid #fff,0 5px);
+    color: rgba(151, 151, 151, 1);
+    outline: 2px solid rgba(151, 151, 151, 1);
+    font-family: "Poppins";
+    @include flexBox(flex, center, center, nowrap);
+    scale: 0.8;
+    cursor: pointer;
+
+
+
+}
+.middle {
+    margin-inline: 6px;
+    padding-top: 20px;
+
+}
+.plus {
+    margin-top: 20px;
+    @include allBtn(#fff, 50% , 2px solid #fff,0 5px);
+    color: rgba(16, 201, 45, 1);
+    outline: 2px solid rgba(16, 201, 45, 1);
+    font-family: "Poppins";
+    @include flexBox(flex, center, center, nowrap);
+    cursor: pointer;
+    scale: 0.8;
+
+
+
+}
+
+.price-one-food {
+    margin-top: 20px;
+    @include textStyle(18px, 500, 24px,rgba(46, 46, 46, 1));
+    font-family: "Poppins";
+}
+
+.addition-box {
+    @include flexBox(flex, space-between, start, nowrap);
+
+    padding: 15px 0;
+}
+
+
+
+
+    
+.allofthem-box {
+    @include flexBox(flex, space-between, start, nowrap);
+
+}
+
+.service-price-box {
+    @include flexBox(flex, space-between, start, nowrap);
+
+}
+.service-price {
+    @include textStyle(12px, 300, 21px,rgba(46, 46, 46, 1));
+
+    font-family: "Poppins";
+
+}
+.service-text {
+    margin-right: 90px;
+    @include textStyle(14px, 400, 21px,rgba(46, 46, 46, 1));
+    font-family: "Poppins";
+}
+
+.eats-price-box {
+    @include flexBox(flex, space-between, start, nowrap);
+
+}
+.eats-price{
+    font-family: "Poppins";
+    
+
+}
+.eats-text {
+    margin-right: 90px;
+
+    @include textStyle(18px, 500, 27px,rgba(46, 46, 46, 1));
+    font-family: "Poppins";
+}
+.send-to_cafe {
+    @include allBtn($bg, 8px , none,10px 80px);
+    @include textStyle(18px, 500, 20px ,#fff);
+    transition: all .2s ease;
+    cursor: pointer;
+    &:hover{
+        transform: scale(1.03);
+    }
+
+    &:active{
+        transform: scale(1);
+    }
+}
+
+
+.food-box:nth-child(3){
+    border-bottom: 4px $bg solid;
+    
+}
+
+
+
+.order-mini-box {
+    display: none;
+
+}
+
+.order-mini {
+    padding: 32px 50px;
+    background-color: #fff;
+    width: 600px;
+    height: auto;
+    border-radius: 16px;
+    border: 1px solid #E8E7E6;
+    margin-inline:auto; 
+}
+.order-menu {
+    @include flexBox(flex, space-between, center, nowrap);
+
+}
+.order-mini-text {
+    @include textStyle(24px, 700, 36px, rgba(46, 46, 46, 1));
+    font-family: "Poppins";
+}
+.order-mini-text-num {
+    @include textStyle(16px, 400, 27px,rgba(46, 46, 46, 1));
+    font-family: "Poppins";
+    background-color: $bg;
+    padding: 3px 24px;
+    border-radius: 15px;
+}
+.mini-food-card-name {
+    @include textStyle(18px, 400, 27px,rgba(46, 46, 46, 1));
+    font-family: "Poppins";
+    max-width: 330px;
+    text-align: start;
+}
+.price-mini-food-card{
+    @include textStyle(18px, 500, 24px,rgba(46, 46, 46, 1));
+    font-family: "Poppins";
+}
+
+.add-in-buttons {
+    @include flexBox(flex, space-between, start, nowrap);
+    max-width: 100px;
+}
+.mini-calc-box {
+    @include flexBox(flex, space-between, center, nowrap);
+
+}
+
+.order-food-card {
+    @include flexBox(flex, space-between, center, nowrap);
+    padding: 34px 0;
+    border-bottom: 1px solid #E8E7E6;
+
+}
+.allofthem-box-mini {
+    text-align: center;
+padding: 20px 0;
+
+}
+.allof__in-mini {
+}
+.service-price-box-mini {
+    @include flexBox(flex, space-between, center, nowrap);
+    max-width: 300px;
+    margin-inline: auto;
+    padding-bottom:12px; 
+
+
+}
+
+.eats-price-box-mini {
+    @include flexBox(flex, space-between, center, nowrap);
+    max-width: 300px;
+    margin-inline: auto;
+
+}
+
+
+.send-to_cafe-mini {
+    @include allBtn($bg, 8px , none,10px 80px);
+    width: 70%;
+    @include textStyle(18px, 500, 20px ,#fff);
+    transition: all .2s ease;
+    margin-top: 36px;
+    cursor: pointer;
+    &:hover{
+        transform: scale(1.03);
+    }
+
+    &:active{
+        transform: scale(1);
+    }
+}
+
+@media (max-width:715px) {
+    .calc{
+        padding-right: 0;
+    }
+
+    .order-mini{
+        padding: 20px 50px;
+    }
+}
+
+
+@media (max-width:650px) {
+    .calc{
+        // transform: scaleY(0);
+        display: none;
+    }
+    .order-mini-box{
+        display: block;
+        padding-top: 15px;
+    }
+
+    .order-mini{
+        width: 100%;
+    }
+
+
+}
+
+
+@media (max-width:485px) {
+
+   .order-mini-text{
+    font-size: 20px;
+   }
+
+   .order-mini-text-num{
+    padding: 4px 20px;
+    font-size: 16px;
+   }
+
+   .mini-food-card-name{
+    font-size: 16px;
+    line-height: 22px;
+    max-width: none;
+   }
+
+   .add-in-buttons{
+    max-width: 50px;
+   }
+
+   .send-to_cafe-mini{
+    background-position: center;
+    width: 100%;
+   }
+
+   .price-mini-food-card{
+    font-size: 16px;
+   }
+}
+
+@media (max-width:447px) {
+    .order-food-card img:nth-child(1){
+      
+            width: 100px;
+            height: auto;
+        
+    }
+
+    .order-food-card{
+        padding: 20px 0;
+    }
+
+    .order-mini{
+        padding: 20px 20px ;
+    }
+
+
+   
+}
+
+
+@media (max-width:360px) {
+   
+    .order-mini{
+        padding: 12px 10px ;
+    }
+    .mini-food-card-name{
+        font-size: 14px;
+    }
+
+    .price-mini-food-card{
+        font-size: 16px;
+    }
+.service-text{
+    max-width: 120px;
+}
+   
+}
