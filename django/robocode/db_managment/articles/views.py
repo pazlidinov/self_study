@@ -44,14 +44,11 @@ def category_list(request, category_slug):
 
 def add_article(request):
     form = AddArticleForm()
-    print(form)
     if request.method == "POST":
         form = AddArticleForm(request.POST)
         if form.is_valid():
             f = form.save(commit=False)
-            print(dir(f))
             f.slug = slugify(f.title)
-            print(f.tag())
             # f.tags = f.cleaned_data.get('tag')
             f.author = request.user
             f.save()
