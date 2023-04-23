@@ -34,6 +34,8 @@ class Food(models.Model):
     price = models.PositiveIntegerField(default=0)
     stars = models.PositiveSmallIntegerField(default=0)
     discount = models.PositiveSmallIntegerField(default=0)
+    category = models.ForeignKey(
+        Category, on_delete=models.PROTECT, related_name='foods')
 
     class Meta:
         verbose_name_plural = "Foods"
