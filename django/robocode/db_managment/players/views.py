@@ -15,7 +15,6 @@ def calculate_age(born):
 
 
 class PlayersHomeView(View):
-
     # http get method handler
     def get(self, request):
         players = Player.objects.all()
@@ -29,7 +28,7 @@ class PlayersHomeView(View):
             "club_list": clubs,
         }
         return render(request, "player.html", context=data)
-
+    
     # http post method handler
     def post(self, request):
         pass
@@ -38,10 +37,8 @@ class PlayersHomeView(View):
 class SortByClub(View):
 
     def get(self, request, club_name):
-        print(club_name)
         club = Club.objects.get(name=club_name)
         players = Player.objects.filter(club=club)
-
         clubs = Club.objects.all()
         data = {
             "object_list": players,
@@ -54,9 +51,7 @@ class SortByClub(View):
 class SortByPositon(View):
 
     def get(self, request, position):
-
         players = Player.objects.filter(position=position)
-
         clubs = Club.objects.all()
         data = {
             "object_list": players,
