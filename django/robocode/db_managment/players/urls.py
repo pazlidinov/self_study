@@ -5,5 +5,7 @@ from . import views
 app_name = 'players'
 
 urlpatterns = [
-    path('', views.Players_Home_View.as_view(), name='players'),
+    path('', views.PlayersHomeView.as_view(), name='players'),
+    path('sort/by/club/<str:club_name>', views.SortByClub.as_view(), name='sort_by_club'),
+    path('sort/by/position/<str:position>', views.SortByPositon.as_view(), name='sort_by_position'),
 ]

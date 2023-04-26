@@ -1,12 +1,127 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Players</title>
-</head>
-<body>
-    fwrfwe
-</body>
-</html>
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<script>
+    if (window.history.replaceState) {
+        window.history.replaceState(null, null, window.location.href);
+    }
+</script>
+
+<main>
+    <br>
+    <br>
+    <div class="container">
+        {% if messages %}
+        {% for message in messages %}
+        <div class="messages">
+            <h4>{{message}}</h4>
+            <button onclick="this.parentElement.style.display= 'none'">X</button>
+        </div>
+        {% endfor %}
+        {% endif %}
+        <div class="row">
+            <div class="col-3">
+                <div class="list-group">
+                    <a href="#" class="list-group-item list-group-item-action active" aria-current="true">
+                        Categories
+                    </a>
+                    <a href="{% url 'players:sort_by_position' 'gk' %}" class="list-group-item list-group-item-action">
+                        Goalkeeper
+                    </a>
+                    <a href="{% url 'players:sort_by_position' 'df' %}" class="list-group-item list-group-item-action">
+                        Deffender
+                    </a>
+                    <a href="{% url 'players:sort_by_position' 'md' %}" class="list-group-item list-group-item-action">
+                        Middle Deffender
+                    </a>
+                    <a href="{% url 'players:sort_by_position' 'fw' %}" class="list-group-item list-group-item-action">
+                        Forward
+                    </a>
+                    <a href="{% url 'players:sort_by_position' 'st' %}" class="list-group-item list-group-item-action">
+                        Stiker
+                    </a>
+
+                </div>
+                <div class="list-group mt-3">
+                    <a href="#" class="list-group-item list-group-item-action active" aria-current="true">
+                        Sort by Club
+                    </a>
+                    {% for c in club_list %}
+                    <a href="{% url 'players:sort_by_club' c.name %}" class="list-group-item list-group-item-action">
+                        <img width="30" height="30" src="{{c.logo.url}}" alt=""> {{c.name}}
+                    </a>
+                    {% endfor %}
+
+                </div>
+
+                <form action="" class="mb-5">
+                    <label for="disabledRange" class="form-label">Filter by age :
+                        <span class="slected_price"></span>
+                    </label>
+                    <input type="range" id="price" value="0" min="0" max="{{max_price}}" class="form-range">
+                    <label for="disabledRange" class="form-label">Filter by age</label>
+                    <input type="range" class="form-range" id="disabledRange">
+
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                        <label class="form-check-label" for="flexCheckDefault">
+                            Goalkeeper
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+                        <label class="form-check-label" for="flexCheckChecked">
+                            Deffender
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+                        <label class="form-check-label" for="flexCheckChecked">
+                            Middle Deffender
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+                        <label class="form-check-label" for="flexCheckChecked">
+                            Forward
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+                        <label class="form-check-label" for="flexCheckChecked">
+                            Striker
+                        </label>
+                    </div>
+                </form>
+            </div>
+            <div class="col-9">
+                {% if info %}
+                <h3>{{info}}</h3>
+                {% else %}
+                <h3>Players</h3>
+                {% endif %}
+                {% for obj in object_list %}
+                <div class="card shadow-lg px-5 py-2">
+                    <div class="d-flex flex-wrap justify-content-between ">
+                        <img width="150" height="150" src="{{obj.image.url}}" alt="">
+                        <div class="info">
+                            <h4>{{obj.name}}</h4>
+                            <p>Club : <a href="" class="text-decoration-none">{{obj.club}}</a> </p>
+                            <p>{{obj.country}}</p>
+                            <p>{{obj.age}}</p>
+                            <p>{{obj.height}}</p>
+                            <p>{{obj.weight}}</p>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+
+    </div>
+</main>
+
+{% endblock %}
