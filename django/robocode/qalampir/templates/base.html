@@ -98,11 +98,11 @@
                                 {% endfor %}
                                 <br>
                                 {% if request.user.is_authenticated %}
-                                <a href="#" class="nav-link">{{request.user.username}}</a>
-                                <a href="{% url 'accounts:logout' %}" class="nav-link">Logout</a>
+                                <a href="#" class="pe-4 text-decoration-none">{{request.user.username}}</a>
+                                <a href="{% url 'accounts:logout' %}" class="pe-4 text-decoration-none">Logout</a>
                                 {% else %}
-                                <a href="{% url 'accounts:login' %}" class="nav-link">Login</a>
-                                <a href="{% url 'accounts:register' %}" class="nav-link">Register</a>
+                                <a href="{% url 'accounts:login' %}" class="pe-4 text-decoration-none">Login</a>
+                                <a href="{% url 'accounts:register' %}" class="pe-4 text-decoration-none">Register</a>
                                 {% endif %}
                             </div>
                             <div class="qalampir-navbar-top-content-right ">
