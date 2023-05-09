@@ -49,8 +49,10 @@ def add_article(request):
         if form.is_valid():
             f = form.save(commit=False)
             f.slug = slugify(f.title)
+            print(dir(f))
+            print(f.tag)
             # f.tags = f.cleaned_data.get('tag')
-            f.author = request.user
+            # f.author = request.user
             f.save()
             # messages.add_message(request, messages.SUCCESS, "Form saved!")
             return redirect('/')

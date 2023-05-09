@@ -18,10 +18,10 @@
                 <a href="/" class="nav-link fw-bold">Home</a>
             </li>
             <li class="nav-item">
-                <a href="#" class="nav-link fw-bold">Posts</a>
+                <a href="{% url 'articles:post_list' %}" class="nav-link fw-bold">Posts</a>
             </li>
             <li class="nav-item">
-                <a href="#" class="nav-link fw-bold">Add Post</a>
+                <a href="{% url 'articles:add_article' %}" class="nav-link fw-bold">Add Post</a>
             </li>
         </ul>
     </nav>

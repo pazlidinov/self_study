@@ -20,10 +20,12 @@
                         <i class="fa-solid fa-star"></i>
                         {{object.rating}}
                     </a>
+                    {% for item in object.tag.all %}
                     <a href="#" class="text-decoration-none">
                         <i class="fa-solid fa-star"></i>
-                        {{object.tag}}
+                        {{item}}
                     </a>
+                    {% endfor %}
                 </p>
 
                 <p class="d-flex justify-content-around">
