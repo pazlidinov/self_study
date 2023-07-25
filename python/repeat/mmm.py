@@ -87,13 +87,41 @@
     
 # print(s)
 
-# 39
-a=int(input('a..'))
-b=int(input('b..'))
-n=1
-for i in range(a,b):    
-    for j in range(n):    
-        print(i)
-    n+=1
+# # 39
+# a=int(input('a..'))
+# b=int(input('b..'))
+# n=1
+# for i in range(a,b):    
+#     for j in range(n):    
+#         print(i)
+#     n+=1
 
 # print([i for i in range(int(input('a..')), int(input('b...'))) for j in range(i)])
+# l=[]
+# for i in range(1,11):
+#     print(f'{9}*{i}=')
+#     a=int(input('>>>'))
+#     if i*9==a:l.append(f'{9}*{i}={a} togri')
+#     else:l.append(f'{9}*{i}={a} notogri={9*i}')
+# print(l)
+
+
+# week=['yak', 'dush', 'sesh', 'chor', 'pay', 'juma','shan']       
+# print(['yak', 'dush', 'sesh', 'chor', 'pay', 'juma','shan'][int(input('>>>'))%7])    
+# n=int(input('>>>'))
+# s=n%7
+# print(week[s])
+# [int(input('>>>')) for j in range(int(input('>>>')))]
+
+
+
+
+# print(['juft' if i%2==0 else 'toq' for i in [int(input('>>>')) for j in range(int(input('>>>')))]])
+print([0 if i%5==0 else i for i in [int(input('>>>')) for j in range(int(input('>>>')))]])
+
+# a=[j for i in range(3) for j in range(2)]
+
+# print(a)
+
+
+
