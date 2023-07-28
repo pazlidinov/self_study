@@ -9,7 +9,12 @@
     {% unicorn_scripts %}
 </head>
 
-<body> {% csrf_token %}
+<body> 
+    {% csrf_token %}
+  
+    <main>
+        {% unicorn 'book_list' %}
+    </main>
 
 
 </body>

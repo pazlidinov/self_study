@@ -1,0 +1,14 @@
+<div>
+    <h2>Book List</h2>
+    <hr>
+    
+    <input type="text" unicorn:model="name">
+    <button unicorn:click="add_book">Add Book</button>
+    <button unicorn:click="delete_all">Delete all book</button>
+
+    <ul>
+        {% for book in books %}
+        <li>{{ book.name }}</li>
+        {% endfor %}
+    </ul>
+</div>
