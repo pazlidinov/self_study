@@ -117,11 +117,17 @@
 
 
 # print(['juft' if i%2==0 else 'toq' for i in [int(input('>>>')) for j in range(int(input('>>>')))]])
-print([0 if i%5==0 else i for i in [int(input('>>>')) for j in range(int(input('>>>')))]])
+# print([0 if i%5==0 else i for i in [int(input('>>>')) for j in range(int(input('>>>')))]])
 
 # a=[j for i in range(3) for j in range(2)]
 
 # print(a)
 
+# from django.contrib.auth.base_user import BaseUserManager
+# password=BaseUserManager().make_random_password(6)
 
+# print(password)
 
+import datetime
+now=datetime.datetime.now()
+print(now)
