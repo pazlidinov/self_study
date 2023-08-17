@@ -128,6 +128,15 @@
 
 # print(password)
 
-import datetime
-now=datetime.datetime.now()
-print(now)
+# from random import randint
+# print(randint(100000, 999999))
+a=[[1,2,3],4,5,61]
+b=[]
+for i in a:
+    for j in i:
+        c=[]
+        for k in a[i:]:
+            for v in k:
+                if j==v:
+                    c.append(j)
+        b.append(c)
