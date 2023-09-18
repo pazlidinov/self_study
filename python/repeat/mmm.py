@@ -130,13 +130,25 @@
 
 # from random import randint
 # print(randint(100000, 999999))
-a=[[1,2,3],4,5,61]
-b=[]
-for i in a:
-    for j in i:
-        c=[]
-        for k in a[i:]:
-            for v in k:
-                if j==v:
-                    c.append(j)
-        b.append(c)
+# a=[[1,2,3],4,5,61]
+# b=[]
+# for i in a:
+#     for j in i:
+#         c=[]
+#         for k in a[i:]:
+#             for v in k:
+#                 if j==v:
+#                     c.append(j)
+#         b.append(c)
+arr=[
+    1,2,3,56,1,3,3,1
+]
+# for i in range(len(arr)):    
+#     if arr[i:].count(arr[i])==0 and arr[:i].count(arr[i]):
+#         arr.pop(i)
+for i, v in enumerate(arr):
+    start=i+1
+    if i!=len(arr) and arr[:i].count(v)!=0 and arr[start:].count(v)==0:
+       arr.remove(v)
+print(arr)
+        
