@@ -26,12 +26,7 @@ class CreateProductsTable extends Migration
             $table->text('descriptions');
             $table->enum('size', ['XS', 'S', 'M', 'L', 'XL', 'XXL']);
             $table->integer('view')->default(0);
-            $table->foreignId('image_id')
-                ->nullable()
-                ->onDelete('cascade');
-            $table->foreignId('category_id')
-                ->constrained()
-                ->restrictOnDelete();
+            $table->foreignId('category_id')->constrained('categories');
             $table->timestamps();
         });
     }

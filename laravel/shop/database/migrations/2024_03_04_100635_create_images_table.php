@@ -18,8 +18,8 @@ class CreateImagesTable extends Migration
             $table->id();
             $table->foreignId('product_id')
                 ->nullable()
-                ->onDelete('cascade')
-                ->constrained();
+                ->constrained('products')
+                ->cascadeOnDelete();
             $table->string('img');
             $table->timestamps();
         });
