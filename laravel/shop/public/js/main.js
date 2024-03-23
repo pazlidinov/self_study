@@ -114,7 +114,7 @@
 
 
     })
-    
+
     // Product Price After Loading Page
     $(window).on('load', function () {
         var subtotal = $('#subtotal');
@@ -126,5 +126,5 @@
         })
         subtotal.text(all_price);
         total.text(all_price + 10);
-    })
+    })   
 })(jQuery);

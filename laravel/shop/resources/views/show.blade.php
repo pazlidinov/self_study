@@ -23,7 +23,7 @@
 
 
 <!-- Shop Detail Start -->
-<div class="container-fluid pb-5">
+<div  class="container-fluid pb-5">
     <div class="row px-xl-5">
         <div class="col-lg-5 mb-30">
             <div id="product-carousel" class="carousel slide" data-ride="carousel">
@@ -70,8 +70,9 @@
                         {{ $product->size }}
                     </label>
                 </div>
-                <div class="d-flex align-items-center mb-4 pt-2">
-                    <button class="btn btn-primary px-3">
+                <div id="add_to_cart"  class="d-flex align-items-center mb-4 pt-2">
+                    <input type="hidden" value="{{$product->id}}">
+                    <button  onclick="Put_to_Cart({{$product->id}})" class="btn btn-primary px-3">
                         <i class="fa fa-shopping-cart mr-1"></i>
                         Add To Cart
                     </button>
@@ -222,4 +223,5 @@
     </div>
 </div>
 <!-- Products End -->
+
 @endsection

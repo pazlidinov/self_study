@@ -37,11 +37,12 @@ function Put_to_Liked(id) {
 
 // Put to cart product in session of user.
 function Put_to_Cart(id) {
-    let url = `/put_to_cart/${id}`
+    let url = `/put_to_cart/${id}`   
 
     fetch(url).then(response => response.json()).then(data => {
         if (data["answer"] == 200) {
             alert("Success")
+           
         }
         if (data["answer"] == 400) {
             alert('Something wrong with request')
