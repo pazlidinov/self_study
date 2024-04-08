@@ -14,7 +14,7 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        return Article::orderBy('id', 'DESC')->get();
+        return Article::orderBy('id', 'DESC')->limit(5)->get();
     }
 
     /**
