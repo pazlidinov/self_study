@@ -1,6 +1,6 @@
 <template>
-      <!-- Navbar start -->
-      <div class="container-fluid sticky-top px-0">
+    <!-- Navbar start -->
+    <div class="container-fluid sticky-top px-0">
         <div class="container-fluid topbar bg-dark">
             <div class="container px-0">
                 <div class="row ">
@@ -15,13 +15,13 @@
                         <div class="d-inline-flex float-end">
                             <div class="nav-item dropdown">
                                 <a href="#" class=" dropdown-toggle" data-bs-toggle="dropdown">
-								<i class="fa fa-user-circle" aria-hidden="true"></i>  Account</a>
+                                    <i class="fa fa-user-circle" aria-hidden="true"></i> Account</a>
                                 <div class="dropdown-menu m-0  rounded-0">
                                     <a href="#" class="dropdown-item">Log in</a>
                                     <a href="#" class="dropdown-item">Register</a>
                                     <a href="#" class="dropdown-item">Articles</a>
                                     <a href="#" class="dropdown-item">Create</a>
-									<hr>
+                                    <hr>
                                     <a href="#" class="dropdown-item">Log out</a>
 
                                 </div>
@@ -49,13 +49,14 @@
                             <div class="nav-item dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Categories</a>
                                 <div class="dropdown-menu m-0 bg-secondary rounded-0">
-                                    <a v-for="category in categories":key="id" href="#" class="dropdown-item">{{ category.name }}</a>
-                                   
+                                    <a v-for="category in categories" href="#" class="dropdown-item">{{ category.name
+                                        }}</a>
+
                                 </div>
                             </div>
                             <a href="detail-page.html" class="nav-item nav-link">Articles</a>
-                            
-                            
+
+
                             <a href="contact.html" class="nav-item nav-link">Contact Us</a>
                         </div>
                         <div class="d-flex flex-nowrap border-top pt-3 pt-xl-0">
@@ -101,8 +102,8 @@
         </div>
     </div>
     <!-- Modal Search End -->
-</template>
 
+</template>
 
 <script>
 import axios from 'axios'
@@ -111,12 +112,12 @@ export default {
     data() {
         return {
             categories: null,
-        };
+        }
     },
     async mounted() {
-        // let domain = await axios.get("../../data/url.txt");
-        let response = await axios.get("http://127.0.0.1:8000/api/category");
+        let domain = await axios.get("../../data/url.txt");
+        let response = await axios.get(domain.data + "category");
         this.categories = await response.data
-    }
+    },
 };
 </script>

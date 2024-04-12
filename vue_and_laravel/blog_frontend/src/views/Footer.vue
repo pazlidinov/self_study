@@ -1,6 +1,6 @@
-<template>
-     <!-- Footer Start -->
-     <div class="container-fluid bg-dark footer py-5">
+ <template>
+    <!-- Footer Start -->
+    <div class="container-fluid bg-dark footer py-5">
         <div class="container py-4">
             <div class="pb-4 mb-4" style="border-bottom: 1px solid rgba(255, 255, 255, 0.08);">
                 <div class="row g-4">
@@ -17,10 +17,10 @@
                 <div class="col-lg-7 col-xl-5">
                     <div class="footer-item-1">
                         <h4 class="mb-4 text-white">Get In Touch</h4>
-                        <p class="text-secondary line-h">Address: <span class="text-white">123 Streat, New York</span>
+                        <p class="text-secondary line-h">Address: <span class="text-white">132 Uzbek st., Andijan</span>
                         </p>
-                        <p class="text-secondary line-h">Email: <span class="text-white">Example@gmail.com</span></p>
-                        <p class="text-secondary line-h">Phone: <span class="text-white">+0123 4567 8910</span></p>
+                        <p class="text-secondary line-h">Email: <span class="text-white">pazlidinovg@gmail.com</span></p>
+                        <p class="text-secondary line-h">Phone: <span class="text-white">+998 90 621 33 80</span></p>
                         <div class="d-flex line-h">
                             <a class="btn btn-light me-2 btn-md-square rounded-circle" href=""><i
                                     class="fab fa-twitter text-dark"></i></a>
@@ -38,18 +38,10 @@
                 <div class="col-lg-6 col-xl-3">
                     <div class="d-flex flex-column text-start footer-item-3">
                         <h4 class="mb-4 text-white">Categories</h4>
-                        <a class="btn-link text-white" href=""><i class="fas fa-angle-right text-white me-2"></i>
-                            Sports</a>
-                        <a class="btn-link text-white" href=""><i class="fas fa-angle-right text-white me-2"></i>
-                            Magazine</a>
-                        <a class="btn-link text-white" href=""><i class="fas fa-angle-right text-white me-2"></i>
-                            Lifestyle</a>
-                        <a class="btn-link text-white" href=""><i class="fas fa-angle-right text-white me-2"></i>
-                            Politician</a>
-                        <a class="btn-link text-white" href=""><i class="fas fa-angle-right text-white me-2"></i>
-                            Technology</a>
-                        <a class="btn-link text-white" href=""><i class="fas fa-angle-right text-white me-2"></i>
-                            Intertainment</a>
+                        <a v-for="category in categories" class="btn-link text-white" href=""><i
+                                class="fas fa-angle-right text-white me-2"></i>
+                            {{ category.name }}</a>
+
                     </div>
                 </div>
 
@@ -84,3 +76,20 @@
             class="fa fa-arrow-up"></i></a>
 
 </template>
+
+<script>
+import axios from 'axios'
+
+export default {
+    data() {
+        return {
+            categories: null,
+        }
+    },
+    async mounted() {
+        let domain = await axios.get("../../data/url.txt");
+        let response = await axios.get(domain.data + "category");
+        this.categories = await response.data
+    },
+};
+</script>

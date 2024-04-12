@@ -21,4 +21,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::apiResources(['article'=>ArticleController::class]);
+Route::get('/random_articles', [ArticleController::class, 'random_articles'])->name('random_articles') ;
+
 Route::apiResources(['category'=>CategoryController::class]);

@@ -82,4 +82,17 @@ class ArticleController extends Controller
     {
         //
     }
+
+    
+    /**
+     * Display a listing of random articles.
+     *
+     * 
+     * @return \Illuminate\Http\Response
+     */
+    public function random_articles()
+    {
+       return Article::inRandomOrder()->with('categories')->limit(12)->get();
+    }
+    
 }
