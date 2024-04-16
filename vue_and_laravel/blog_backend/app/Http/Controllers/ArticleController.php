@@ -121,4 +121,15 @@ class ArticleController extends Controller
         // );
         // return 'ok';
     }
+
+    /**
+     * Display a listing of articles by category.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function article_by_category($id)
+    {
+        return Article::where('category_id', $id)->limit(6)->get();       
+    }
 }

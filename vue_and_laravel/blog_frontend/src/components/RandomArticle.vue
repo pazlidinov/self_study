@@ -111,10 +111,7 @@ export default {
         let response = await axios.get(domain.data + "random_articles");
         this.first_articles = await response.data.slice(0, 4)
         this.second_articles = await response.data.slice(4, 5)
-        this.third_articles = await response.data.slice(4, -1)
-        console.log(this.first_articles)
-        console.log(this.second_articles)
-        console.log(this.third_articles)
+        this.third_articles = await response.data.slice(4, -1)     
     },
 };
 </script>
