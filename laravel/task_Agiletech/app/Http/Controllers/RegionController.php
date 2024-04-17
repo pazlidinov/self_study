@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\RegionResource;
 use App\Models\Region;
 use Illuminate\Http\Request;
 
@@ -12,7 +13,7 @@ class RegionController extends Controller
      */
     public function index()
     {
-        //
+        return RegionResource::collection(Region::all());
     }
 
     /**
@@ -28,7 +29,11 @@ class RegionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Region::create([
+            'name' => $request->name,
+        ]);
+
+        return ['The region was successfully created'];
     }
 
     /**
@@ -36,7 +41,7 @@ class RegionController extends Controller
      */
     public function show(Region $region)
     {
-        //
+        return new RegionResource($region);
     }
 
     /**
@@ -44,7 +49,7 @@ class RegionController extends Controller
      */
     public function edit(Region $region)
     {
-        //
+        return new RegionResource($region);
     }
 
     /**
@@ -52,7 +57,11 @@ class RegionController extends Controller
      */
     public function update(Request $request, Region $region)
     {
-        //
+        $region->create([
+            'name' => $request->name,
+        ]);
+
+        return ['The region was successfully updated'];
     }
 
     /**
@@ -60,6 +69,7 @@ class RegionController extends Controller
      */
     public function destroy(Region $region)
     {
-        //
+        $region->delete();
+        return ['The region was successfully deleted'];
     }
 }

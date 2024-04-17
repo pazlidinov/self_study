@@ -16,7 +16,7 @@ class Brand extends Model
     /**
      * Get the branchs for the Brand.
      */
-    public function branchs()
+    public function branches()
     {
         return $this->hasMany(Branch::class);
     }

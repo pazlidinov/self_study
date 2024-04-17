@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\ImgResource;
 use App\Models\Img;
 use Illuminate\Http\Request;
 
@@ -12,7 +13,7 @@ class ImgController extends Controller
      */
     public function index()
     {
-        //
+        return ImgResource::collection(Img::all());
     }
 
     /**
@@ -28,7 +29,16 @@ class ImgController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if ($request->hasFile('img')) {
+            $name = $request->file('img')->getClientOriginalName();
+            $path = $request->file('branch-imgs')->storeAs('brand-img', $name);
+        }
+        Img::create([
+            'branch_id'=>$request->branch_id,
+            'img'=>$path ?? null
+        ]);
+
+        return ['The img was successfully created'];
     }
 
     /**
@@ -36,7 +46,7 @@ class ImgController extends Controller
      */
     public function show(Img $img)
     {
-        //
+        return new ImgResource($img);
     }
 
     /**
@@ -44,7 +54,7 @@ class ImgController extends Controller
      */
     public function edit(Img $img)
     {
-        //
+        return new ImgResource($img);
     }
 
     /**
@@ -52,7 +62,16 @@ class ImgController extends Controller
      */
     public function update(Request $request, Img $img)
     {
-        //
+        if ($request->hasFile('img')) {
+            $name = $request->file('img')->getClientOriginalName();
+            $path = $request->file('img')->storeAs('brand-img', $name);
+        }
+        $img->update([
+            'branch_id'=>$request->branch_id,
+            'img'=>$path ?? null
+        ]);
+
+        return ['The img was successfully updated'];
     }
 
     /**
@@ -60,6 +79,7 @@ class ImgController extends Controller
      */
     public function destroy(Img $img)
     {
-        //
+        $img->delete();
+        return ['The img was successfully deleted'];
     }
 }

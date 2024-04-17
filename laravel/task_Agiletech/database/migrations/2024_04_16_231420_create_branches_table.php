@@ -15,24 +15,8 @@ return new class extends Migration
         Schema::create('branches', function (Blueprint $table) {
             $table->id();
             $table->string('name', 150);
-            $table->foreignId('brand_id')->constrained('brands')->onDelete('cascade');
-            
-            $table->enum('region', [
-                '1'=> "Qoraqalpog‘iston Respublikasi",
-                '2'=> "Andijon viloyati",
-                '3'=> "Buxoro viloyati",
-                '4'=> "Jizzax viloyati",
-                '5'=> "Qashqadaryo viloyati",
-                '6'=> "Navoiy viloyati",
-                '7'=> "Namangan viloyati",
-                '8'=> "Samarqand viloyati",
-                '9'=> "Surxandaryo viloyati",
-                '10'=> "Sirdaryo viloyati",
-                '11'=> "Toshkent viloyati",
-                '12'=> "Farg‘ona viloyati",
-                '13'=> "Xorazm viloyati",
-                '14'=> "Toshkent shahri"
-            ]);
+            $table->foreignId('brand_id')->constrained('brands')->onDelete('cascade');            
+            $table->foreignId('district_id')->constrained('districts')->onDelete('cascade');
             $table->timestamps();
         });
     }

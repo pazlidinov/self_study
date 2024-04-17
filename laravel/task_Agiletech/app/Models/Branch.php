@@ -11,7 +11,8 @@ class Branch extends Model
     public $timestamps = true;
     protected $fillable = [
         'name',
-        'brand_id'
+        'brand_id',
+        'district_id'
     ];
 
     /**
@@ -20,6 +21,13 @@ class Branch extends Model
     public function brand()
     {
         return $this->belongsTo(Brand::class);
+    }
+    /**
+     * Bind district to branch
+     */
+    public function district()
+    {
+        return $this->belongsTo(District::class);
     }
 
     /**

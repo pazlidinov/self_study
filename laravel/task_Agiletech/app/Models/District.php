@@ -17,7 +17,7 @@ class District extends Model
      /**
      * Bind brand to branch
      */
-    public function region()
+    public function regions()
     {
         return $this->belongsTo(Region::class);
     }

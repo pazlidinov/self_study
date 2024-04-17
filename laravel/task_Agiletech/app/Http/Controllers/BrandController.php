@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\BrandResource;
 use App\Models\Brand;
 use Illuminate\Http\Request;
 
@@ -12,7 +13,7 @@ class BrandController extends Controller
      */
     public function index()
     {
-        //
+        return BrandResource::collection(Brand::all());
     }
 
     /**
@@ -28,7 +29,16 @@ class BrandController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if ($request->hasFile('img')) {
+            $name = $request->file('img')->getClientOriginalName();
+            $path = $request->file('img')->storeAs('brand-img', $name);
+        }
+        Brand::create([
+            'name' => $request->brand_name,
+            'img' => $path ?? null,
+        ]);
+
+        return ['The brand was successfully created'];
     }
 
     /**
@@ -36,7 +46,7 @@ class BrandController extends Controller
      */
     public function show(Brand $brand)
     {
-        //
+        return new BrandResource($brand);
     }
 
     /**
@@ -44,7 +54,7 @@ class BrandController extends Controller
      */
     public function edit(Brand $brand)
     {
-        //
+        return new BrandResource($brand);
     }
 
     /**
@@ -52,7 +62,16 @@ class BrandController extends Controller
      */
     public function update(Request $request, Brand $brand)
     {
-        //
+        if ($request->hasFile('img')) {
+            $name = $request->file('img')->getClientOriginalName();
+            $path = $request->file('img')->storeAs('brand-img', $name);
+        }
+        $brand->update([
+            'name' => $request->brand_name,
+            'img' => $path ?? null,
+        ]);
+
+        return ['The brand was successfully updated'];
     }
 
     /**
@@ -60,6 +79,8 @@ class BrandController extends Controller
      */
     public function destroy(Brand $brand)
     {
-        //
+        $brand->delete();
+
+        return ['The brand was successfully deleted'];
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\DistrictResource;
 use App\Models\District;
 use Illuminate\Http\Request;
 
@@ -12,7 +13,7 @@ class DistrictController extends Controller
      */
     public function index()
     {
-        //
+        return DistrictResource::collection(District::all());
     }
 
     /**
@@ -28,7 +29,12 @@ class DistrictController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        District::create([
+            'name'=>$request->name,
+            'region_id'=>$request->region_id
+        ]);
+
+        return ['The district was successfully created'];
     }
 
     /**
@@ -36,7 +42,7 @@ class DistrictController extends Controller
      */
     public function show(District $district)
     {
-        //
+        return new DistrictResource($district);
     }
 
     /**
@@ -44,7 +50,7 @@ class DistrictController extends Controller
      */
     public function edit(District $district)
     {
-        //
+        return new DistrictResource($district);
     }
 
     /**
@@ -52,7 +58,12 @@ class DistrictController extends Controller
      */
     public function update(Request $request, District $district)
     {
-        //
+       $district->update([
+            'name'=>$request->name,
+            'region_id'=>$request->region_id
+        ]);
+
+        return ['The district was successfully updated'];
     }
 
     /**
@@ -60,6 +71,7 @@ class DistrictController extends Controller
      */
     public function destroy(District $district)
     {
-        //
+        $district->delete();
+        return ['The district was successfully deleted'];
     }
 }
