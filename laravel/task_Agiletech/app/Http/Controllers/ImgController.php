@@ -38,7 +38,7 @@ class ImgController extends Controller
             'img'=>$path ?? null
         ]);
 
-        return ['The img was successfully created'];
+        return true;
     }
 
     /**

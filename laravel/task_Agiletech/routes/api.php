@@ -6,6 +6,7 @@ use App\Http\Controllers\DistrictController;
 use App\Http\Controllers\ImgController;
 use App\Http\Controllers\RegionController;
 use App\Http\Controllers\StatisticsController;
+use App\Http\Controllers\UserAuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -34,3 +35,5 @@ Route::apiResources(['district' => DistrictController::class]);
 
 Route::get('/by_region/{id}', [StatisticsController::class, 'by_region'])->name('by_region');
 Route::get('/by_district/{id}', [StatisticsController::class, 'by_district'])->name('by_district');
+
+Route::post('/register', [UserAuthController::class, 'register'])->name('register');

@@ -15,8 +15,8 @@ return new class extends Migration
         Schema::create('branches', function (Blueprint $table) {
             $table->id();
             $table->string('name', 150);
-            $table->foreignId('brand_id')->constrained('brands')->onDelete('cascade');            
-            $table->foreignId('district_id')->constrained('districts')->onDelete('cascade');
+            $table->foreignId('brand_id')->constrained('brands');
+            $table->foreignId('district_id')->constrained('districts');
             $table->timestamps();
         });
     }

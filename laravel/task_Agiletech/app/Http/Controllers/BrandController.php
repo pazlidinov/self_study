@@ -6,6 +6,7 @@ use App\Http\Resources\BrandResource;
 use App\Models\Brand;
 use Illuminate\Http\Request;
 
+
 class BrandController extends Controller
 {
     /**
@@ -33,8 +34,9 @@ class BrandController extends Controller
             $name = $request->file('img')->getClientOriginalName();
             $path = $request->file('img')->storeAs('brand-img', $name);
         }
+
         Brand::create([
-            'name' => $request->brand_name,
+            'name' => $request->name,
             'img' => $path ?? null,
         ]);
 

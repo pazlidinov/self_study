@@ -17,6 +17,7 @@ class ImgResource extends JsonResource
         return [
             'id' => $this->id,
             'branch_id' => $this->branch_id,
+            'img'=>$this->img,
         ];
     }
 }

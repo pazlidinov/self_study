@@ -30,19 +30,26 @@ class BranchController extends Controller
      */
     public function store(Request $request)
     {
-        $branch = new Branch;
-        $branch->name = $request->name;
-        $branch->brand_id = $request->brand_id;
-        $branch->district_id = $request->district_id;
-        $branch->save();
-        if ($request->hasFile('img')) {
-            foreach ($request->file('img') as $imgfile) {
-                $img = new Img;
-                $name = $imgfile->getClientOriginalName();
-                $path = $imgfile->storeAs('brand-img', $name);
-                $img->branch_id = $branch->id;
-                $img->img = $path;
-                $img->save();
+
+        $branch = Branch::create([
+            'name' => $request->name,
+            'brand_id' => $request->brand_id,
+            'district_id' => $request->district_id,
+        ]);
+        $i = 0;
+        while (true) {
+            $i++;
+            if ($request->hasFile('img-' . $i . '')) {
+                $name = $request->file('img-' . $i . '')->getClientOriginalName();
+                $path = $request->file('img-' . $i . '')->storeAs('brand-img', $name);
+
+                Img::create([
+                    'branch_id' => $branch->id,
+                    'img' => $path ?? null,
+                ]);
+            }
+            else{
+                break;
             }
         }
 
