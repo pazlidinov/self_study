@@ -12,21 +12,53 @@ class BranchController extends Controller
     /**
      * Display a listing of the resource.
      */
+
+    /**
+     * @OA\Get(
+     *     path="/api/branch",
+     *     summary="Get a list of branchs",
+     *     tags={"branch"},
+     *     @OA\Response(response=200, description="Successful operation"),
+     *     @OA\Response(response=400, description="Invalid request")
+     * )
+     */
     public function index()
     {
         return BranchResource::collection(Branch::all());
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Store a newly created resource in storage.
      */
-    public function create()
-    {
-        //
-    }
 
     /**
-     * Store a newly created resource in storage.
+     * @OA\Post(
+     *     path="/api/branch/",
+     *     summary="Store a newl branch created resource in storage.",
+     *     @OA\Parameter(
+     *         name="name",
+     *         in="query",
+     *         description="branch's name",
+     *         required=true,
+     *         @OA\Schema(type="string")
+     *     ),
+     *     @OA\Parameter(
+     *         name="brand_id",
+     *         in="query",
+     *         description="Branch's brand_id",
+     *         required=true,
+     *         @OA\Schema(type="string")
+     *     ),
+     *     @OA\Parameter(
+     *         name="district_id",
+     *         in="query",
+     *         description="Branch's district_id",
+     *         required=true,
+     *         @OA\Schema(type="string")
+     *     ),
+     *     @OA\Response(response="200", description="The branch was successfully created"),
+     *   
+     * )
      */
     public function store(Request $request)
     {
@@ -47,8 +79,7 @@ class BranchController extends Controller
                     'branch_id' => $branch->id,
                     'img' => $path ?? null,
                 ]);
-            }
-            else{
+            } else {
                 break;
             }
         }
@@ -59,15 +90,17 @@ class BranchController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Branch $branch)
-    {
-        return new BranchResource($branch);
-    }
 
     /**
-     * Show the form for editing the specified resource.
+     * @OA\Get(
+     *     path="/api/branch/id",
+     *     summary="Display the details of branch.",
+     *     tags={"branch"},
+     *     @OA\Response(response=200, description="Successful operation"),
+     *     
+     * )
      */
-    public function edit(Branch $branch)
+    public function show(Branch $branch)
     {
         return new BranchResource($branch);
     }
@@ -75,11 +108,48 @@ class BranchController extends Controller
     /**
      * Update the specified resource in storage.
      */
+
+     /**
+     * @OA\PUT(
+     *     path="/api/branch/id",
+     *     summary="Update the  branch in storage.",
+     *     @OA\Parameter(
+     *         name="name",
+     *         in="query",
+     *         description="Branch's name",
+     *         required=true,
+     *         @OA\Schema(type="string")
+     *     ),
+     *     @OA\Parameter(
+     *         name="brand_id",
+     *         in="query",
+     *         description="Branch's brand_id",
+     *         required=true,
+     *         @OA\Schema(type="string")
+     *     ),
+     *     @OA\Parameter(
+     *         name="district_id",
+     *         in="query",
+     *         description="Branch's district_id",
+     *         required=true,
+     *         @OA\Schema(type="string")
+     *     ),
+     *     @OA\Parameter(
+     *         name="img",
+     *         in="query",
+     *         description="Branch's imgs",
+     *         required=true,
+     *         @OA\Schema(type="file")
+     *     ),
+     *     @OA\Response(response="200", description="The branch was successfully updated"),
+     *   
+     * )
+     */
     public function update(Request $request, Branch $branch)
     {
         if ($request->hasFile('img')) {
             $name = $request->file('img')->getClientOriginalName();
-            $path = $request->file('img')->storeAs('brand-img', $name);
+            $path = $request->file('img')->storeAs('branch-img', $name);
         }
         $branch->update([
             'name' => $request->name,
@@ -93,6 +163,15 @@ class BranchController extends Controller
 
     /**
      * Remove the specified resource from storage.
+     */
+    /**
+     * @OA\DELETE(
+     *     path="/api/branch/id",
+     *     summary="Remove the branch from storage.",
+     *     tags={"branch"},
+     *     @OA\Response(response=200, description="The branch was successfully deleted"),
+     *     
+     * )
      */
     public function destroy(Branch $branch)
     {

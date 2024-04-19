@@ -1,0 +1,825 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Swagger with Laravel",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/branch": {
+            "get": {
+                "tags": [
+                    "branch"
+                ],
+                "summary": "Get a list of branchs",
+                "operationId": "7a60d8d8fd907b42bfb98cf328e9b958",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Invalid request"
+                    }
+                }
+            }
+        },
+        "/api/branch/": {
+            "post": {
+                "summary": "Store a newl branch created resource in storage.",
+                "operationId": "8f741dbac90ec38d9a6120088586d2bc",
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "description": "branch's name",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "brand_id",
+                        "in": "query",
+                        "description": "Branch's brand_id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "district_id",
+                        "in": "query",
+                        "description": "Branch's district_id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "The branch was successfully created"
+                    }
+                }
+            }
+        },
+        "/api/branch/id": {
+            "get": {
+                "tags": [
+                    "branch"
+                ],
+                "summary": "Display the details of branch.",
+                "operationId": "87048c3dd53282cf795f4ed0940c7873",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    }
+                }
+            },
+            "put": {
+                "summary": "Update the  branch in storage.",
+                "operationId": "4402c48049025b63beae26c98b5eef84",
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "description": "Branch's name",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "brand_id",
+                        "in": "query",
+                        "description": "Branch's brand_id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "district_id",
+                        "in": "query",
+                        "description": "Branch's district_id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "img",
+                        "in": "query",
+                        "description": "Branch's imgs",
+                        "required": true,
+                        "schema": {
+                            "type": "file"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "The branch was successfully updated"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "branch"
+                ],
+                "summary": "Remove the branch from storage.",
+                "operationId": "8418fbd188dd44a62582cc494440f857",
+                "responses": {
+                    "200": {
+                        "description": "The branch was successfully deleted"
+                    }
+                }
+            }
+        },
+        "/api/brand": {
+            "get": {
+                "tags": [
+                    "brand"
+                ],
+                "summary": "Get a list of brands",
+                "operationId": "25c1b1e2bbeba7bfb9df6748b277a205",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Invalid request"
+                    }
+                }
+            }
+        },
+        "/api/brand/": {
+            "post": {
+                "summary": "Store a newl brand created resource in storage.",
+                "operationId": "9924f278a07cd89508fd63b9caa4148c",
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "description": "brand's name",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "img",
+                        "in": "query",
+                        "description": "brand's img",
+                        "required": true,
+                        "schema": {
+                            "type": "file"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "The brand was successfully created"
+                    }
+                }
+            }
+        },
+        "/api/brand/id": {
+            "get": {
+                "tags": [
+                    "brand"
+                ],
+                "summary": "Display the details of brand.",
+                "operationId": "a7d753156fcb04c74f1e476a54db37bd",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    }
+                }
+            },
+            "put": {
+                "summary": "Update the  brand in storage.",
+                "operationId": "69ec346a10879ad41a8768043de0b0d4",
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "description": "brand's name",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "brand_id",
+                        "in": "query",
+                        "description": "brand's brand_id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "img",
+                        "in": "query",
+                        "description": "brand's imgs",
+                        "required": true,
+                        "schema": {
+                            "type": "file"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "The brand was successfully updated"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "brand"
+                ],
+                "summary": "Remove the brand from storage.",
+                "operationId": "45118f6b182a1c8cbc812635ab6a6139",
+                "responses": {
+                    "200": {
+                        "description": "The brand was successfully deleted"
+                    }
+                }
+            }
+        },
+        "/api/district": {
+            "get": {
+                "tags": [
+                    "district"
+                ],
+                "summary": "Get a list of districts",
+                "operationId": "09b3bc4dc23bef12c24ffffbfa09aee2",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Invalid request"
+                    }
+                }
+            }
+        },
+        "/api/district/": {
+            "post": {
+                "summary": "Store a newl district created resource in storage.",
+                "operationId": "42e615ec18127e6ff8333764644eb369",
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "description": "district's name",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "region_id",
+                        "in": "query",
+                        "description": "district's region_id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "The district was successfully created"
+                    }
+                }
+            }
+        },
+        "/api/district/id": {
+            "get": {
+                "tags": [
+                    "district"
+                ],
+                "summary": "Display the details of district.",
+                "operationId": "3c5bdea9c0479d94e5696b9e365e59a9",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    }
+                }
+            },
+            "put": {
+                "summary": "Update the  district in storage.",
+                "operationId": "e4cb5618870051b861292bf6bb7681b9",
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "description": "district's name",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "region_id",
+                        "in": "query",
+                        "description": "district's region_id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "The district was successfully updated"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "district"
+                ],
+                "summary": "Remove the district from storage.",
+                "operationId": "8d125c5c8609decf8ff4b9347f6e16ac",
+                "responses": {
+                    "200": {
+                        "description": "The district was successfully deleted"
+                    }
+                }
+            }
+        },
+        "/api/img": {
+            "get": {
+                "tags": [
+                    "img"
+                ],
+                "summary": "Get a list of imgs",
+                "operationId": "77b12b0b1f285163ff4a880afd272fa0",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Invalid request"
+                    }
+                }
+            }
+        },
+        "/api/img/": {
+            "post": {
+                "summary": "Store a newl img created resource in storage.",
+                "operationId": "e79faef017620a693e9810b48a21412c",
+                "parameters": [
+                    {
+                        "name": "branch_id",
+                        "in": "query",
+                        "description": "img's branch_id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "img",
+                        "in": "query",
+                        "description": "img's img",
+                        "required": true,
+                        "schema": {
+                            "type": "file"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "The img was successfully created"
+                    }
+                }
+            }
+        },
+        "/api/img/id": {
+            "get": {
+                "tags": [
+                    "img"
+                ],
+                "summary": "Display the details of img.",
+                "operationId": "c1e9912fac9c0fc38bd5e6fe5810f1ec",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    }
+                }
+            },
+            "put": {
+                "summary": "Update the  img in storage.",
+                "operationId": "abcfe07c85b26aa9b67ed65cc8deaa7f",
+                "parameters": [
+                    {
+                        "name": "branch_id",
+                        "in": "query",
+                        "description": "img's branch_id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "img",
+                        "in": "query",
+                        "description": "img's imgs",
+                        "required": true,
+                        "schema": {
+                            "type": "file"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "The img was successfully updated"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "img"
+                ],
+                "summary": "Remove the img from storage.",
+                "operationId": "ac407ca5e1e7150dd19dcee3dbcb2260",
+                "responses": {
+                    "200": {
+                        "description": "The img was successfully deleted"
+                    }
+                }
+            }
+        },
+        "/api/getrates": {
+            "get": {
+                "tags": [
+                    "getrates"
+                ],
+                "summary": "Get a list of getrateses",
+                "operationId": "e8d54c0602d352614c723ccc02ede831",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Invalid request"
+                    }
+                }
+            }
+        },
+        "/api/region": {
+            "get": {
+                "tags": [
+                    "region"
+                ],
+                "summary": "Get a list of regions",
+                "operationId": "0c51f58df055e5721d4627d15b7ceb04",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Invalid request"
+                    }
+                }
+            }
+        },
+        "/api/regiob/": {
+            "post": {
+                "summary": "Store a newl regiob created resource in storage.",
+                "operationId": "526a359bde5298e0459c984a35b28916",
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "description": "regiob's name",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "The regiob was successfully created"
+                    }
+                }
+            }
+        },
+        "/api/region/id": {
+            "get": {
+                "tags": [
+                    "region"
+                ],
+                "summary": "Display the details of region.",
+                "operationId": "619f156bb5b5ba524071abca19110001",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    }
+                }
+            },
+            "put": {
+                "summary": "Update the  region in storage.",
+                "operationId": "80ec33d5990143acc98883b1853a03e5",
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "description": "region's name",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "region_id",
+                        "in": "query",
+                        "description": "region's region_id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "The region was successfully updated"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "region"
+                ],
+                "summary": "Remove the region from storage.",
+                "operationId": "85d145c3a524b8f1bdc2155973660b75",
+                "responses": {
+                    "200": {
+                        "description": "The region was successfully deleted"
+                    }
+                }
+            }
+        },
+        "/api/by_region": {
+            "get": {
+                "tags": [
+                    "by_region"
+                ],
+                "summary": "Get a count of brands by_region",
+                "operationId": "85a664fc62c7be803f1a7ddc859a936e",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Invalid request"
+                    }
+                }
+            }
+        },
+        "/api/by_district": {
+            "get": {
+                "tags": [
+                    "by_district"
+                ],
+                "summary": "Get a count of brands by_district",
+                "operationId": "d87321d1faa6fdbb931e09c498698957",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Invalid request"
+                    }
+                }
+            }
+        },
+        "/api/register": {
+            "post": {
+                "summary": "Register a new user",
+                "operationId": "c0354e671ce642c7b4ff996bc4e475a0",
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "description": "User's name",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "phone_number",
+                        "in": "query",
+                        "description": "User's phone_number",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "password",
+                        "in": "query",
+                        "description": "User's password",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "User registered successfully"
+                    },
+                    "401": {
+                        "description": "Validation errors"
+                    }
+                }
+            }
+        },
+        "/api/login": {
+            "post": {
+                "summary": "Authenticate user and generate JWT token",
+                "operationId": "dde0e6a0694ae97f804fba7d40433c68",
+                "parameters": [
+                    {
+                        "name": "phone_number",
+                        "in": "query",
+                        "description": "User's phone_number",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "password",
+                        "in": "query",
+                        "description": "User's password",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Login successful"
+                    },
+                    "401": {
+                        "description": "Unauthorised. Invalid credentials"
+                    }
+                }
+            }
+        },
+        "/api/logout": {
+            "get": {
+                "summary": "Get logout user.",
+                "operationId": "6ed3b558c7c74e809518c164c4e3a1a6",
+                "responses": {
+                    "200": {
+                        "description": "Yuo are logout."
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/user": {
+            "get": {
+                "tags": [
+                    "user"
+                ],
+                "summary": "Get a list of users",
+                "operationId": "971db9bc974c0e607288cfe7ecc10096",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Invalid request"
+                    }
+                }
+            }
+        },
+        "/api/user/": {
+            "post": {
+                "summary": "Store a newl user created resource in storage.",
+                "operationId": "5db1ab81dbc69e2e6d6b811a3d5f35ac",
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "description": "user's name",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "phone_number",
+                        "in": "query",
+                        "description": "user's phone_number",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "password",
+                        "in": "query",
+                        "description": "user's password",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "The user was successfully created"
+                    }
+                }
+            }
+        },
+        "/api/user/id": {
+            "get": {
+                "tags": [
+                    "user"
+                ],
+                "summary": "Display the details of user.",
+                "operationId": "04f65273b5ef0aaf11360a7e9a768b6b",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    }
+                }
+            },
+            "put": {
+                "summary": "Update the  user in storage.",
+                "operationId": "1dcf0396be6e572fb79829fab1b1d158",
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "description": "user's name",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "phone_number",
+                        "in": "query",
+                        "description": "user's phone_number",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "password",
+                        "in": "query",
+                        "description": "user's passwords",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "The user was successfully updated"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "user"
+                ],
+                "summary": "Remove the user from storage.",
+                "operationId": "d61875f395fe5ac1f803329915d28c6e",
+                "responses": {
+                    "200": {
+                        "description": "The user was successfully deleted"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "http",
+                "bearerFormat": "JWT",
+                "scheme": "bearer"
+            }
+        }
+    }
+}

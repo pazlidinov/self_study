@@ -11,21 +11,47 @@ class ImgController extends Controller
     /**
      * Display a listing of the resource.
      */
+    /**
+     * @OA\Get(
+     *     path="/api/img",
+     *     summary="Get a list of imgs",
+     *     tags={"img"},
+     *     @OA\Response(response=200, description="Successful operation"),
+     *     @OA\Response(response=400, description="Invalid request")
+     * )
+     */
     public function index()
     {
         return ImgResource::collection(Img::all());
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
 
     /**
      * Store a newly created resource in storage.
+     */
+
+    /**
+     * @OA\Post(
+     *     path="/api/img/",
+     *     summary="Store a newl img created resource in storage.",
+     *     @OA\Parameter(
+     *         name="branch_id",
+     *         in="query",
+     *         description="img's branch_id",
+     *         required=true,
+     *         @OA\Schema(type="string")
+     *     ),
+     *    
+     *     @OA\Parameter(
+     *         name="img",
+     *         in="query",
+     *         description="img's img",
+     *         required=true,
+     *         @OA\Schema(type="file")
+     *     ),
+     *     @OA\Response(response="200", description="The img was successfully created"),
+     *   
+     * )
      */
     public function store(Request $request)
     {
@@ -34,8 +60,8 @@ class ImgController extends Controller
             $path = $request->file('branch-imgs')->storeAs('brand-img', $name);
         }
         Img::create([
-            'branch_id'=>$request->branch_id,
-            'img'=>$path ?? null
+            'branch_id' => $request->branch_id,
+            'img' => $path ?? null
         ]);
 
         return true;
@@ -44,21 +70,49 @@ class ImgController extends Controller
     /**
      * Display the specified resource.
      */
+
+    /**
+     * @OA\Get(
+     *     path="/api/img/id",
+     *     summary="Display the details of img.",
+     *     tags={"img"},
+     *     @OA\Response(response=200, description="Successful operation"),
+     *    
+     * )
+     */
     public function show(Img $img)
     {
         return new ImgResource($img);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Img $img)
-    {
-        return new ImgResource($img);
-    }
+
 
     /**
      * Update the specified resource in storage.
+     */
+
+    /**
+     * @OA\PUT(
+     *     path="/api/img/id",
+     *     summary="Update the  img in storage.",
+     *     @OA\Parameter(
+     *         name="branch_id",
+     *         in="query",
+     *         description="img's branch_id",
+     *         required=true,
+     *         @OA\Schema(type="string")
+     *     ),
+     *    
+     *         @OA\Parameter(
+     *         name="img",
+     *         in="query",
+     *         description="img's imgs",
+     *         required=true,
+     *         @OA\Schema(type="file")
+     *     ),
+     *     @OA\Response(response="200", description="The img was successfully updated"),
+     *   
+     * )
      */
     public function update(Request $request, Img $img)
     {
@@ -67,8 +121,8 @@ class ImgController extends Controller
             $path = $request->file('img')->storeAs('brand-img', $name);
         }
         $img->update([
-            'branch_id'=>$request->branch_id,
-            'img'=>$path ?? null
+            'branch_id' => $request->branch_id,
+            'img' => $path ?? null
         ]);
 
         return ['The img was successfully updated'];
@@ -76,6 +130,15 @@ class ImgController extends Controller
 
     /**
      * Remove the specified resource from storage.
+     */
+    /**
+     * @OA\DELETE(
+     *     path="/api/img/id",
+     *     summary="Remove the img from storage.",
+     *     tags={"img"},
+     *     @OA\Response(response=200, description="The img was successfully deleted"),
+     *     
+     * )
      */
     public function destroy(Img $img)
     {

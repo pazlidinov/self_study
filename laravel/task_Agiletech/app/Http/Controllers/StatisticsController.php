@@ -12,6 +12,15 @@ class StatisticsController extends Controller
     /**
      * Display count of branch of brand in region.
      */
+    /**
+     * @OA\Get(
+     *     path="/api/by_region",
+     *     summary="Get a count of brands by_region",
+     *     tags={"by_region"},
+     *     @OA\Response(response=200, description="Successful operation"),
+     *     @OA\Response(response=400, description="Invalid request")
+     * )
+     */
     public function by_region($id)
     {
         $regions = Region::all();
@@ -31,6 +40,16 @@ class StatisticsController extends Controller
     }
     /**
      * Display count of branch of brand in district.
+     */
+
+      /**
+     * @OA\Get(
+     *     path="/api/by_district",
+     *     summary="Get a count of brands by_district",
+     *     tags={"by_district"},
+     *     @OA\Response(response=200, description="Successful operation"),
+     *     @OA\Response(response=400, description="Invalid request")
+     * )
      */
     public function by_district($id)
     {

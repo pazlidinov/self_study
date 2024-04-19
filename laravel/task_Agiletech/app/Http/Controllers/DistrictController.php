@@ -11,27 +11,52 @@ class DistrictController extends Controller
     /**
      * Display a listing of the resource.
      */
+    /**
+     * @OA\Get(
+     *     path="/api/district",
+     *     summary="Get a list of districts",
+     *     tags={"district"},
+     *     @OA\Response(response=200, description="Successful operation"),
+     *     @OA\Response(response=400, description="Invalid request")
+     * )
+     */
     public function index()
     {
         return DistrictResource::collection(District::all());
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
 
     /**
      * Store a newly created resource in storage.
      */
+    /**
+     * @OA\Post(
+     *     path="/api/district/",
+     *     summary="Store a newl district created resource in storage.",
+     *     @OA\Parameter(
+     *         name="name",
+     *         in="query",
+     *         description="district's name",
+     *         required=true,
+     *         @OA\Schema(type="string")
+     *     ),
+     *    
+     *     @OA\Parameter(
+     *         name="region_id",
+     *         in="query",
+     *         description="district's region_id",
+     *         required=true,
+     *         @OA\Schema(type="string")
+     *     ),
+     *     @OA\Response(response="200", description="The district was successfully created"),
+     *   
+     * )
+     */
     public function store(Request $request)
     {
         District::create([
-            'name'=>$request->name,
-            'region_id'=>$request->region_id
+            'name' => $request->name,
+            'region_id' => $request->region_id
         ]);
 
         return ['The district was successfully created'];
@@ -40,27 +65,52 @@ class DistrictController extends Controller
     /**
      * Display the specified resource.
      */
+
+     /**
+     * @OA\Get(
+     *     path="/api/district/id",
+     *     summary="Display the details of district.",
+     *     tags={"district"},
+     *     @OA\Response(response=200, description="Successful operation"),
+     *     
+     * )
+     */
     public function show(District $district)
     {
         return new DistrictResource($district);
     }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(District $district)
-    {
-        return new DistrictResource($district);
-    }
-
-    /**
+  
+     /**
      * Update the specified resource in storage.
+     */
+     /**
+     * @OA\PUT(
+     *     path="/api/district/id",
+     *     summary="Update the  district in storage.",
+     *     @OA\Parameter(
+     *         name="name",
+     *         in="query",
+     *         description="district's name",
+     *         required=true,
+     *         @OA\Schema(type="string")
+     *     ),
+     *     @OA\Parameter(
+     *         name="region_id",
+     *         in="query",
+     *         description="district's region_id",
+     *         required=true,
+     *         @OA\Schema(type="string")
+     *     ),
+     *        
+     *     @OA\Response(response="200", description="The district was successfully updated"),
+     *   
+     * )
      */
     public function update(Request $request, District $district)
     {
-       $district->update([
-            'name'=>$request->name,
-            'region_id'=>$request->region_id
+        $district->update([
+            'name' => $request->name,
+            'region_id' => $request->region_id
         ]);
 
         return ['The district was successfully updated'];
@@ -68,6 +118,16 @@ class DistrictController extends Controller
 
     /**
      * Remove the specified resource from storage.
+     */
+
+      /**
+     * @OA\DELETE(
+     *     path="/api/district/id",
+     *     summary="Remove the district from storage.",
+     *     tags={"district"},
+     *     @OA\Response(response=200, description="The district was successfully deleted"),
+     *     
+     * )
      */
     public function destroy(District $district)
     {

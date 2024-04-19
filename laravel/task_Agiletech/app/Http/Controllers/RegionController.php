@@ -11,21 +11,38 @@ class RegionController extends Controller
     /**
      * Display a listing of the resource.
      */
+    /**
+     * @OA\Get(
+     *     path="/api/region",
+     *     summary="Get a list of regions",
+     *     tags={"region"},
+     *     @OA\Response(response=200, description="Successful operation"),
+     *     @OA\Response(response=400, description="Invalid request")
+     * )
+     */
     public function index()
     {
         return RegionResource::collection(Region::all());
     }
 
     /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
+     */
+    /**
+     * @OA\Post(
+     *     path="/api/regiob/",
+     *     summary="Store a newl regiob created resource in storage.",
+     *     @OA\Parameter(
+     *         name="name",
+     *         in="query",
+     *         description="regiob's name",
+     *         required=true,
+     *         @OA\Schema(type="string")
+     *     ),
+     *          
+     *     @OA\Response(response="200", description="The regiob was successfully created"),
+     *   
+     * )
      */
     public function store(Request $request)
     {
@@ -39,21 +56,46 @@ class RegionController extends Controller
     /**
      * Display the specified resource.
      */
+    /**
+     * @OA\Get(
+     *     path="/api/region/id",
+     *     summary="Display the details of region.",
+     *     tags={"region"},
+     *     @OA\Response(response=200, description="Successful operation"),
+     *     
+     * )
+     */
     public function show(Region $region)
     {
         return new RegionResource($region);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Region $region)
-    {
-        return new RegionResource($region);
-    }
 
     /**
      * Update the specified resource in storage.
+     */
+    /**
+     * @OA\PUT(
+     *     path="/api/region/id",
+     *     summary="Update the  region in storage.",
+     *     @OA\Parameter(
+     *         name="name",
+     *         in="query",
+     *         description="region's name",
+     *         required=true,
+     *         @OA\Schema(type="string")
+     *     ),
+     *     @OA\Parameter(
+     *         name="region_id",
+     *         in="query",
+     *         description="region's region_id",
+     *         required=true,
+     *         @OA\Schema(type="string")
+     *     ),
+     *        
+     *     @OA\Response(response="200", description="The region was successfully updated"),
+     *   
+     * )
      */
     public function update(Request $request, Region $region)
     {
@@ -66,6 +108,15 @@ class RegionController extends Controller
 
     /**
      * Remove the specified resource from storage.
+     */
+    /**
+     * @OA\DELETE(
+     *     path="/api/region/id",
+     *     summary="Remove the region from storage.",
+     *     tags={"region"},
+     *     @OA\Response(response=200, description="The region was successfully deleted"),
+     *     
+     * )
      */
     public function destroy(Region $region)
     {
