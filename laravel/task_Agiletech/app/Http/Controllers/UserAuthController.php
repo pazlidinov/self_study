@@ -15,8 +15,8 @@ class UserAuthController extends Controller
             'phone_number' => 'required',
             'password' => 'required'
         ]);
-        $pattern="/^\\+?[1-9][0-9]{7,14}$/";
-        if (preg_match( $pattern, $request->phone_number) ){
+        $pattern = "/^\\+?[1-9][0-9]{7,14}$/";
+        if (preg_match($pattern, $request->phone_number)) {
             $user = User::create([
                 'name' => $request->name,
                 'email' => $request->phone_number,
@@ -31,8 +31,23 @@ class UserAuthController extends Controller
         }
     }
 
-    public function logout(Request $request) {
+    public function login(Request $request)
+    {
+        $data = [
+            'email' => $request->phone_number,
+            'password' => $request->password
+        ];
+        if (auth()->attempt($data)) {
+            $token = auth()->user()->createToken('LaravelAuthApp')->plainTextToken;
+            return response()->json(['token' => $token, 200]);
+        } else {
+            return response()->json(['error' => 'Unauthorised', 401]);
+        }
+    }
+
+    public function logout(Request $request)
+    {
         Auth::logout();
-        return redirect('/login');
-      }
+        return ['Yuo are logout.'];
+    }
 }
