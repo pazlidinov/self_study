@@ -69,20 +69,24 @@ class BranchController extends Controller
             'district_id' => $request->district_id,
         ]);
         $i = 0;
+        $branch_imgs = [];
         while (true) {
             $i++;
             if ($request->hasFile('img-' . $i . '')) {
                 $name = $request->file('img-' . $i . '')->getClientOriginalName();
-                $path = $request->file('img-' . $i . '')->storeAs('brand-img', $name);
-
-                Img::create([
-                    'branch_id' => $branch->id,
-                    'img' => $path ?? null,
-                ]);
+                $path = $request->file('img-' . $i . '')->storeAs('branch-img', $name);
+                array_push(
+                    $branch_imgs,
+                    array(
+                        'branch_id' => $branch->id,
+                        'img' => $path ?? null
+                    )
+                );
             } else {
                 break;
             }
         }
+        Img::insert($branch_imgs);
 
         return ['The branch was successfully created'];
     }
@@ -109,7 +113,7 @@ class BranchController extends Controller
      * Update the specified resource in storage.
      */
 
-     /**
+    /**
      * @OA\PUT(
      *     path="/api/branch/id",
      *     summary="Update the  branch in storage.",
@@ -147,15 +151,27 @@ class BranchController extends Controller
      */
     public function update(Request $request, Branch $branch)
     {
-        if ($request->hasFile('img')) {
-            $name = $request->file('img')->getClientOriginalName();
-            $path = $request->file('img')->storeAs('branch-img', $name);
+        $i = 0;
+        $branch_imgs = Img::where('branch_id', $branch->id)->get();
+        while (true) {
+            $i++;
+            if ($request->hasFile('img-' . $i . '')) {
+                $name = $request->file('img-' . $i . '')->getClientOriginalName();
+                $path = $request->file('img-' . $i . '')->storeAs('branch-img', $name);
+                $branch_imgs[$i - 1]::update([
+                    'img' => $path ?? null
+                ]);
+            } else {
+                break;
+            }
         }
+
+
+
         $branch->update([
             'name' => $request->name,
             'brand_id' => $request->brand_id,
-            'district' => $request->district_id,
-            'img' => $path ?? null
+            'district' => $request->district_id,     
         ]);
 
         return ['The branch was successfully updated'];

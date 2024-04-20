@@ -118,7 +118,7 @@ class ImgController extends Controller
     {
         if ($request->hasFile('img')) {
             $name = $request->file('img')->getClientOriginalName();
-            $path = $request->file('img')->storeAs('brand-img', $name);
+            $path = $request->file('img')->storeAs('branch-img', $name);
         }
         $img->update([
             'branch_id' => $request->branch_id,
