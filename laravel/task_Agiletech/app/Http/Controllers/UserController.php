@@ -36,6 +36,7 @@ class UserController extends Controller
      * @OA\Post(
      *     path="/api/user/",
      *     summary="Store a newl user created resource in storage.",
+     *      tags={"user"},
      *     @OA\Parameter(
      *         name="name",
      *         in="query",
@@ -106,9 +107,10 @@ class UserController extends Controller
      * Update the specified resource in storage.
      */
     /**
-     * @OA\PUT(
+     * @OA\Put(
      *     path="/api/user/id",
      *     summary="Update the  user in storage.",
+     *      tags={"user"},
      *     @OA\Parameter(
      *         name="name",
      *         in="query",
@@ -162,7 +164,7 @@ class UserController extends Controller
      * Remove the specified resource from storage.
      */
     /**
-     * @OA\DELETE(
+     * @OA\Delete(
      *     path="/api/user/id",
      *     summary="Remove the user from storage.",
      *     tags={"user"},

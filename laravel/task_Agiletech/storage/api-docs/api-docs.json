@@ -24,6 +24,9 @@
         },
         "/api/branch/": {
             "post": {
+                "tags": [
+                    "branch"
+                ],
                 "summary": "Store a newl branch created resource in storage.",
                 "operationId": "8f741dbac90ec38d9a6120088586d2bc",
                 "parameters": [
@@ -76,6 +79,9 @@
                 }
             },
             "put": {
+                "tags": [
+                    "branch"
+                ],
                 "summary": "Update the  branch in storage.",
                 "operationId": "4402c48049025b63beae26c98b5eef84",
                 "parameters": [
@@ -154,6 +160,9 @@
         },
         "/api/brand/": {
             "post": {
+                "tags": [
+                    "brand"
+                ],
                 "summary": "Store a newl brand created resource in storage.",
                 "operationId": "9924f278a07cd89508fd63b9caa4148c",
                 "parameters": [
@@ -197,6 +206,9 @@
                 }
             },
             "put": {
+                "tags": [
+                    "brand"
+                ],
                 "summary": "Update the  brand in storage.",
                 "operationId": "69ec346a10879ad41a8768043de0b0d4",
                 "parameters": [
@@ -266,6 +278,9 @@
         },
         "/api/district/": {
             "post": {
+                "tags": [
+                    "district"
+                ],
                 "summary": "Store a newl district created resource in storage.",
                 "operationId": "42e615ec18127e6ff8333764644eb369",
                 "parameters": [
@@ -309,6 +324,9 @@
                 }
             },
             "put": {
+                "tags": [
+                    "district"
+                ],
                 "summary": "Update the  district in storage.",
                 "operationId": "e4cb5618870051b861292bf6bb7681b9",
                 "parameters": [
@@ -369,6 +387,9 @@
         },
         "/api/img/": {
             "post": {
+                "tags": [
+                    "img"
+                ],
                 "summary": "Store a newl img created resource in storage.",
                 "operationId": "e79faef017620a693e9810b48a21412c",
                 "parameters": [
@@ -412,6 +433,9 @@
                 }
             },
             "put": {
+                "tags": [
+                    "img"
+                ],
                 "summary": "Update the  img in storage.",
                 "operationId": "abcfe07c85b26aa9b67ed65cc8deaa7f",
                 "parameters": [
@@ -489,6 +513,9 @@
         },
         "/api/regiob/": {
             "post": {
+                "tags": [
+                    "region"
+                ],
                 "summary": "Store a newl regiob created resource in storage.",
                 "operationId": "526a359bde5298e0459c984a35b28916",
                 "parameters": [
@@ -523,6 +550,9 @@
                 }
             },
             "put": {
+                "tags": [
+                    "region"
+                ],
                 "summary": "Update the  region in storage.",
                 "operationId": "80ec33d5990143acc98883b1853a03e5",
                 "parameters": [
@@ -600,6 +630,9 @@
         },
         "/api/register": {
             "post": {
+                "tags": [
+                    "Auth"
+                ],
                 "summary": "Register a new user",
                 "operationId": "c0354e671ce642c7b4ff996bc4e475a0",
                 "parameters": [
@@ -643,6 +676,9 @@
         },
         "/api/login": {
             "post": {
+                "tags": [
+                    "Auth"
+                ],
                 "summary": "Authenticate user and generate JWT token",
                 "operationId": "dde0e6a0694ae97f804fba7d40433c68",
                 "parameters": [
@@ -677,6 +713,9 @@
         },
         "/api/logout": {
             "get": {
+                "tags": [
+                    "Auth"
+                ],
                 "summary": "Get logout user.",
                 "operationId": "6ed3b558c7c74e809518c164c4e3a1a6",
                 "responses": {
@@ -710,6 +749,9 @@
         },
         "/api/user/": {
             "post": {
+                "tags": [
+                    "user"
+                ],
                 "summary": "Store a newl user created resource in storage.",
                 "operationId": "5db1ab81dbc69e2e6d6b811a3d5f35ac",
                 "parameters": [
@@ -762,6 +804,9 @@
                 }
             },
             "put": {
+                "tags": [
+                    "user"
+                ],
                 "summary": "Update the  user in storage.",
                 "operationId": "1dcf0396be6e572fb79829fab1b1d158",
                 "parameters": [

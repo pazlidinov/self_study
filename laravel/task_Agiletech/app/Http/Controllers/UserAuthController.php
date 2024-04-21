@@ -12,6 +12,7 @@ class UserAuthController extends Controller
      * @OA\Post(
      *     path="/api/register",
      *     summary="Register a new user",
+     *      tags={"Auth"},
      *     @OA\Parameter(
      *         name="name",
      *         in="query",
@@ -64,6 +65,7 @@ class UserAuthController extends Controller
      * @OA\Post(
      *     path="/api/login",
      *     summary="Authenticate user and generate JWT token",
+     *      tags={"Auth"},
      *     @OA\Parameter(
      *         name="phone_number",
      *         in="query",
@@ -100,6 +102,7 @@ class UserAuthController extends Controller
      * @OA\Get(
      *     path="/api/logout",
      *     summary="Get logout user.",
+     *      tags={"Auth"},
      *     @OA\Response(response="200", description="Yuo are logout."),
      *     security={{"bearerAuth":{}}}
      * )

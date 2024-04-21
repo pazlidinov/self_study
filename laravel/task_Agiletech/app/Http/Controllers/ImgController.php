@@ -34,6 +34,7 @@ class ImgController extends Controller
      * @OA\Post(
      *     path="/api/img/",
      *     summary="Store a newl img created resource in storage.",
+     *      tags={"img"},
      *     @OA\Parameter(
      *         name="branch_id",
      *         in="query",
@@ -92,9 +93,10 @@ class ImgController extends Controller
      */
 
     /**
-     * @OA\PUT(
+     * @OA\Put(
      *     path="/api/img/id",
      *     summary="Update the  img in storage.",
+     *      tags={"img"},
      *     @OA\Parameter(
      *         name="branch_id",
      *         in="query",
@@ -132,7 +134,7 @@ class ImgController extends Controller
      * Remove the specified resource from storage.
      */
     /**
-     * @OA\DELETE(
+     * @OA\Delete(
      *     path="/api/img/id",
      *     summary="Remove the img from storage.",
      *     tags={"img"},

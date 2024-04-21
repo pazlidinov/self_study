@@ -35,6 +35,7 @@ class BranchController extends Controller
      * @OA\Post(
      *     path="/api/branch/",
      *     summary="Store a newl branch created resource in storage.",
+     *      tags={"branch"},
      *     @OA\Parameter(
      *         name="name",
      *         in="query",
@@ -114,9 +115,10 @@ class BranchController extends Controller
      */
 
     /**
-     * @OA\PUT(
+     * @OA\Put(
      *     path="/api/branch/id",
      *     summary="Update the  branch in storage.",
+     *     tags={"branch"},
      *     @OA\Parameter(
      *         name="name",
      *         in="query",
@@ -181,7 +183,7 @@ class BranchController extends Controller
      * Remove the specified resource from storage.
      */
     /**
-     * @OA\DELETE(
+     * @OA\Delete(
      *     path="/api/branch/id",
      *     summary="Remove the branch from storage.",
      *     tags={"branch"},

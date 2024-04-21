@@ -33,6 +33,7 @@ class DistrictController extends Controller
      * @OA\Post(
      *     path="/api/district/",
      *     summary="Store a newl district created resource in storage.",
+     *       tags={"district"},
      *     @OA\Parameter(
      *         name="name",
      *         in="query",
@@ -84,9 +85,10 @@ class DistrictController extends Controller
      * Update the specified resource in storage.
      */
      /**
-     * @OA\PUT(
+     * @OA\Put(
      *     path="/api/district/id",
      *     summary="Update the  district in storage.",
+     *     tags={"district"},
      *     @OA\Parameter(
      *         name="name",
      *         in="query",
@@ -121,7 +123,7 @@ class DistrictController extends Controller
      */
 
       /**
-     * @OA\DELETE(
+     * @OA\Delete(
      *     path="/api/district/id",
      *     summary="Remove the district from storage.",
      *     tags={"district"},

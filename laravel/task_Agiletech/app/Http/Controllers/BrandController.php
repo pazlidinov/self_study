@@ -35,6 +35,7 @@ class BrandController extends Controller
      * @OA\Post(
      *     path="/api/brand/",
      *     summary="Store a newl brand created resource in storage.",
+     *     tags={"brand"},
      *     @OA\Parameter(
      *         name="name",
      *         in="query",
@@ -89,10 +90,11 @@ class BrandController extends Controller
     /**
      * Update the specified resource in storage.
      */
-     /**
-     * @OA\PUT(
+    /**
+     * @OA\Put(
      *     path="/api/brand/id",
      *     summary="Update the  brand in storage.",
+     *      tags={"brand"},
      *     @OA\Parameter(
      *         name="name",
      *         in="query",
@@ -136,8 +138,8 @@ class BrandController extends Controller
      * Remove the specified resource from storage.
      */
 
-     /**
-     * @OA\DELETE(
+    /**
+     * @OA\Delete(
      *     path="/api/brand/id",
      *     summary="Remove the brand from storage.",
      *     tags={"brand"},

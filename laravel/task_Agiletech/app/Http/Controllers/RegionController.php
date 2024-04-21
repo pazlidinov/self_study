@@ -32,6 +32,7 @@ class RegionController extends Controller
      * @OA\Post(
      *     path="/api/regiob/",
      *     summary="Store a newl regiob created resource in storage.",
+     *      tags={"region"},
      *     @OA\Parameter(
      *         name="name",
      *         in="query",
@@ -75,9 +76,10 @@ class RegionController extends Controller
      * Update the specified resource in storage.
      */
     /**
-     * @OA\PUT(
+     * @OA\Put(
      *     path="/api/region/id",
      *     summary="Update the  region in storage.",
+     *      tags={"region"},
      *     @OA\Parameter(
      *         name="name",
      *         in="query",
@@ -110,7 +112,7 @@ class RegionController extends Controller
      * Remove the specified resource from storage.
      */
     /**
-     * @OA\DELETE(
+     * @OA\Delete(
      *     path="/api/region/id",
      *     summary="Remove the region from storage.",
      *     tags={"region"},
