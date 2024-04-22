@@ -8,14 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class Category extends Model
 {
     use HasFactory;
-
     public $timestamps = true;
     protected $fillable = [
-        'name'       
+        'name',
     ];
 
     /**
-     * Get the aricles for the category.
+     * Get the articles for the categroy.
      */
     public function articles()
     {

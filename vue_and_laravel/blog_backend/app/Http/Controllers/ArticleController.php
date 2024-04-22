@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\ArticleResource;
 use App\Models\Article;
-use App\Models\Category;
 use Illuminate\Http\Request;
-
+use Illuminate\Routing\Controller;
 
 class ArticleController extends Controller
 {
@@ -16,7 +16,7 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        return Article::orderBy('id', 'DESC')->limit(5)->get();
+        return ArticleResource::collection(Article::all());
     }
 
     /**
@@ -37,99 +37,77 @@ class ArticleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if ($request->hasFile('img')) {
+            $name = $request->file('img')->getClientOriginalName();
+            $path = $request->file('img')->storeAs('brand-img', $name);
+        }
+
+        Article::create([
+            'title' => $request->title,
+            'img' => $path ?? null,
+            'body'=>$request->body,
+            'user_id' => $request->user_id,
+            'category_id'=>$request->category_id
+        ]);
+
+        return ['The article was successfully created'];
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Article  $article
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Article $article)
     {
-        //
+        return new ArticleResource($article);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Article  $article
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Article $article)
     {
-        //
+        return new ArticleResource($article);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Models\Article  $article
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Article $article)
     {
-        //
+        if ($request->hasFile('img')) {
+            $name = $request->file('img')->getClientOriginalName();
+            $path = $request->file('img')->storeAs('brand-img', $name);
+        }
+        $article->update([
+            'title' => $request->title,
+            'img' => $path ?? null,
+            'body'=>$request->body,
+            'user_id' => $request->user_id,
+            'category_id'=>$request->category_id
+        ]);
+
+        return ['The article was successfully updated'];
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\Article  $article
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Article $article)
     {
-        //
-    }
-
-
-    /**
-     * Display a listing of random articles.
-     *
-     * 
-     * @return \Illuminate\Http\Response
-     */
-    public function random_articles()
-    {
-        $articles = Article::inRandomOrder()->limit(12)->get();
-        $article_category_id = [];
-        foreach ($articles as $item) {
-            array_push($article_category_id, $item['category_id']);
-        };
-        $cat = Category::whereIn('id', $article_category_id)->get();
-        foreach ($articles as $article_item) {
-            foreach ($cat as $cat_item) {
-                if ($article_item['category_id'] == $cat_item['id']) {
-                    $article_item['category'] = $cat_item['name'];
-                }
-            }
-        };
-        return $articles;
-
-        // $cat = Category::where('id', 6)->first();
-        // Article::create(
-        //     [
-        //         'title' => 'article-6',
-        //         'photo' => 'C:\Users\XTreme.ws\Desktop\blog_photo\img-3.jpg',
-        //         'body' => 'irvnionvonv  rv wowov wwoif wo fw fwf wf wf iowr fiow foiwf oiw oiw oiw fowrim fwoi fowi fw frfoiwfiwf iowfoin foiwfiwr oir ow owoiw oiw oiw oiw fiw fowi fwrjiwrj wirffjifw fwf owjfwwj wojwj wr jw wj w w pw  Lorem ipsum dolor, sit amet consectetur adipisicing elit. Provident molestiae, quasi officia ipsam nostrum quo totam dolores unde fugiat error molestias vero vel sed! Minima non cumque nesciunt nemo itaque. Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium, obcaecati voluptate minima ullam nihil tenetur natus eaque temporibus iusto dolorum possimus quasi aliquid harum error! Eum odio vel nulla recusandae!',
-        //         'user_id' => '1',
-        //         'category_id' => $cat->id,
-        //     ]
-        // );
-        // return 'ok';
-    }
-
-    /**
-     * Display a listing of articles by category.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function article_by_category($id)
-    {
-        return Article::where('category_id', $id)->limit(6)->get();       
+        $article->delete();
+        return ['The article was successfully deleted'];
     }
 }

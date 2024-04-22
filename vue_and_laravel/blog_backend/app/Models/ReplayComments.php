@@ -5,37 +5,26 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Article extends Model
+class ReplayComments extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'title',
-        'img',
-        'body',
         'user_id',
-        'category_id'        
+        'comments_id',
+        'replaycomment'
     ];
-
     /**
-     * Bind user to branch
+     * Bind user to replaycomments.
      */
     public function user()
     {
         return $this->belongsTo(User::class);
     }
     /**
-     * Bind category to branch
-     */
-    public function category()
-    {
-        return $this->belongsTo(Category::class);
-    }
-
-    /**
-     * Get the comments for the article.
+     * Bind comments to replaycomments.
      */
     public function comments()
     {
-        return $this->hasMany(Comments::class);
+        return $this->belongsTo(Comments::class);
     }
 }

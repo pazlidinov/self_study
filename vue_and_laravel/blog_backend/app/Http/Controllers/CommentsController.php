@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\CategoryResource;
-use App\Models\Category;
+use App\Http\Resources\CommentsResource;
+use App\Models\Comments;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 
-class CategoryController extends Controller
+class CommentsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +16,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        return CategoryResource::collection(Category::all());
+        return CommentsResource::collection(Comments::all());
     }
 
     /**
@@ -37,59 +37,64 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        Category::create([
-            'name' => $request->name
+        Comments::create([
+            'user_id' => $request->user_id,
+            'article_id'=>$request->article_id,
+            'comment'=>$request->comment
         ]);
-        return ['The category was successfully created'];
+
+        return ['The comment was successfully created'];
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Category  $category
+     * @param  \App\Models\Comments  $comments
      * @return \Illuminate\Http\Response
      */
-    public function show(Category $category)
+    public function show(Comments $comments)
     {
-        return new CategoryResource($category);
+        return new CommentsResource($comments);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Category  $category
+     * @param  \App\Models\Comments  $comments
      * @return \Illuminate\Http\Response
      */
-    public function edit(Category $category)
+    public function edit(Comments $comments)
     {
-        return new CategoryResource($category);
+        return new CommentsResource($comments);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Category  $category
+     * @param  \App\Models\Comments  $comments
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Category $category)
+    public function update(Request $request, Comments $comments)
     {
-        $category->update([
-            'name' => $request->name,
+        $comments->update([
+            'user_id' => $request->user_id,
+            'article_id'=>$request->article_id,
+            'comment'=>$request->comment
         ]);
 
-        return ['The category was successfully updated'];
+        return ['The comment was successfully updated'];
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Category  $category
+     * @param  \App\Models\Comments  $comments
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Category $category)
+    public function destroy(Comments $comments)
     {
-        $category->delete();
-        return ['The category was successfully deleted'];
+        $comments->delete();
+        return ['The comment was successfully deleted'];
     }
 }
