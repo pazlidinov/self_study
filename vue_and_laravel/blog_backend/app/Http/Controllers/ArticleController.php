@@ -39,7 +39,7 @@ class ArticleController extends Controller
     {
         if ($request->hasFile('img')) {
             $name = $request->file('img')->getClientOriginalName();
-            $path = $request->file('img')->storeAs('brand-img', $name);
+            $path = $request->file('img')->storeAs('article-img', $name);
         }
 
         Article::create([
@@ -86,7 +86,7 @@ class ArticleController extends Controller
     {
         if ($request->hasFile('img')) {
             $name = $request->file('img')->getClientOriginalName();
-            $path = $request->file('img')->storeAs('brand-img', $name);
+            $path = $request->file('img')->storeAs('article-img', $name);
         }
         $article->update([
             'title' => $request->title,
