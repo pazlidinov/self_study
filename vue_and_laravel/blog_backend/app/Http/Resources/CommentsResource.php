@@ -17,7 +17,7 @@ class CommentsResource extends JsonResource
         return [
             'id' => $this->id,
             'user_id' => $this->name,
-            'article_id' => $this->article_id,
+            'article_id' => $this->article,
             'replaycomments'=>$this->replaycomments,
         ];
     }

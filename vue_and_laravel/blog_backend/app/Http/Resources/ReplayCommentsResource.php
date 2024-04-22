@@ -16,8 +16,8 @@ class ReplayCommentsResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'user_id' => $this->name,
-            'comments_id' => $this->article_id,
+            'user_id' => $this->user,
+            'comments_id' => $this->article,
             'replaycomment'=>$this->replaycomment,
         ];
     }

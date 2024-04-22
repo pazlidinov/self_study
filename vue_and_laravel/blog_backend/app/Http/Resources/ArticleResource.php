@@ -20,8 +20,8 @@ class ArticleResource extends JsonResource
             'img'=>$this->img,
             'body'=>$this->body,
             'view'=>$this->view,
-            'user_id' => $this->user_id,
-            'category_id'=>$this->category_id,
+            'user_id' => $this->user,
+            'category_id'=>$this->category,
             'comments'=>$this->comments,
         ];
     }
