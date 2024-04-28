@@ -1,6 +1,6 @@
 <template>
 <random_article />
-<whatnew />
+<!-- <whatnew /> -->
 </template>
 
 <script>
@@ -10,7 +10,7 @@ import WhatNew from '@/components/WhatNew.vue';
 export default {
     components: {
       'random_article': RandomArticle,
-      'whatnew': WhatNew,
+      // 'whatnew': WhatNew,
     }
 }
 </script>

@@ -3,6 +3,7 @@
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CommentsController;
+use App\Http\Controllers\FilterArticleController;
 use App\Http\Controllers\ReplayCommentsController;
 use App\Http\Controllers\UserAuthController;
 use App\Http\Controllers\UserController;
@@ -32,7 +33,8 @@ Route::apiResources(['article' => ArticleController::class]);
 Route::apiResources(['comments' => CommentsController::class]);
 Route::apiResources(['replaycomments' => ReplayCommentsController::class]);
 
-// Route::resource('category', Category::class);
+
+Route::get('/random_articles', [FilterArticleController::class, 'random_articles'])->name('random_articles');
 
 
 Route::post('/register', [UserAuthController::class, 'register'])->name('register');
