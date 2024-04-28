@@ -37,18 +37,24 @@ class ArticleController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'title' => 'required|max:200',
+            'body' => 'required',
+            'user_id' => 'required|numeric',
+            'category_id' => 'required|numeric',
+        ]);
         if ($request->hasFile('img')) {
             $name = $request->file('img')->getClientOriginalName();
             $path = $request->file('img')->storeAs('article-img', $name);
         }
-
+       
         Article::create([
             'title' => $request->title,
             'img' => $path ?? null,
-            'body'=>$request->body,
+            'body' => $request->body,            
             'user_id' => $request->user_id,
-            'category_id'=>$request->category_id
-        ]);
+            'category_id' => $request->category_id
+        ]);     
 
         return ['The article was successfully created'];
     }
@@ -84,6 +90,12 @@ class ArticleController extends Controller
      */
     public function update(Request $request, Article $article)
     {
+        $request->validate([
+            'title' => 'required',
+            'body' => 'required',
+            'user_id' => 'required|numeric',
+            'category_id' => 'required|numeric',
+        ]);
         if ($request->hasFile('img')) {
             $name = $request->file('img')->getClientOriginalName();
             $path = $request->file('img')->storeAs('article-img', $name);
@@ -91,9 +103,9 @@ class ArticleController extends Controller
         $article->update([
             'title' => $request->title,
             'img' => $path ?? null,
-            'body'=>$request->body,
+            'body' => $request->body,
             'user_id' => $request->user_id,
-            'category_id'=>$request->category_id
+            'category_id' => $request->category_id
         ]);
 
         return ['The article was successfully updated'];

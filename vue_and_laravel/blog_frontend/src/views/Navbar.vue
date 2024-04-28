@@ -116,7 +116,7 @@ export default {
     },
     async mounted() {
         let domain = await axios.get("../../data/url.txt");
-        let response = await axios.get(domain.data + "category");
+        let response = await axios.get(domain.data + "acategory");
         this.categories = await response.data
     },
 };

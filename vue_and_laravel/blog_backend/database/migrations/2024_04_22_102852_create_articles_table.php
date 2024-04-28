@@ -17,8 +17,8 @@ return new class extends Migration
             $table->id();
             $table->string('title', 200);
             $table->string('img')->nullable();
-            $table->string('body');
-            $table->integer('view')->defaultValue(0);
+            $table->longText('body');
+            $table->integer('view')->default(0);
             $table->foreignId('user_id')->constrained('users');
             $table->foreignId('category_id')->constrained('categories');
             $table->timestamps();

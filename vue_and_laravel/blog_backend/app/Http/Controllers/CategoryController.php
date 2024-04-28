@@ -7,6 +7,7 @@ use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 
+
 class CategoryController extends Controller
 {
     /**
@@ -37,11 +38,16 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'name' => 'required|string|max:255|unique:categories'
+        ]);
+
         Category::create([
             'name' => $request->name
         ]);
         return ['The category was successfully created'];
     }
+
 
     /**
      * Display the specified resource.
@@ -74,6 +80,10 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
+        $request->validate([
+            'name' => 'required|string|max:255|unique:categories'
+        ]);
+
         $category->update([
             'name' => $request->name,
         ]);

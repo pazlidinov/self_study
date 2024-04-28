@@ -66,28 +66,29 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'name' => 'required',
-            'phone_number' => 'required',
-            'password' => 'required'
+        $request->validate([
+            'full_name' => 'required|string|max:255',
+            'phone_number' => 'required|unique:users|max:50',
+            'password' => 'required|max:255'
         ]);
+
         if ($request->hasFile('img')) {
             $name = $request->file('img')->getClientOriginalName();
             $path = $request->file('img')->storeAs('user-img', $name);
         }
-
         $pattern = "/^\\+?[1-9][0-9]{7,14}$/";
         if (preg_match($pattern, $request->phone_number)) {
+
             $user = User::create([
-                'name' => $request->name,
-                'email' => $request->phone_number,
+                'full_name' => $request->full_name,
+                'phone_number' => $request->phone_number,
                 'password' => $request->password,
-                'img'=>$path
+                'img' => $path ?? null
             ]);
 
-            $token = $user->createToken('LaravelAuthApp')->plainTextToken;
-
-            return response()->json(['token' => $token, 200]);
+            // $token = $user->createToken('LaravelAuthApp')->plainTextToken;
+            return ['The user was successfully created'];
+            // return response()->json(['token' => $token, 200]);
         } else {
             return ['User was not created, something is wrong!'];
         }
@@ -145,10 +146,10 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        $this->validate($request, [
-            'name' => 'required',
-            'phone_number' => 'required',
-            'password' => 'required'
+        $request->validate([
+            'full_name' => 'required|string|max:255',
+            'phone_number' => 'required|unique:users|max:50',
+            'password' => 'required|max:255'
         ]);
         if ($request->hasFile('img')) {
             $name = $request->file('img')->getClientOriginalName();
@@ -158,10 +159,10 @@ class UserController extends Controller
         $pattern = "/^\\+?[1-9][0-9]{7,14}$/";
         if (preg_match($pattern, $request->phone_number)) {
             $user->update([
-                'name' => $request->name,
+                'full_name' => $request->full_name,
                 'email' => $request->phone_number,
                 'password' => $request->password,
-                'img'=>$path,
+                'img' => $path,
             ]);
 
             return ['The user was successfully updated'];

@@ -1,11 +1,11 @@
 <?php
 
+use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CommentsController;
+use App\Http\Controllers\ReplayCommentsController;
 use App\Http\Controllers\UserAuthController;
 use App\Http\Controllers\UserController;
-use App\Models\Article;
-use App\Models\Category;
-use App\Models\Comments;
-use App\Models\ReplayComments;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -24,15 +24,15 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::middleware('auth:sanctum')->group(function () {});
+// Route::middleware('auth:sanctum')->group(function () {});
 
 Route::apiResources(['user' => UserController::class]);
-Route::apiResources(['category' => Category::class]);
-Route::apiResources(['article' => Article::class]);
-Route::apiResources(['comments' => Comments::class]);
-Route::apiResources(['replaycomments' => ReplayComments::class]);
+Route::apiResources(['category' => CategoryController::class]);
+Route::apiResources(['article' => ArticleController::class]);
+Route::apiResources(['comments' => CommentsController::class]);
+Route::apiResources(['replaycomments' => ReplayCommentsController::class]);
 
-
+// Route::resource('category', Category::class);
 
 
 Route::post('/register', [UserAuthController::class, 'register'])->name('register');
