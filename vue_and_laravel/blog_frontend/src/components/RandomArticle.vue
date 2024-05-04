@@ -23,7 +23,7 @@
                                     {{ article.title }}
                                 </a>
                                 <small class="text-body d-block"><i class="fas fa-calendar-alt me-1"></i>{{
-                                    article.created_at }}</small>
+                                    article.created_at.slice(0,10) }}</small>
                             </div>
                         </div>
                     </div>

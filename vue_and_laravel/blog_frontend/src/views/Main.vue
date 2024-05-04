@@ -1,6 +1,6 @@
 <template>
   <random_article />
-  <!-- <main_article /> -->
+  <main_article />
   <whatnew />
 </template>
 

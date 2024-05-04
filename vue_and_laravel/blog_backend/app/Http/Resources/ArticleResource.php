@@ -23,6 +23,7 @@ class ArticleResource extends JsonResource
             'user_id' => $this->user,
             'category_id'=>$this->category,
             'comments'=>$this->comments,
+            'created_at'=>$this->created_at,
         ];
     }
 }

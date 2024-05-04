@@ -35,10 +35,10 @@ class FilterArticleController extends Controller
                     ->orderBy('id', 'DESC')
                     ->limit(6)
                     ->get()
-            );
-            array_push($articles,['category'=>$category->id, 'article'=>$article]);
+            );           
             
+            $articles[$category->id] = $article;
         }
-        return ['categories'=>$categories, 'articles'=>$articles];
+        return ['categories' => $categories, 'articles' => $articles, 'info' => gettype($article->first())];
     }
 }

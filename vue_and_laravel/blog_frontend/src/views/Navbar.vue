@@ -35,17 +35,17 @@
             <div class="container px-0 ">
 
                 <nav class="navbar navbar-light navbar-expand-xl">
-                    <a href="index.html" class="navbar-brand mt-3">
+                    <router-link to="/" class="navbar-brand mt-3">
                         <p class="text-primary display-6 mb-2" style="line-height: 0;">Articles</p>
                         <small class="text-body fw-normal" style="letter-spacing: 8px;">Nespaper</small>
-                    </a>
+                    </router-link>
                     <button class="navbar-toggler py-2 px-3" type="button" data-bs-toggle="collapse"
                         data-bs-target="#navbarCollapse">
                         <span class="fa fa-bars text-primary"></span>
                     </button>
                     <div class="collapse navbar-collapse bg-light py-3" id="navbarCollapse">
                         <div class="navbar-nav mx-auto border-top">
-                            <a href="index.html" class="nav-item nav-link active">Home</a>
+                            <router-link to="/" class="nav-item nav-link active">Home</router-link>
                             <div class="nav-item dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Categories</a>
                                 <div class="dropdown-menu m-0 bg-secondary rounded-0">
@@ -60,16 +60,6 @@
                             <a href="contact.html" class="nav-item nav-link">Contact Us</a>
                         </div>
                         <div class="d-flex flex-nowrap border-top pt-3 pt-xl-0">
-                            <div class="d-flex">
-                                <img src="./assets/img/weather-icon.png" class="img-fluid w-100 me-2" alt="">
-                                <div class="d-flex align-items-center">
-                                    <strong class="fs-4 text-secondary">31°C</strong>
-                                    <div class="d-flex flex-column ms-2" style="width: 150px;">
-                                        <span class="text-body">NEW YORK,</span>
-                                        <small>Mon. 10 jun 2024</small>
-                                    </div>
-                                </div>
-                            </div>
                             <button
                                 class="btn-search btn border border-primary btn-md-square rounded-circle bg-white my-auto"
                                 data-bs-toggle="modal" data-bs-target="#searchModal"><i
@@ -117,7 +107,7 @@ export default {
     async mounted() {
         let domain = await axios.get("../../data/url.txt");
         let response = await axios.get(domain.data + "category");
-        this.categories = await response.data.data       
+        this.categories = await response.data.data
     },
 };
 </script>

@@ -3,20 +3,21 @@
     <div class="container-fluid py-2">
         <div class="container py-5">
             <div class="row g-4">
-                <div class="col-lg-7 col-xl-8 mt-0">
+                <div v-for="first_section in first_section"  class="col-lg-7 col-xl-8 mt-0">
                     <div class="position-relative overflow-hidden rounded">
-                        <img v-bind:src="first_section.img" class="img-fluid rounded img-zoomin w-100" alt="">
+                        <img  class="img-fluid rounded img-zoomin w-100" alt="">
                         <div class="d-flex justify-content-center px-4 position-absolute flex-wrap"
                             style="bottom: 10px; left: 0;">
-                            <a href="#" class="text-white me-3 link-hover"><i class="fa fa-eye"></i> {{ first_section.view }} Views</a>
-                            <a href="#" class="text-white me-3 link-hover"><i class="fa fa-comment-dots"></i> 05
+                            <a href="#" class="text-white me-3 link-hover"><i class="fa fa-eye"></i> {{
+                                first_section.view }} Views</a>
+                            <a href="#" class="text-white me-3 link-hover"><i class="fa fa-comment-dots"></i> {{ first_section.comments.length }}
                                 Comment</a>
                         </div>
                     </div>
                     <div class="border-bottom py-3">
                         <a href="#" class="display-4 text-dark mb-0 link-hover">{{ first_section.title }}</a>
                     </div>
-                    <p class="mt-3 mb-4">{{ first_section.body }}
+                    <p class="mt-3 mb-4">{{ first_section.body.slice(0,2000) }}...
                     </p>
 
                 </div>
@@ -35,7 +36,8 @@
                                     <div class="col-7">
                                         <div class="features-content d-flex flex-column">
                                             <a href="#" class="h6">{{ article.title }}</a>
-                                            <small><i class="fa fa-clock"> 06 minute read</i> </small>
+                                            <small><i class="fa fa-comment-dots">   {{ article.comments.length }}
+                                Comment</i> </small>
                                             <small><i class="fa fa-eye"> {{ article.view }} Views</i></small>
                                         </div>
                                     </div>
@@ -65,10 +67,8 @@ export default {
     async mounted() {
         let domain = await axios.get("../../data/url.txt");
         let response = await axios.get(domain.data + "main_articles");
-        this.first_section = await response.data.data.slice(0, 1)[0]
-        this.second_section = await response.data.data.slice(1, -1)
-
-        console.log(this.first_section[0]['id'])
+        this.first_section = await response.data.data.slice(0,1)
+        this.second_section = await response.data.data.slice(1,-1)
     },
 };
 </script>
