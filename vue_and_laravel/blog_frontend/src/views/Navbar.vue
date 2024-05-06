@@ -49,12 +49,12 @@
                             <div class="nav-item dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Categories</a>
                                 <div class="dropdown-menu m-0 bg-secondary rounded-0">
-                                    <a v-for="category in categories" href="#" class="dropdown-item">{{ category.name
-                                        }}</a>
+                                    <router-link v-for="category in categories"  class="dropdown-item">{{ category.name
+                                        }}</router-link>
 
                                 </div>
                             </div>
-                            <a href="detail-page.html" class="nav-item nav-link">Articles</a>
+                            <router-link to="/allarticles" class="nav-item nav-link">Articles</router-link >
 
 
                             <a href="contact.html" class="nav-item nav-link">Contact Us</a>
