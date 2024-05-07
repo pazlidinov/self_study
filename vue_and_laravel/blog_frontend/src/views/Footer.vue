@@ -38,9 +38,9 @@
                 <div class="col-lg-6 col-xl-3">
                     <div class="d-flex flex-column text-start footer-item-3">
                         <h4 class="mb-4 text-white">Categories</h4>
-                        <a v-for="category in categories" class="btn-link text-white" href=""><i
+                        <router-link v-bind:to="'/by_category/'+ category.id" v-for="category in categories" class="btn-link text-white"><i
                                 class="fas fa-angle-right text-white me-2"></i>
-                            {{ category.name }}</a>
+                            {{ category.name }}</router-link>
 
                     </div>
                 </div>

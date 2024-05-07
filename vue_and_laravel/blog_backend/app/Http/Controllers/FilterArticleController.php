@@ -41,4 +41,9 @@ class FilterArticleController extends Controller
         }
         return ['categories' => $categories, 'articles' => $articles, 'info' => gettype($article->first())];
     }
+
+    public function by_category($category_id)
+    {
+        return ArticleResource::collection(Article::where('category_id', $category_id)->orderBy('id', 'DESC')->paginate(5));
+    }
 }

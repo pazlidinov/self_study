@@ -5,14 +5,16 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import Main from './views/Main.vue';
 import AllArticles from './views/AllArticles.vue';
+import ByCategory from './views/ByCategory.vue';
 
 
 const router = createRouter({
     history: createWebHistory(),
     routes: [
-      
-        { path: '/', component: Main },
-        {path:'/all_articles', component: AllArticles},
+
+        { path: '/', name: 'Main', component: Main },
+        { path: '/all_articles', name: 'AllArticles', component: AllArticles },
+        { path: '/by_category/:id', name: 'ByCategory', component: ByCategory },
     ]
 });
 

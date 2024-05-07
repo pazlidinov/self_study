@@ -2,9 +2,9 @@
     <h4 class="mb-4">Categories</h4>
     <div class="row g-2">
         <div v-for="category in categories" class="col-12">
-            <a href="#" class="link-hover btn btn-light w-100 rounded text-uppercase text-dark py-3">
+            <router-link v-bind:to="'/by_category/'+ category.id"  class="link-hover btn btn-light w-100 rounded text-uppercase text-dark py-3">
                {{ category.name }}
-            </a>
+            </router-link>
         </div>
 
     </div>
