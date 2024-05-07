@@ -1,14 +1,14 @@
 <template>
     <!-- Single Product Start -->
-    <div class="container-fluid py-5">
-        <div class="container py-5">
+    <div class="container-fluid py-3">
+        <div class="container py-3">
             <ol class="breadcrumb justify-content-start mb-4">
                 <li class="breadcrumb-item"><a href="#">Home</a></li>
                 <li class="breadcrumb-item active text-dark">Articles</li>
             </ol>
             <div class="row g-4">
-                <div v-for="article in articles" class="col-lg-7">
-                    <div class=" row bg-light rounded mb-3">
+                <div class="col-lg-7">
+                    <div v-for="article in articles" class=" row bg-light rounded mb-3">
                         <div class=" col-md-4 p-3 rounded overflow-hidden">
                             <img v-bind:src="article.img" class="img-zoomin img-fluid rounded w-100" alt="">
                         </div>
@@ -23,6 +23,15 @@
                             </div>
                         </div>
                     </div>
+                    <!-- Paging -->
+                    <div class="text-start py-4">
+                        <div class="custom-pagination">
+                            <button v-on:click="laodpage(prev)" class="prev">Prevue</button>
+                            <button v-for="page in pages" v-on:click="laodpage(page.url)" :class="[page.active ? 'active' : '']">{{ page.label }} </button>
+
+                            <button v-on:click="laodpage(next)" class="next">Next</button>
+                        </div>
+                    </div><!-- End Paging -->
                 </div>
                 <div class="col-lg-4">
                     <div class="row g-4">
@@ -61,13 +70,33 @@ export default {
     data() {
         return {
             articles: null,
+            prev: null,
+            next: null,
+            pages: null,
+
         }
     },
     async mounted() {
         let domain = await axios.get("../../data/url.txt");
         let response = await axios.get(domain.data + "article");
         this.articles = await response.data.data;
+        this.prev = await response.data.links.prev;
+        this.next = await response.data.links.next;
+        this.pages = await response.data.meta.links.slice(1, -1);
+
     },
+    methods: {
+        async laodpage(url) {
+            if (url != null) {
+                let response = await axios.get(url);
+                this.articles = await response.data.data;
+                this.prev = await response.data.links.prev;
+                this.next = await response.data.links.next;
+                this.pages = await response.data.meta.links.slice(1, -1);
+            }
+        }
+    },
+
 
 };
 </script>
