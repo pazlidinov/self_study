@@ -54,7 +54,7 @@
 
                                 </div>
                             </div>
-                            <router-link to="/allarticles" class="nav-item nav-link">Articles</router-link>
+                            <router-link to="/all_articles" class="nav-item nav-link">Articles</router-link>
 
 
                             <a href="contact.html" class="nav-item nav-link">Contact Us</a>

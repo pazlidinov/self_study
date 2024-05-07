@@ -12,7 +12,7 @@ const router = createRouter({
     routes: [
       
         { path: '/', component: Main },
-        {path:'/allarticles', component: AllArticles},
+        {path:'/all_articles', component: AllArticles},
     ]
 });
 
