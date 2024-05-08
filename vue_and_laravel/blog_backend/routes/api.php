@@ -38,6 +38,7 @@ Route::get('/random_articles', [FilterArticleController::class, 'random_articles
 Route::get('/main_articles', [FilterArticleController::class, 'main_articles'])->name('main_articles');
 Route::get('/whatnew', [FilterArticleController::class, 'whatnew'])->name('whatnew');
 Route::get('/by_category/{id}', [FilterArticleController::class, 'by_category'])->name('by_category');
+Route::get('/by_author/{id}', [FilterArticleController::class, 'by_author'])->name('by_author');
 
 
 Route::post('/register', [UserAuthController::class, 'register'])->name('register');

@@ -17,7 +17,7 @@
                             <a href="#" class="h4">{{ article.title }}</a>
                             <p>{{ article.body.slice(0, 150) }}</p>
                             <div class="d-flex justify-content-between">
-                                <a href="#" class="small text-body link-hover">{{ article.user_id.full_name }}</a>
+                                <router-link v-bind:to="'/by_author/'+article.user_id.id" class="small text-body link-hover">{{ article.user_id.full_name }}</router-link>
                                 <small class="text-body d-block"><i class="fas fa-calendar-alt me-1"></i>
                                     {{ article.created_at.slice(0, 10) }}</small>
                             </div>

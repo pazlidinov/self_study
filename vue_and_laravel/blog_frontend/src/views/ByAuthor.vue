@@ -17,7 +17,7 @@
                             <a href="#" class="h4">{{ article.title }}</a>
                             <p>{{ article.body.slice(0, 150) }}</p>
                             <div class="d-flex justify-content-between">
-                                <router-link v-bind:to="'/by_author/'+article.user_id.id" class="small text-body link-hover">{{ article.user_id.full_name }}</router-link>
+                                <a href="#" class="small text-body link-hover">{{ article.user_id.full_name }}</a>
                                 <small class="text-body d-block"><i class="fas fa-calendar-alt me-1"></i>
                                     {{ article.created_at.slice(0, 10) }}</small>
                             </div>
@@ -27,7 +27,8 @@
                     <div class="text-start py-4">
                         <div class="custom-pagination">
                             <button v-on:click="laodpage(prev)" class="prev">Prevue</button>
-                            <button v-for="page in pages" v-on:click="laodpage(page.url)" :class="[page.active ? 'active' : '']">{{ page.label }} </button>
+                            <button v-for="page in pages" v-on:click="laodpage(page.url)"
+                                :class="[page.active ? 'active' : '']">{{ page.label }} </button>
 
                             <button v-on:click="laodpage(next)" class="next">Next</button>
                         </div>
@@ -78,12 +79,11 @@ export default {
     },
     async mounted() {
         let domain = await axios.get("../../data/url.txt");
-        let response = await axios.get(domain.data + "article");
+        let response = await axios.get(domain.data + "by_author/"+this.$route.params.id);
         this.articles = await response.data.data;
         this.prev = await response.data.links.prev;
         this.next = await response.data.links.next;
         this.pages = await response.data.meta.links.slice(1, -1);
-
     },
     methods: {
         async laodpage(url) {

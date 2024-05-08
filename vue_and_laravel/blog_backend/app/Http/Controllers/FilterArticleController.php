@@ -46,4 +46,9 @@ class FilterArticleController extends Controller
     {
         return ArticleResource::collection(Article::where('category_id', $category_id)->orderBy('id', 'DESC')->paginate(5));
     }
+
+    public function by_author($user_id)
+    {
+        return ArticleResource::collection(Article::where('category_id', $user_id)->orderBy('id', 'DESC')->paginate(5));
+    }
 }
