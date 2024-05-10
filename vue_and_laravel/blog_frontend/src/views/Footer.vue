@@ -38,9 +38,9 @@
                 <div class="col-lg-6 col-xl-3">
                     <div class="d-flex flex-column text-start footer-item-3">
                         <h4 class="mb-4 text-white">Categories</h4>
-                        <router-link v-bind:to="'/by_category/'+ category.id" v-for="category in categories" class="btn-link text-white"><i
+                        <a v-for="category in categories" class="btn-link text-white"  v-on:click="redirect_category(category.id)"><i
                                 class="fas fa-angle-right text-white me-2"></i>
-                            {{ category.name }}</router-link>
+                            {{ category.name }}</a>
 
                     </div>
                 </div>
@@ -89,6 +89,17 @@ export default {
         let domain = await axios.get("../../data/url.txt");
         let response = await axios.get(domain.data + "category");
         this.categories = await response.data.data
+    },
+    
+    methods: {
+         redirect_category(id) {            
+            if ( window.location.href.indexOf('by_category')!=-1){
+                window.location.href = id;
+            }
+            else{
+                window.location.href ='by_category/'+ id;
+            }     
+        }
     },
 };
 </script>

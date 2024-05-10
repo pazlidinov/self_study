@@ -35,8 +35,8 @@ class FilterArticleController extends Controller
                     ->orderBy('id', 'DESC')
                     ->limit(6)
                     ->get()
-            );           
-            
+            );
+
             $articles[$category->id] = $article;
         }
         return ['categories' => $categories, 'articles' => $articles, 'info' => gettype($article->first())];
@@ -50,5 +50,10 @@ class FilterArticleController extends Controller
     public function by_author($user_id)
     {
         return ArticleResource::collection(Article::where('category_id', $user_id)->orderBy('id', 'DESC')->paginate(5));
+    }
+
+    public function by_title($title)
+    {
+        return ArticleResource::collection(Article::where('title', 'LIKE', '%' . $title . '%')->orderBy('id', 'DESC')->paginate(5));
     }
 }

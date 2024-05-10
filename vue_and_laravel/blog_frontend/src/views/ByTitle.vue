@@ -64,9 +64,7 @@ import Categories from '@/components/Categories.vue';
 import News from '@/components/News.vue';
 import axios from 'axios'
 
-
 export default {
-
     components: {
         'categories': Categories,
         'news': News,
@@ -77,18 +75,17 @@ export default {
             prev: null,
             next: null,
             pages: null,
-            title: null,
+            title: null
         }
     },
     async mounted() {
         let domain = await axios.get("../../data/url.txt");
-        let response = await axios.get(domain.data + "by_category/" + this.$route.params.id);
+        let response = await axios.get(domain.data + "by_title/" + this.$route.params.title);
         this.articles = await response.data.data;
         this.prev = await response.data.links.prev;
         this.next = await response.data.links.next;
         this.pages = await response.data.meta.links.slice(1, -1);
-           },
-
+    },
     methods: {
         async laodpage(url) {
             if (url != null) {

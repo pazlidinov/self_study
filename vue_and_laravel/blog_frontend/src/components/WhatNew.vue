@@ -69,9 +69,9 @@
 
                                         </div>
                                         <div class="col-lg-10 mt-4">
-                                            <a href="#"
+                                            <router-link v-bind:to="'/by_category/'+ index"
                                                 class="link-hover btn border border-primary rounded-pill text-dark w-100 py-3 mb-4">View
-                                                More</a>
+                                                More</router-link>
                                         </div>
                                     </div>
                                 </div>

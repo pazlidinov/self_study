@@ -17,7 +17,8 @@
                             <a href="#" class="h4">{{ article.title }}</a>
                             <p>{{ article.body.slice(0, 150) }}</p>
                             <div class="d-flex justify-content-between">
-                                <router-link v-bind:to="'/by_author/'+article.user_id.id" class="small text-body link-hover">{{ article.user_id.full_name }}</router-link>
+                                <router-link v-bind:to="'/by_author/' + article.user_id.id"
+                                    class="small text-body link-hover">{{ article.user_id.full_name }}</router-link>
                                 <small class="text-body d-block"><i class="fas fa-calendar-alt me-1"></i>
                                     {{ article.created_at.slice(0, 10) }}</small>
                             </div>
@@ -27,7 +28,8 @@
                     <div class="text-start py-4">
                         <div class="custom-pagination">
                             <button v-on:click="laodpage(prev)" class="prev">Prevue</button>
-                            <button v-for="page in pages" v-on:click="laodpage(page.url)" :class="[page.active ? 'active' : '']">{{ page.label }} </button>
+                            <button v-for="page in pages" v-on:click="laodpage(page.url)"
+                                :class="[page.active ? 'active' : '']">{{ page.label }} </button>
 
                             <button v-on:click="laodpage(next)" class="next">Next</button>
                         </div>
@@ -38,10 +40,10 @@
                         <div class="col-12">
                             <div class="p-3 rounded border">
                                 <div class="input-group w-100 mx-auto d-flex mb-4">
-                                    <input type="search" class="form-control p-3" placeholder="keywords"
+                                    <input type="search" v-model="title" class="form-control p-3" placeholder="keywords"
                                         aria-describedby="search-icon-1">
-                                    <span id="search-icon-1" class="btn btn-primary input-group-text p-3"><i
-                                            class="fa fa-search text-white"></i></span>
+                                        <button v-on:click="redirect_title" id="search-icon-1" class="btn btn-primary input-group-text p-3"><i
+                                            class="fa fa-search text-white"></i></button>
                                 </div>
                                 <categories />
                                 <news />
@@ -73,7 +75,7 @@ export default {
             prev: null,
             next: null,
             pages: null,
-
+            title: null,
         }
     },
     async mounted() {
@@ -94,7 +96,15 @@ export default {
                 this.next = await response.data.links.next;
                 this.pages = await response.data.meta.links.slice(1, -1);
             }
-        }
+        },
+        redirect_title(){
+            if ( window.location.href.indexOf('by_title')!=-1){
+                window.location.href = this.title;
+            }
+            else{
+                window.location.href ='by_title/'+ this.title;
+            }     
+        },
     },
 
 
