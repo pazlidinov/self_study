@@ -8,6 +8,7 @@ import AllArticles from './views/AllArticles.vue';
 import ByCategory from './views/ByCategory.vue';
 import ByAuthor from './views/ByAuthor.vue';
 import ByTitle from './views/ByTitle.vue';
+import Detail from './views/Detail.vue';
 
 
 const router = createRouter({
@@ -18,6 +19,7 @@ const router = createRouter({
         { path: '/by_category/:id', name: 'ByCategory', component: ByCategory },
         { path: '/by_author/:id', name: 'ByAuthor', component: ByAuthor },
         { path: '/by_title/:title', name: 'ByTitle', component: ByTitle },
+        { path: '/detail/:id', name: 'Detail', component: Detail },
     ]
 });
 
