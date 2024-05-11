@@ -47,14 +47,14 @@ class ArticleController extends Controller
             $name = $request->file('img')->getClientOriginalName();
             $path = $request->file('img')->storeAs('article-img', $name);
         }
-       
+
         Article::create([
             'title' => $request->title,
             'img' => $path ?? null,
-            'body' => $request->body,            
+            'body' => $request->body,
             'user_id' => $request->user_id,
             'category_id' => $request->category_id
-        ]);     
+        ]);
 
         return ['The article was successfully created'];
     }
@@ -67,7 +67,14 @@ class ArticleController extends Controller
      */
     public function show(Article $article)
     {
-        return new ArticleResource($article);
+        $article = new ArticleResource($article);
+        $like_article = ArticleResource::collection(
+            Article::inRandomOrder()->limit(2)->get()
+        );
+        return [
+            'article' => $article,
+            'like_articles' => $like_article
+        ];
     }
 
     /**

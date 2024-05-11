@@ -1,6 +1,6 @@
 <template>
     <!-- Single Product Start -->
-    <div class="container-fluid py-3">
+     <div class="container-fluid py-3">
         <div class="container py-3">
             <ol class="breadcrumb justify-content-start mb-4">
                 <li class="breadcrumb-item"><a href="#">Home</a></li>
@@ -41,26 +41,17 @@
                     <div class="bg-light rounded my-4 p-4">
                         <h4 class="mb-4">You Might Also Like</h4>
                         <div class="row g-4">
-                            <div class="col-lg-6">
+                            <div v-for="item in like_articles" class="col-lg-6">
                                 <div class="d-flex align-items-center p-3 bg-white rounded">
-                                    <img src="" class="img-fluid rounded" alt="">
+                                    <img v-bind:src="item.img" class="img-fluid rounded" alt="item.img">
                                     <div class="ms-3">
-                                        <a href="#" class="h5 mb-2">Lorem Ipsum is simply dummy text of the printing</a>
-                                        <p class="text-dark mt-3 mb-0 me-3"><i class="fa fa-clock"></i> 06 minute read
+                                        <router-link v-bind:to="'/detail/' + item.id" class="h5 mb-2">{{ item.title }}</router-link>
+                                        <p class="text-dark mt-3 mb-0 me-3"><i class="fa fa-eye"></i> {{ item.view }} Views
                                         </p>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-6">
-                                <div class="d-flex align-items-center p-3 bg-white rounded">
-                                    <img src="" class="img-fluid rounded" alt="">
-                                    <div class="ms-3">
-                                        <a href="#" class="h5 mb-2">Lorem Ipsum is simply dummy text of the printing</a>
-                                        <p class="text-dark mt-3 mb-0 me-3"><i class="fa fa-clock"></i> 06 minute read
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
+                            
                         </div>
                     </div>
                     <div class="bg-light rounded p-4">
@@ -189,16 +180,16 @@ export default {
     data() {
         return {
             article: null,
+            like_articles: null,
             title: null,
         }
     },
     async mounted() {
         let domain = await axios.get("../../data/url.txt");
-        console.log(domain)
         let response = await axios.get(domain.data + "article/" + this.$route.params.id);
-        console.log(response)
-        this.article = await response.data.data;
-        console.log(this.article);
+        this.article = await response.data.article;
+        this.like_articles = await response.data.like_articles;
+        console.log(this.article)
     },
     methods: {
         redirect_title() {
