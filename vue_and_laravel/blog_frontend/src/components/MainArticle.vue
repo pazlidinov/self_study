@@ -15,7 +15,7 @@
                         </div>
                     </div>
                     <div class="border-bottom py-3">
-                        <a href="#" class="display-4 text-dark mb-0 link-hover">{{ first_section.title }}</a>
+                        <router-link v-bind:to="'/detail/' + first_section.id"   class="display-4 text-dark mb-0 link-hover">{{ first_section.title }}</router-link>
                     </div>
                     <p class="mt-3 mb-4">{{ first_section.body.slice(0,2000) }}...
                     </p>
@@ -35,7 +35,7 @@
                                     </div>
                                     <div class="col-7">
                                         <div class="features-content d-flex flex-column">
-                                            <a href="#" class="h6">{{ article.title }}</a>
+                                            <router-link v-bind:to="'/detail/' + article.id" class="h6">{{ article.title }}</router-link>
                                             <small><i class="fa fa-comment-dots">   {{ article.comments.length }}
                                 Comment</i> </small>
                                             <small><i class="fa fa-eye"> {{ article.view }} Views</i></small>

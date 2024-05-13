@@ -14,7 +14,7 @@
                         </div>
 
                         <div class="col-md-8 d-flex flex-column p-4">
-                            <a href="#" class="h4">{{ article.title }}</a>
+                            <router-link v-bind:to="'/detail/' + article.id"  class="h4">{{ article.title }}</router-link>
                             <p>{{ article.body.slice(0, 150) }}</p>
                             <div class="d-flex justify-content-between">
                                 <router-link v-bind:to="'/by_author/' + article.user_id.id"

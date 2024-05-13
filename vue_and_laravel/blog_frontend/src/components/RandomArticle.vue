@@ -19,9 +19,9 @@
                         <div class="col-8">
                             <div class="features-content d-flex flex-column">
                                 <p class="text-uppercase mb-2">{{ article.category_id.name }}</p>
-                                <a href="#" class="h6">
+                                <router-link v-bind:to="'/detail/' + article.id" class="h6">
                                     {{ article.title }}
-                                </a>
+                                </router-link>
                                 <small class="text-body d-block"><i class="fas fa-calendar-alt me-1"></i>{{
                                     article.created_at.slice(0,10) }}</small>
                             </div>

@@ -30,7 +30,7 @@
                                             </div>
                                         </div>
                                         <div class="my-4">
-                                            <a href="#" class="h4">{{ first.title }}</a>
+                                            <router-link v-bind:to="'/detail/' + first.id"  class="h4">{{ first.title }}</router-link>
                                         </div>
                                         <div class="d-flex justify-content-between">
 
@@ -46,7 +46,7 @@
                                     </div>
                                     <div class="col-lg-4">
                                         <div class="row g-4">
-                                            <div v-for="item in items" class="col-12">
+                                            <div v-for="item in items.slice(1)" class="col-12">
                                                 <div class="row g-4 align-items-center">
                                                     <div class="col-5">
                                                         <div class="overflow-hidden rounded">
@@ -59,7 +59,7 @@
                                                             <p class="text-uppercase mb-2">{{ item.category_id.name
                                                                 }}
                                                             </p>
-                                                            <a href="#" class="h6">{{ item.title }}</a>
+                                                            <router-link v-bind:to="'/detail/' + item.id" class="h6">{{ item.title }}</router-link >
                                                             <small class="text-body d-block"><i
                                                                     class="fas fa-calendar-alt me-1"></i> {{ item.created_at.slice(0,10) }}</small>
                                                         </div>
