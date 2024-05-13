@@ -9,6 +9,7 @@ import ByCategory from './views/ByCategory.vue';
 import ByAuthor from './views/ByAuthor.vue';
 import ByTitle from './views/ByTitle.vue';
 import Detail from './views/Detail.vue';
+import Contact from './views/Contact.vue';
 
 
 const router = createRouter({
@@ -20,6 +21,7 @@ const router = createRouter({
         { path: '/by_author/:id', name: 'ByAuthor', component: ByAuthor },
         { path: '/by_title/:title', name: 'ByTitle', component: ByTitle },
         { path: '/detail/:id', name: 'Detail', component: Detail },
+        { path: '/contact', name: 'Contact', component: Contact },
     ]
 });
 

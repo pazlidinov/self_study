@@ -1,6 +1,6 @@
 <template>
     <!-- Single Product Start -->
-     <div class="container-fluid py-3">
+    <div class="container-fluid py-3">
         <div class="container py-3">
             <ol class="breadcrumb justify-content-start mb-4">
                 <li class="breadcrumb-item"><a href="#">Home</a></li>
@@ -45,37 +45,38 @@
                                 <div class="d-flex align-items-center p-3 bg-white rounded">
                                     <img v-bind:src="item.img" class="img-fluid rounded" alt="item.img">
                                     <div class="ms-3">
-                                        <router-link v-bind:to="'/detail/' + item.id" class="h5 mb-2">{{ item.title }}</router-link>
-                                        <p class="text-dark mt-3 mb-0 me-3"><i class="fa fa-eye"></i> {{ item.view }} Views
+                                        <a style="cursor: pointer;" v-on:click="redirect_detail(item.id)"
+                                            class="h5 mb-2">{{ item.title
+                                            }}</a>
+                                        <p class="text-dark mt-3 mb-0 me-3"><i class="fa fa-eye"></i> {{ item.view }}
+                                            Views
                                         </p>
                                     </div>
                                 </div>
                             </div>
-                            
+
                         </div>
                     </div>
                     <div class="bg-light rounded p-4">
                         <h4 class="mb-4">Comments</h4>
                         <div class="p-4 bg-white rounded mb-4">
-                            <div class="row g-4">
+                            <div v-for="comment in article.comments" class="row g-4">
                                 <div class="col-3">
-                                    <img src="" class="img-fluid rounded-circle w-100" alt="">
+                                    <img v-bind:src="comment.user_id.img" class="img-fluid rounded-circle w-100"
+                                        alt="comment.user_id.img">
                                 </div>
                                 <div class="col-9">
                                     <div class="d-flex justify-content-between">
-                                        <h5>James Boreego</h5>
-                                        <a class=" btn link-hover text-body fs-6"><i
+                                        <h5>{{ comment.user_id.full_name }}</h5>
+                                        <a v-on:click="replay = !replay" class=" btn link-hover text-body fs-6"><i
                                                 class="fas fa-long-arrow-alt-right me-1"></i> Reply</a>
                                     </div>
-                                    <small class="text-body d-block mb-3"><i class="fas fa-calendar-alt me-1"></i> Dec
-                                        9, 2024</small>
-                                    <p class="mb-0">Lorem Ipsum is simply dummy text of the printing and typesetting
-                                        industry. Lorem Ipsum has been the industry's standard dummy Lorem Ipsum has
-                                        been the industry's standard dummy type and scrambled it to make a type specimen
-                                        book. It has survived not only five centuries, but also the leap into electronic
+                                    <small class="text-body d-block mb-3"><i class="fas fa-calendar-alt me-1"></i> {{
+                                        comment.created_at.slice(0, 10) }}</small>
+                                    <p class="mb-0">{{ comment.comment }}
                                     </p>
                                 </div>
-                                <div class="bg-light rounded p-4 my-4">
+                                <div v-if="replay" class="bg-light rounded p-4 my-4">
                                     <h4 class="mb-4">Reply A Comment</h4>
                                     <form action="#">
                                         <div class="row g-4">
@@ -99,38 +100,12 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="p-4 bg-white rounded mb-0">
-                            <div class="row g-4">
-                                <div class="col-3">
-                                    <img src="" class="img-fluid rounded-circle w-100" alt="">
-                                </div>
-                                <div class="col-9">
-                                    <div class="d-flex justify-content-between">
-                                        <h5>James Boreego</h5>
-                                        <a class=" btn link-hover text-body fs-6"><i
-                                                class="fas fa-long-arrow-alt-right me-1"></i> Reply</a>
-                                    </div>
-                                    <small class="text-body d-block mb-3"><i class="fas fa-calendar-alt me-1"></i> Dec
-                                        9, 2024</small>
-                                    <p class="mb-0">Lorem Ipsum is simply dummy text of the printing and typesetting
-                                        industry. Lorem Ipsum has been the industry's standard dummy Lorem Ipsum has
-                                        been the industry's standard dummy type and scrambled it to make a type specimen
-                                        book. It has survived not only five centuries, but also the leap into electronic
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
+
                     </div>
                     <div class="bg-light rounded p-4 my-4">
                         <h4 class="mb-4">Leave A Comment</h4>
                         <form action="#">
                             <div class="row g-4">
-                                <div class="col-lg-6">
-                                    <input type="text" class="form-control py-3" placeholder="Full Name">
-                                </div>
-                                <div class="col-lg-6">
-                                    <input type="email" class="form-control py-3" placeholder="Email Address">
-                                </div>
                                 <div class="col-12">
                                     <textarea class="form-control" name="textarea" id="" cols="30" rows="7"
                                         placeholder="Write Your Comment Here"></textarea>
@@ -149,9 +124,9 @@
                                 <div class="input-group w-100 mx-auto d-flex mb-4">
                                     <input type="search" v-model="title" class="form-control p-3" placeholder="keywords"
                                         aria-describedby="search-icon-1">
-                                    <button v-on:click="redirect_title" id="search-icon-1"
+                                    <router-link v-bind:to="'/by_title/' + title" id="search-icon-1"
                                         class="btn btn-primary input-group-text p-3"><i
-                                            class="fa fa-search text-white"></i></button>
+                                            class="fa fa-search text-white"></i></router-link>
                                 </div>
                                 <categories />
                                 <news />
@@ -182,6 +157,7 @@ export default {
             article: null,
             like_articles: null,
             title: null,
+            replay: false,
         }
     },
     async mounted() {
@@ -189,19 +165,17 @@ export default {
         let response = await axios.get(domain.data + "article/" + this.$route.params.id);
         this.article = await response.data.article;
         this.like_articles = await response.data.like_articles;
-        console.log(this.article)
+        // console.log(this.articles.category_id.name)
     },
     methods: {
-        redirect_title() {
-            if (window.location.href.indexOf('by_title') != -1) {
-                window.location.href = this.title;
+        redirect_detail(id) {
+            if (window.location.href.indexOf('detail') != -1) {
+                window.location.href = id;
             }
             else {
-                window.location.href = 'by_title/' + this.title;
+                window.location.href = 'detail/' + id;
             }
         },
     },
-
-
 };
 </script>

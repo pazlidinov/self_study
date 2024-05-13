@@ -4,6 +4,7 @@ use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CommentsController;
 use App\Http\Controllers\FilterArticleController;
+use App\Http\Controllers\MessageController;
 use App\Http\Controllers\ReplayCommentsController;
 use App\Http\Controllers\UserAuthController;
 use App\Http\Controllers\UserController;
@@ -41,6 +42,7 @@ Route::get('/by_category/{id}', [FilterArticleController::class, 'by_category'])
 Route::get('/by_author/{id}', [FilterArticleController::class, 'by_author'])->name('by_author');
 Route::get('/by_title/{title}', [FilterArticleController::class, 'by_title'])->name('by_title');
 
+Route::post('/message', [MessageController::class, 'store'])->name('message');
 
 Route::post('/register', [UserAuthController::class, 'register'])->name('register');
 Route::post('/login', [UserAuthController::class, 'login'])->name('login');

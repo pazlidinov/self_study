@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class ReplayComments extends Model
 {
     use HasFactory;
+    public $timestamps = true;
     protected $fillable = [
         'user_id',
         'comments_id',

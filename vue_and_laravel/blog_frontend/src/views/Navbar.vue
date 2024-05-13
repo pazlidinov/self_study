@@ -58,7 +58,7 @@
                             <router-link to="/all_articles" class="nav-item nav-link">Articles</router-link>
 
 
-                            <a href="contact.html" class="nav-item nav-link">Contact Us</a>
+                            <router-link to="/contact" class="nav-item nav-link">Contact Us</router-link>
                         </div>
                         <div class="d-flex flex-nowrap border-top pt-3 pt-xl-0">
                             <button
