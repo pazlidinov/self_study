@@ -17,8 +17,8 @@
                                 <a href="#" class=" dropdown-toggle" data-bs-toggle="dropdown">
                                     <i class="fa fa-user-circle" aria-hidden="true"></i> Account</a>
                                 <div class="dropdown-menu m-0  rounded-0">
-                                    <a href="#" class="dropdown-item">Log in</a>
-                                    <a href="#" class="dropdown-item">Register</a>
+                                    <router-link to="/login" class="dropdown-item">Log in</router-link>
+                                    <router-link to="/register"  class="dropdown-item">Register</router-link>
                                     <a href="#" class="dropdown-item">Articles</a>
                                     <a href="#" class="dropdown-item">Create</a>
                                     <hr>

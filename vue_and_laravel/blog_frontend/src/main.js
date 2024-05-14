@@ -10,6 +10,9 @@ import ByAuthor from './views/ByAuthor.vue';
 import ByTitle from './views/ByTitle.vue';
 import Detail from './views/Detail.vue';
 import Contact from './views/Contact.vue';
+import Login from './views/Login.vue';
+import Register from './views/Register.vue';
+import ResetPassword from './views/ResetPassword.vue';
 
 
 const router = createRouter({
@@ -22,6 +25,9 @@ const router = createRouter({
         { path: '/by_title/:title', name: 'ByTitle', component: ByTitle },
         { path: '/detail/:id', name: 'Detail', component: Detail },
         { path: '/contact', name: 'Contact', component: Contact },
+        { path: '/login', name: 'Login', component: Login },
+        { path: '/resset_password', name: 'RessetPassword', component: ResetPassword },
+        { path: '/register', name: 'Register', component: Register },
     ]
 });
 
