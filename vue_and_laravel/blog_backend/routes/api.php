@@ -34,6 +34,7 @@ Route::apiResources(['article' => ArticleController::class]);
 Route::apiResources(['comments' => CommentsController::class]);
 Route::apiResources(['replaycomments' => ReplayCommentsController::class]);
 
+Route::get('/check_user/{phone_number}', [UserController::class, 'check_user'])->name('check_user');
 
 Route::get('/random_articles', [FilterArticleController::class, 'random_articles'])->name('random_articles');
 Route::get('/main_articles', [FilterArticleController::class, 'main_articles'])->name('main_articles');

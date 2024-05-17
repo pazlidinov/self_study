@@ -188,4 +188,13 @@ class UserController extends Controller
         $user->delete();
         return ['The user was successfully deleted'];
     }
+
+    public function check_user($phone_number){
+        if (User::where('phone_number',$phone_number)->first()){
+            return ['status'=>200];
+        }
+        else{
+            return ['status'=>400];
+        }
+    }
 }

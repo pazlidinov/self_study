@@ -19,8 +19,8 @@
                                 <div class="dropdown-menu m-0  rounded-0">
                                     <router-link to="/login" class="dropdown-item">Log in</router-link>
                                     <router-link to="/register"  class="dropdown-item">Register</router-link>
-                                    <a href="#" class="dropdown-item">Articles</a>
-                                    <a href="#" class="dropdown-item">Create</a>
+                                    <router-link to="/create"
+                                    class="dropdown-item">Create</router-link>
                                     <hr>
                                     <a href="#" class="dropdown-item">Log out</a>
 

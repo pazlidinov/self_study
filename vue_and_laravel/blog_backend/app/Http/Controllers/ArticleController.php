@@ -48,7 +48,7 @@ class ArticleController extends Controller
             $path = $request->file('img')->storeAs('article-img', $name);
         }
 
-        Article::create([
+        $new_article=Article::create([
             'title' => $request->title,
             'img' => $path ?? null,
             'body' => $request->body,
@@ -56,7 +56,7 @@ class ArticleController extends Controller
             'category_id' => $request->category_id
         ]);
 
-        return ['The article was successfully created'];
+        return ['status'=>200, 'article'=> $new_article->id];
     }
 
     /**

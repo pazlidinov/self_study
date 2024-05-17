@@ -13,6 +13,7 @@ import Contact from './views/Contact.vue';
 import Login from './views/Login.vue';
 import Register from './views/Register.vue';
 import ResetPassword from './views/ResetPassword.vue';
+import Create from './views/Create.vue';
 
 
 const router = createRouter({
@@ -28,6 +29,7 @@ const router = createRouter({
         { path: '/login', name: 'Login', component: Login },
         { path: '/resset_password', name: 'RessetPassword', component: ResetPassword },
         { path: '/register', name: 'Register', component: Register },
+        { path: '/create', name: 'Create', component: Create },
     ]
 });
 
