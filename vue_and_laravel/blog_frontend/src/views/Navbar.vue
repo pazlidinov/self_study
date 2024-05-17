@@ -18,9 +18,8 @@
                                     <i class="fa fa-user-circle" aria-hidden="true"></i> Account</a>
                                 <div class="dropdown-menu m-0  rounded-0">
                                     <router-link to="/login" class="dropdown-item">Log in</router-link>
-                                    <router-link to="/register"  class="dropdown-item">Register</router-link>
-                                    <router-link to="/create"
-                                    class="dropdown-item">Create</router-link>
+                                    <router-link to="/register" class="dropdown-item">Register</router-link>
+                                    <router-link to="/create" class="dropdown-item">Create</router-link>
                                     <hr>
                                     <a href="#" class="dropdown-item">Log out</a>
 
@@ -49,8 +48,8 @@
                             <div class="nav-item dropdown">
                                 <a href="" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Categories</a>
                                 <div class="dropdown-menu m-0 bg-secondary rounded-0">
-                                    <button v-for="category in categories"
-                                        class="dropdown-item"  v-on:click="redirect_category(category.id)">{{ category.name
+                                    <button v-for="category in categories" class="dropdown-item"
+                                        v-on:click="redirect_category(category.id)">{{ category.name
                                         }}</button>
 
                                 </div>
@@ -86,7 +85,8 @@
                     <div class="input-group w-75 mx-auto d-flex">
                         <input type="search" v-model="title" class="form-control p-3" placeholder="keywords"
                             aria-describedby="search-icon-1">
-                            <button v-on:click="redirect_title" id="search-icon-1" class="input-group-text p-3"><i class="fa fa-search"></i></button>
+                        <button v-on:click="redirect_title" id="search-icon-1" class="input-group-text p-3"><i
+                                class="fa fa-search"></i></button>
                     </div>
 
                 </div>
@@ -113,21 +113,21 @@ export default {
         this.categories = await response.data.data
     },
     methods: {
-        redirect_category(id) {       
-            if ( window.location.href.indexOf('by_category')!=-1){
+        redirect_category(id) {
+            if (window.location.href.indexOf('by_category') != -1) {
                 window.location.href = id;
             }
-            else{
-                window.location.href ='by_category/'+ id;
-            }            
+            else {
+                window.location.href = 'by_category/' + id;
+            }
         },
-        redirect_title(){
-            if ( window.location.href.indexOf('by_title')!=-1){
+        redirect_title() {
+            if (window.location.href.indexOf('by_title') != -1) {
                 window.location.href = this.title;
             }
-            else{
-                window.location.href ='by_title/'+ this.title;
-            }     
+            else {
+                window.location.href = 'by_title/' + this.title;
+            }
         },
     },
 };

@@ -28,12 +28,12 @@ const router = createRouter({
         { path: '/contact', name: 'Contact', component: Contact },
         { path: '/login', name: 'Login', component: Login },
         { path: '/resset_password', name: 'RessetPassword', component: ResetPassword },
-        { path: '/register', name: 'Register', component: Register },
         { path: '/create', name: 'Create', component: Create },
+        { path: '/register', name: 'Register', component: Register },
     ]
 });
 
-const app = createApp(App)
+const app = createApp(App);
 app.use(router);
 app.mount('#app')
 

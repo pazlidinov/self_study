@@ -190,7 +190,7 @@ class UserController extends Controller
     }
 
     public function check_user($phone_number){
-        if (User::where('phone_number',$phone_number)->first()){
+        if (User::where('phone_number',$phone_number)->get()){
             return ['status'=>200];
         }
         else{
