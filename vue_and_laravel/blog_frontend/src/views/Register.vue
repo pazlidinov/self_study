@@ -8,35 +8,21 @@
                         <div class="mb-4">
                             <div class="row g-4">
                                 <span>REGISTER</span>
-                                <div v-if="first_section">
+
+                                <div>
                                     <div class=" col-lg-12 input-group w-100 mx-auto d-flex mb-4">
                                         <span class=" input-group-text p-3">+998</span>
                                         <input v-model="phone_number" type="tel" name="phone_number"
                                             class="form-control border-0 py-3" maxlength="9"
-                                            placeholder="Your Phone Number" required>
+                                            placeholder="XX12345678 - Your Phone Number " required>
                                         <span class=" input-group-text p-3"
                                             v-bind:class="{ 'text-danger': text_color, 'text-success': !text_color }">{{
                                                 phone_number_info }}</span>
                                     </div>
-                                    <div class=" col-12">
-                                        <button v-on:click="send_accept_code()"
-                                            class="w-100 btn btn-primary form-control py-3"
-                                            v-bind:class="{ 'disabled': !sen_button }">Send Code
-                                            With
-                                            SMS</button>
-                                    </div>
                                 </div>
-                                <div v-if="second_section">
-                                    <div class="col-lg-12">
-                                        <input v-model="accept_code" type="password"
-                                            class="w-100 form-control border-0 py-3 mb-4" name="accept_code"
-                                            placeholder="Enter Accept Code" maxlength="6" required>
-                                    </div>
-                                    <div class="col-12">
-                                        <button class="w-100 btn btn-primary form-control py-3">Accept</button>
-                                    </div>
-                                </div>
-                                <div v-if="third_section">
+                                <span v-if="check_phone_number" class="m-0 py-3 text-danger">This phone
+                                    number is registered!</span>
+                                <div v-if="next_section">
                                     <div class="col-lg-12">
                                         <input v-model="full_name" type="text"
                                             class="w-100 form-control border-0 py-3 mb-4" name="full_name"
@@ -48,18 +34,20 @@
                                             class="w-100 form-control border-0 py-3 mb-4" name="password"
                                             placeholder="Enter  Password" required>
                                     </div>
-                                    <div class="col-lg-12">
+                                    <div class="col-lg-12 mb-4">
                                         <input v-model="confirm_password" type="password"
-                                            class="w-100 form-control border-0 py-3 mb-4" name="confirm_password"
+                                            class="w-100 form-control border-0 py-3" name="confirm_password"
                                             placeholder="Confirm Password" required>
+                                        <span v-if="check_confirm" class="text-danger">Password not confirmed!</span>
                                     </div>
                                     <div class="col-lg-12">
                                         <input type="file" name="img" class="w-100 form-control border-0 py-3 mb-4"
-                                            required>
+                                            accept="image/*" @change="uploadImage($event)" id="file-input" required>
                                     </div>
                                     <div class="col-12">
-                                        <button v-on:click="send_message()"
-                                            class="w-100 btn btn-primary form-control py-3">Register</button>
+                                        <button v-on:click="registered()"
+                                            class="w-100 btn btn-primary form-control py-3"
+                                            v-bind:class="{ 'disabled': send_btn }">Register</button>
                                     </div>
                                 </div>
                             </div>
@@ -78,19 +66,21 @@ import axios from 'axios'
 export default {
     data() {
         return {
-            first_section: true,
             phone_number: null,
             phone_number_info: '',
-            text_color: false,
-            sen_button: false,
+            check_phone_number: false,
 
-            second_section: false,
-
-            third_section: false,
+            next_section: false,
             full_name: null,
             password: null,
             confirm_password: null,
-            accept_code: null,
+            check_confirm: false,
+            data: new FormData(),
+        }
+    },
+    computed: {
+        send_btn() {
+            return (this.phone_number && this.full_name && this.password && this.confirm_password && this.password == this.confirm_password) ? false : true;
         }
     },
     watch: {
@@ -102,57 +92,51 @@ export default {
                 let domain = await axios.get("../../data/url.txt");
                 let response = await axios.get(domain.data + 'check_user/' + val)
 
-                if (response.data.status == 200) {
-                    this.sen_button = true
+                switch (response.data.status) {
+                    case 200:
+                        this.check_phone_number = true
+                        break;
+                    case 400:
+                        this.next_section = true
+                        break
                 }
             }
             else {
                 this.phone_number_info = 'Wrong!'
                 this.text_color = true
-                this.sen_button = false
+                this.next_section = false
+                this.check_phone_number = false
             }
+        },
+        confirm_password(val) {
+            this.check_confirm = this.password != val ? true : false;
+        },
 
-        }
     },
     methods: {
-         send_accept_code() {
-            let send_code = Math.floor(Math.random() * (999999 - 100000 + 1)) + 100000;
-            var axios = require('axios');
-            var FormData = require('form-data');
-            var data = new FormData();
-            data.append('mobile_phone', '998'+this.phone_number);
-            data.append('message', send_code );
-            data.append('from', '7wUxnDo6v2nBgeRLQRautOzPXR0bfIv9LozhxVWi');
-            data.append('callback_url', '');
-
-            var config = {
-                method: 'post',
-                maxBodyLength: Infinity,
-                url: 'notify.eskiz.uz/api/message/sms/send',
-                headers: {
-                    ...data.getHeaders()
-                },
-                data: data
+        uploadImage(event) {
+            this.data.append('img', event.target.files[0])
+        },
+        async registered() {
+            let config = {
+                header: {
+                    'Content-Type': 'image'
+                }
             };
-
-            axios(config)
-                .then(function (response) {
-                    console.log(JSON.stringify(response.data));
+            this.data.append('full_name', this.full_name);
+            this.data.append('phone_number', this.phone_number);
+            this.data.append('password', this.password);
+            this.data.append('full_name', this.full_name);
+            this.data.append('full_name', this.full_name);
+            let domain = await axios.get("../../data/url.txt");
+            await axios.post(domain.data + 'user', this.data)
+                .then(response => {
+                    alert('You have successfully registered!');
+                    this.$router.push('/login')
                 })
-                .catch(function (error) {
-                    console.log(error);
+                .catch(error => {
+                    alert('Something is wrong!')
                 });
-
-
-            // await axios.post('notify.eskiz.uz/api/message/sms/send', {
-            //     'mobile_phone': '9989'+this.phone_number, 'message': send_code, 'from': '7wUxnDo6v2nBgeRLQRautOzPXR0bfIv9LozhxVWi', 'callback_url': ''
-            // }, Headers)
-            //     .then(response => {
-            //         console.log(JSON.stringify(response.data));
-            //     })
-            //     .catch(error => {
-            //         console.log(error);
-            //     });
 
         }
     }

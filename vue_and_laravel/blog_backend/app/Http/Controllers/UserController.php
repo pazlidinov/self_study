@@ -66,6 +66,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+        // return $request;
         $request->validate([
             'full_name' => 'required|string|max:255',
             'phone_number' => 'required|unique:users|max:50',
@@ -160,7 +161,7 @@ class UserController extends Controller
         if (preg_match($pattern, $request->phone_number)) {
             $user->update([
                 'full_name' => $request->full_name,
-                'email' => $request->phone_number,
+                'phone_number' => $request->phone_number,
                 'password' => $request->password,
                 'img' => $path,
             ]);
@@ -189,12 +190,12 @@ class UserController extends Controller
         return ['The user was successfully deleted'];
     }
 
-    public function check_user($phone_number){
-        if (User::where('phone_number',$phone_number)->get()){
-            return ['status'=>200];
-        }
-        else{
-            return ['status'=>400];
+    public function check_user($phone_number)
+    {
+        if (User::where('phone_number', $phone_number)->first()) {
+            return ['status' => 200];
+        } else {
+            return ['status' => 400];
         }
     }
 }

@@ -12,7 +12,6 @@ import Detail from './views/Detail.vue';
 import Contact from './views/Contact.vue';
 import Login from './views/Login.vue';
 import Register from './views/Register.vue';
-import ResetPassword from './views/ResetPassword.vue';
 import Create from './views/Create.vue';
 
 
@@ -26,14 +25,16 @@ const router = createRouter({
         { path: '/by_title/:title', name: 'ByTitle', component: ByTitle },
         { path: '/detail/:id', name: 'Detail', component: Detail },
         { path: '/contact', name: 'Contact', component: Contact },
-        { path: '/login', name: 'Login', component: Login },
-        { path: '/resset_password', name: 'RessetPassword', component: ResetPassword },
         { path: '/create', name: 'Create', component: Create },
+
+        { path: '/login', name: 'Login', component: Login },
         { path: '/register', name: 'Register', component: Register },
     ]
 });
 
+
 const app = createApp(App);
 app.use(router);
+
 app.mount('#app')
 

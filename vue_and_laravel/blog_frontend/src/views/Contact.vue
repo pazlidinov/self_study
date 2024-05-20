@@ -112,6 +112,7 @@ export default {
             })
                 .then(response => {
                     alert('Message received successfully!')
+                    this.$router.push('/')
                 })
                 .catch(error => {
                     alert('Something is wrong!')
