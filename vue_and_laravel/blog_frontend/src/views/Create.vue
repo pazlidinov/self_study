@@ -22,7 +22,7 @@
                                 </div>
 
                                 <div class="col-lg-6">
-                                    <input type="file" name="img" class="w-100 form-control border-0 py-3 mb-4"
+                                    <input type="file" name="img" class="w-100 form-control border-0 py-3 mb-4" accept="image/*" @change="uploadImage($event)" id="file-input"
                                         required>
                                 </div>
                                 <div class="col-12">
@@ -30,8 +30,8 @@
                                         cols="10" placeholder="Article" required></textarea>
                                 </div>
                                 <div class="col-12">
-                                    <button v-on:click="send_article()"
-                                        class="w-100 btn btn-primary form-control py-3">Submit
+                                    <button v-on:click="send_article()" class="w-100 btn btn-primary form-control py-3"
+                                        v-bind:class="{ 'disabled': send_btn }">Submit
                                         Now</button>
                                 </div>
                             </div>
@@ -56,6 +56,7 @@ export default {
             user_id: 1,
             category_id: null,
             body: null,
+            data: new FormData(),
         }
     },
     async mounted() {
@@ -63,14 +64,24 @@ export default {
         let response = await axios.get(domain.data + "category");
         this.categories = await response.data.data
     },
+    computed: {
+        send_btn() {
+            return (this.title && this.user_id && this.category_id && this.body) ? false : true;
+        }
+    },
     methods: {
+        uploadImage(event) {
+            this.data.append('img', event.target.files[0])
+        },
         async send_article() {
             let domain = await axios.get("../../data/url.txt");
-            await axios.post(domain.data + 'article', {
-                'title': this.title, 'user_id': this.user_id, 'category_id': this.category_id, 'body': this.body
-            })
+            this.data.append('title', this.title)
+            this.data.append('user_id', this.user_id)
+            this.data.append('category_id', this.category_id)
+            this.data.append('body', this.body)
+            await axios.post(domain.data + 'article', this.data)
                 .then(response => {
-                    alert('Message received successfully!')
+                    alert('Article created successfully!')
                     this.$router.push('/detail/' + response.data.article);
                 })
                 .catch(error => {
