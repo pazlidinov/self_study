@@ -15,7 +15,7 @@
                                 <div class="col-lg-6">
                                     <select v-model="category_id" name="category" id=""
                                         class="w-100 form-control border-0 py-3">
-                                        <option disabled value="">Please select Category</option>
+                                        <option disabled value="" selected>Please select Category</option>
                                         <option v-for="category in categories" v-bind:value=category.id>{{ category.name
                                             }}</option>
                                     </select>

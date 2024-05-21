@@ -24,7 +24,7 @@
                                     number is registered!</span>
                                 <div v-if="next_section">
                                     <div class="col-lg-12">
-                                        <input v-model="full_name" type="text"
+                                        <input v-model="full_name" type="text" 
                                             class="w-100 form-control border-0 py-3 mb-4" name="full_name"
                                             placeholder="Enter Your Full Name" required>
                                     </div>

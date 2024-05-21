@@ -48,7 +48,7 @@ class ArticleController extends Controller
             $path = $request->file('img')->storeAs('article-img', $name);
         }
 
-        $new_article=Article::create([
+        $new_article = Article::create([
             'title' => $request->title,
             'img' => $path ?? null,
             'body' => $request->body,
@@ -56,7 +56,7 @@ class ArticleController extends Controller
             'category_id' => $request->category_id
         ]);
 
-        return ['status'=>200, 'article'=> $new_article->id];
+        return ['status' => 200, 'article' => $new_article->id];
     }
 
     /**
@@ -95,7 +95,7 @@ class ArticleController extends Controller
      * @param  \App\Models\Article  $article
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Article $article)
+    public function update( Request $request, Article $article)
     {
         $request->validate([
             'title' => 'required|max:200',
@@ -103,13 +103,14 @@ class ArticleController extends Controller
             'user_id' => 'required|numeric',
             'category_id' => 'required|numeric',
         ]);
+ 
         if ($request->hasFile('img')) {
             $name = $request->file('img')->getClientOriginalName();
             $path = $request->file('img')->storeAs('article-img', $name);
         }
         $article->update([
             'title' => $request->title,
-            'img' => $path ?? null,
+            'img' => $path ?? $article->img,
             'body' => $request->body,
             'user_id' => $request->user_id,
             'category_id' => $request->category_id

@@ -13,6 +13,7 @@ import Contact from './views/Contact.vue';
 import Login from './views/Login.vue';
 import Register from './views/Register.vue';
 import Create from './views/Create.vue';
+import Edit from './views/Edit.vue';
 
 
 const router = createRouter({
@@ -26,6 +27,7 @@ const router = createRouter({
         { path: '/detail/:id', name: 'Detail', component: Detail },
         { path: '/contact', name: 'Contact', component: Contact },
         { path: '/create', name: 'Create', component: Create },
+        { path: '/edit/:id', name: 'Edit', component: Edit },
 
         { path: '/login', name: 'Login', component: Login },
         { path: '/register', name: 'Register', component: Register },
