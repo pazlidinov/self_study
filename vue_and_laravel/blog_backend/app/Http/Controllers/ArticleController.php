@@ -95,22 +95,23 @@ class ArticleController extends Controller
      * @param  \App\Models\Article  $article
      * @return \Illuminate\Http\Response
      */
-    public function update( Request $request, Article $article)
+    public function update(Request $request, Article $article)
     {
         $request->validate([
-            'title' => 'required|max:200',
+            'title' => 'required',
             'body' => 'required',
             'user_id' => 'required|numeric',
             'category_id' => 'required|numeric',
         ]);
- 
+
         if ($request->hasFile('img')) {
             $name = $request->file('img')->getClientOriginalName();
             $path = $request->file('img')->storeAs('article-img', $name);
         }
+
         $article->update([
             'title' => $request->title,
-            'img' => $path ?? $article->img,
+            'img' =>  $path ?? null,
             'body' => $request->body,
             'user_id' => $request->user_id,
             'category_id' => $request->category_id

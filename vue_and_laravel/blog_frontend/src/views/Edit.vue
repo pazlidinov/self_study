@@ -32,8 +32,8 @@
                                         required></textarea>
                                 </div>
                                 <div class="col-12">
-                                    <button v-on:click="send_article()" class="w-100 btn btn-primary form-control py-3"
-                                       >Submit
+                                    <button v-on:click="send_article()"
+                                        class="w-100 btn btn-primary form-control py-3">Submit
                                         Now</button>
                                 </div>
                             </div>
@@ -58,7 +58,7 @@ export default {
             user_id: null,
             category_id: null,
             body: null,
-            article_data: new FormData(),
+            data: new FormData(),
         }
     },
     async mounted() {
@@ -82,19 +82,12 @@ export default {
             this.data.append('img', event.target.files[0])
         },
         async send_article() {
-            console.log(this.title, this.body, this.user_id, this.category_id)
-
             let domain = await axios.get("../../data/url.txt");
-            this.article_data.append('title', this.title);
-            this.article_data.append('user_id', this.user_id);
-            this.article_data.append('category_id', this.category_id);
-            this.article_data.append('body', this.body);
-            // console.log(this.data)
-            await axios.put(domain.data + 'article/'+this.$route.params.id, this.article_data)
+
+            await axios.put(domain.data + 'article/' + this.$route.params.id + '?title=' + this.title + '&user_id=' + this.user_id + '&category_id=' + this.category_id + '&body=' + this.body, this.data)
                 .then(response => {
-                    console.log(response)
-                    // alert('Article created successfully!')
-                    // this.$router.push('/detail/' + this.$route.params.id);
+                    alert('Article created successfully!')
+                    this.$router.push('/detail/' + this.$route.params.id);
                 })
                 .catch(error => {
                     alert('Something is wrong!')
