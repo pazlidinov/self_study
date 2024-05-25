@@ -26,9 +26,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-// Route::middleware('auth:sanctum')->group(function () {});
+Route::middleware('auth:api')->group(function () {
+    Route::apiResources(['user' => UserController::class]);
 
-Route::apiResources(['user' => UserController::class]);
+});
+
 Route::apiResources(['category' => CategoryController::class]);
 Route::apiResources(['article' => ArticleController::class]);
 Route::apiResources(['comments' => CommentsController::class]);

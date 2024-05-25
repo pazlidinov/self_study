@@ -72,11 +72,11 @@ export default {
         this.category_id = response_article.data.article.category_id.id
         this.body = response_article.data.article.body
     },
-    // computed: {
-    //     send_btn() {
-    //         return (this.title && this.user_id && this.category_id && this.body) ? false : true;
-    //     }
-    // },
+    computed: {
+        send_btn() {
+            return (this.title && this.user_id && this.category_id && this.body) ? false : true;
+        }
+    },
     methods: {
         uploadImage(event) {
             this.data.append('img', event.target.files[0])

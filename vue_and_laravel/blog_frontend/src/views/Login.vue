@@ -10,19 +10,19 @@
                                 <span>LOG IN</span>
                                 <div class=" col-lg-12 input-group w-100 mx-auto d-flex mb-4">
                                     <span class=" input-group-text p-3">+998</span>
-                                    <input v-model="phone_number" type="tel" class="form-control border-0 py-3" maxlength="9"
-                                        placeholder="Your Phone Number" required>
+                                    <input v-model="phone_number" type="tel" class="form-control border-0 py-3"
+                                        maxlength="9" placeholder="Your Phone Number" required>
                                 </div>
                                 <div class="col-lg-12">
                                     <input v-model="password" type="password" class="w-100 form-control border-0 py-3"
                                         name="password" placeholder="Enter Your Password" required>
                                 </div>
                                 <div class="col-12">
-                                    <button v-on:click="send_message()"
-                                    class="w-100 btn btn-primary form-control py-3" v-bind:class="{ 'disabled': send_btn}">Log in</button>
+                                    <button v-on:click="send_login()" class="w-100 btn btn-primary form-control py-3"
+                                        v-bind:class="{ 'disabled': send_btn }">Log in</button>
                                 </div>
                                 <div class="col-12 d-flex align-items-center">
-                                    <router-link to="/register" >Do you not have an account?</router-link>
+                                    <router-link to="/register">Do you not have an account?</router-link>
                                 </div>
                             </div>
                         </div>
@@ -44,19 +44,24 @@ export default {
             password: null,
         }
     },
-    computed:{
-        send_btn(){
+    computed: {
+        send_btn() {
             return (this.phone_number && this.password) ? false : true;
         }
     },
     methods: {
-        async send_message() {
+        async get_token() {
+            await axios.get("/sanctum/csrf-cookie");
+        },
+        async send_login() {
             let domain = await axios.get("../../data/url.txt");
-            await axios.post(domain.data + 'message', {
-                'name': this.name, 'email': this.email, 'message': this.message
+            await this.get_token();
+            await axios.post(domain.data + 'login', {
+                'phone_number': this.phone_number, 'password': this.password,
             })
                 .then(response => {
-                    alert('Message received successfully!')
+                    console.log(response)
+                    // this.$router.push('/')
                 })
                 .catch(error => {
                     alert('Something is wrong!')

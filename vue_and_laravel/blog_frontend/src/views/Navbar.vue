@@ -99,7 +99,8 @@
 
 <script>
 import axios from 'axios'
-
+// import { useAuthStore } from '../../stores/auth';
+// const authStore = useAuthStore()
 export default {
     data() {
         return {
@@ -110,7 +111,10 @@ export default {
     async mounted() {
         let domain = await axios.get("../../data/url.txt");
         let response = await axios.get(domain.data + "category");
-        this.categories = await response.data.data
+        this.categories = await response.data.data  
+        
+        // await authStore.getUser();
+
     },
     methods: {
         redirect_category(id) {

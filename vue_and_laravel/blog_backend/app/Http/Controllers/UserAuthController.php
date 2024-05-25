@@ -92,15 +92,15 @@ class UserAuthController extends Controller
      *     @OA\Response(response="401", description="Unauthorised. Invalid credentials")
      * )
      */
-    
+
     public function login(Request $request)
     {
-        $data = [
-            'email' => $request->phone_number,
-            'password' => $request->password
-        ];
-        if (auth()->attempt($data)) {
-            $token = auth()->user()->createToken('LaravelAuthApp')->plainTextToken;
+    
+        $user = User::where('phone_number', $request->phone_number)->where('password', $request->password)->first();
+       
+        if ($user) {
+     
+            $token = $user->createToken('LaravelAuthApp')->accessToken;
             return response()->json(['token' => $token, 200, 'Login successful']);
         } else {
             return response()->json(['error' => 'Unauthorised. Invalid credentials', 401]);
@@ -118,7 +118,11 @@ class UserAuthController extends Controller
      */
     public function logout(Request $request)
     {
-        Auth::logout();
-        return ['Yuo are logout.', 200];
+        // Auth::logout();
+        // return ['Yuo are logout.', 200];
+        $token = $request->user()->token();
+        $token->revoke();
+        $response = ['message' => 'You have been successfully logged out!'];
+        return response($response, 200);
     }
 }
