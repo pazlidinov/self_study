@@ -14,15 +14,22 @@
                     <div class="col-lg-3  col-sm-4 col-5">
                         <div class="d-inline-flex float-end">
                             <div class="nav-item dropdown">
-                                <a href="#" class=" dropdown-toggle" data-bs-toggle="dropdown">
-                                    <i class="fa fa-user-circle" aria-hidden="true"></i> Account</a>
+                                <a v-on:click="user_menu()" class=" dropdown-toggle" data-bs-toggle="dropdown">
+                                    <i class="fa fa-user-circle" aria-hidden="true"></i> Account
+                                </a>
                                 <div class="dropdown-menu m-0  rounded-0">
-                                    <router-link to="/login" class="dropdown-item">Log in</router-link>
-                                    <router-link to="/register" class="dropdown-item">Register</router-link>
-                                    <router-link to="/create" class="dropdown-item">Create</router-link>
-                                    <hr>
-                                    <a href="#" class="dropdown-item">Log out</a>
-
+                                    <div v-if="user_token">
+                                        <router-link v-bind:to="'/by_author/'
+                                            + user_id" class="dropdown-item">My article</router-link>
+                                        <router-link to="/create" class="dropdown-item">Create</router-link>
+                                        <hr>
+                                        <button v-on:click="log_out()" class="dropdown-item">Log out</button>
+                                    </div>
+                                    <div v-if="!(user_token)">
+                                        <router-link to="/login" class="dropdown-item">Log
+                                            in</router-link>
+                                        <router-link to="/register" class="dropdown-item">Register</router-link>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -99,22 +106,20 @@
 
 <script>
 import axios from 'axios'
-// import { useAuthStore } from '../../stores/auth';
-// const authStore = useAuthStore()
+
 export default {
     data() {
-        return {
+        return {            
             categories: null,
             title: null,
+            user_id: null,
+            user_token: null,
         }
     },
     async mounted() {
         let domain = await axios.get("../../data/url.txt");
         let response = await axios.get(domain.data + "category");
-        this.categories = await response.data.data  
-        
-        // await authStore.getUser();
-
+        this.categories = await response.data.data;
     },
     methods: {
         redirect_category(id) {
@@ -133,6 +138,25 @@ export default {
                 window.location.href = 'by_title/' + this.title;
             }
         },
-    },
-};
+        user_menu() {
+            this.user_token = localStorage.getItem("user_token")
+            this.user_id = localStorage.getItem("user_id")
+        },
+        async log_out() {
+            let domain = await axios.get("../../data/url.txt");
+            await axios.get(domain.data + 'logout', { headers: { 'Accept': 'application/json', 'Authorization': 'Bearer ' + this.user_token } }).then(response => {
+
+                if (response.status == 200) {
+                    localStorage.removeItem("user_token");
+                    localStorage.removeItem("user_id");
+                    
+
+                    this.$router.push('/')
+                }
+            }).catch(error => {
+                alert('Something is wrong!')
+            })
+        }
+    }
+}
 </script>

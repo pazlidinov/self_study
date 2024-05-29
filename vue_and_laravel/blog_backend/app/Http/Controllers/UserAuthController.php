@@ -63,7 +63,7 @@ class UserAuthController extends Controller
 
             $token = $user->createToken('LaravelAuthApp')->plainTextToken;
 
-            return response()->json(['token' => $token, 200]);
+            return response()->json(['token' => $token,'user'=>$user, 200]);
         } else {
             return ['User was not created, something is wrong!', 401];
         }
@@ -101,7 +101,7 @@ class UserAuthController extends Controller
         if ($user) {
      
             $token = $user->createToken('LaravelAuthApp')->accessToken;
-            return response()->json(['token' => $token, 200, 'Login successful']);
+            return response()->json(['token' => $token,'user' => $user,200, 'Login successful']);
         } else {
             return response()->json(['error' => 'Unauthorised. Invalid credentials', 401]);
         }
@@ -118,11 +118,12 @@ class UserAuthController extends Controller
      */
     public function logout(Request $request)
     {
-        // Auth::logout();
-        // return ['Yuo are logout.', 200];
-        $token = $request->user()->token();
-        $token->revoke();
-        $response = ['message' => 'You have been successfully logged out!'];
-        return response($response, 200);
+        // return 'ok';
+        Auth::logout();
+        return ['Yuo are logout.', 200];
+        // $token = $request->user()->token();
+        // $token->revoke();
+        // $response = ['message' => 'You have been successfully logged out!'];
+        // return response($response, 200);
     }
 }

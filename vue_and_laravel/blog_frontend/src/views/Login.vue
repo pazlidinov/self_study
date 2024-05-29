@@ -49,23 +49,23 @@ export default {
             return (this.phone_number && this.password) ? false : true;
         }
     },
-    methods: {
-        async get_token() {
-            await axios.get("/sanctum/csrf-cookie");
-        },
+    methods: {       
         async send_login() {
-            let domain = await axios.get("../../data/url.txt");
-            await this.get_token();
+            let domain =await axios.get("../../data/url.txt");
             await axios.post(domain.data + 'login', {
-                'phone_number': this.phone_number, 'password': this.password,
-            })
-                .then(response => {
-                    console.log(response)
-                    // this.$router.push('/')
-                })
-                .catch(error => {
-                    alert('Something is wrong!')
-                });
+                'phone_number': this.phone_number, 'password': this.password
+            }).then(response => {
+              
+                if (response.status == 200) {                   
+                    localStorage.setItem('user_id', response.data.user.id);
+                    localStorage.setItem('user_token', response.data.token);
+                    this.$router.push('/')
+                }
+            }).catch(error => {
+                alert('Something is wrong!')
+            });
+
+
         }
     }
 }
