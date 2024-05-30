@@ -10,31 +10,31 @@
             <div class="row g-4">
                 <div class="col-lg-8">
                     <div class="mb-4">
-                        <span class="h1 display-5">{{ article.title }}</span>
+                        <span class="h1 display-5">{{ article[1] }}</span>
                     </div>
-                    <div class="position-relative rounded overflow-hidden mb-3">
-                        <img v-bind:src="article.img" class="img-zoomin img-fluid rounded w-100" alt="{{article.img}}">
+                   <div class="position-relative rounded overflow-hidden mb-3">
+                        <img v-bind:src="article[2]" class="img-zoomin img-fluid rounded w-100" alt={{article[2]}}>
                         <div class="position-absolute text-white px-4 py-2 bg-primary rounded"
                             style="top: 20px; right: 20px;">
-                            {{ article.category_id.name }}
+                            {{ article[6].name }}
                         </div>
                     </div>
                     <div class="d-flex justify-content-between">
                         <a href="#" class="text-dark link-hover me-3"><i class="fa fa-clock"></i>by {{
-                            article.user_id.full_name }}</a>
-                        <a href="#" class="text-dark link-hover me-3"><i class="fa fa-eye"></i> {{ article.view }}
+                            article[5].full_name }}</a>
+                        <a href="#" class="text-dark link-hover me-3"><i class="fa fa-eye"></i> {{ article[4] }}
                             Views</a>
                         <a href="#" class="text-dark link-hover me-3"><i class="fa fa-comment-dots"></i> {{
-                            article.comments.length }} Comment</a>
+                            article[7].length }} Comment</a>
                     </div>
-                    <p class="my-4"> {{ article.body }}
-                    </p>
+                    <p class="my-4"> {{ article[3] }}
+                    </p> 
 
                     <div class="tab-class">
                         <div class="d-flex justify-content-between border-bottom mb-4">
                             <div class="d-flex align-items-center">
-                                <a href="#" class="link-hover text-body fs-6"><i
-                                        class="fas fa-long-arrow-alt-right me-1 mb-3"></i> Edit</a>
+                                <router-link v-bind:to="'/edit/'+article[0]" class="link-hover text-body fs-6"><i
+                                        class="fas fa-long-arrow-alt-right me-1 mb-3"></i> Edit</router-link>
                             </div>
                         </div>
                     </div>
@@ -57,10 +57,10 @@
 
                         </div>
                     </div>
-                    <div class="bg-light rounded p-4">
+                   <div class="bg-light rounded p-4">
                         <h4 class="mb-4">Comments</h4>
                         <div class="p-4 bg-white rounded mb-4">
-                            <div v-for="comment in article.comments" class="row g-4">
+                            <div v-for="comment in article[7]" class="row g-4">
                                 <div class="col-3">
                                     <img v-bind:src="comment.user_id.img" class="img-fluid rounded-circle w-100"
                                         alt="comment.user_id.img">
@@ -163,19 +163,19 @@ export default {
     async mounted() {
         let domain = await axios.get("../../data/url.txt");
         let response = await axios.get(domain.data + "article/" + this.$route.params.id);
-        this.article = await response.data.article;
-        this.like_articles = await response.data.like_articles;
-        // console.log(this.articles.category_id.name)
+        this.article = Object.keys( response.data.article).map((key) =>  response.data.article[key]);
+        this.like_articles = response.data.like_articles;
+        console.log(this.article)
     },
     methods: {
-        redirect_detail(id) {
-            if (window.location.href.indexOf('detail') != -1) {
-                window.location.href = id;
-            }
-            else {
-                window.location.href = 'detail/' + id;
-            }
-        },
+        // redirect_detail(id) {
+        //     if (window.location.href.indexOf('detail') != -1) {
+        //         window.location.href = id;
+        //     }
+        //     else {
+        //         window.location.href = 'detail/' + id;
+        //     }
+        // },
     },
 };
 </script>

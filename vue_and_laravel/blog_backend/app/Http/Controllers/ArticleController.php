@@ -67,6 +67,7 @@ class ArticleController extends Controller
      */
     public function show(Article $article)
     {
+        
         $article = new ArticleResource($article);
         $like_article = ArticleResource::collection(
             Article::inRandomOrder()->limit(2)->get()
