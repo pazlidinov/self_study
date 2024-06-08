@@ -139,17 +139,16 @@ export default {
             }
         },
         user_menu() {
-            this.user_token = localStorage.getItem("user_token")
-            this.user_id = localStorage.getItem("user_id")
+            this.user_token = sessionStorage.getItem("user_token")
+            this.user_id = sessionStorage.getItem("user_id")
         },
         async log_out() {
             let domain = await axios.get("../../data/url.txt");
             await axios.get(domain.data + 'logout', { headers: { 'Accept': 'application/json', 'Authorization': 'Bearer ' + this.user_token } }).then(response => {
 
                 if (response.status == 200) {
-                    localStorage.removeItem("user_token");
-                    localStorage.removeItem("user_id");
-                    
+                    sessionStorage.removeItem("user_token");
+                    sessionStorage.removeItem("user_id");                  
 
                     this.$router.push('/')
                 }

@@ -45,6 +45,7 @@ Route::get('/by_category/{id}', [FilterArticleController::class, 'by_category'])
 Route::get('/by_author/{id}', [FilterArticleController::class, 'by_author'])->name('by_author');
 Route::get('/by_title/{title}', [FilterArticleController::class, 'by_title'])->name('by_title');
 
+
 Route::post('/message', [MessageController::class, 'store'])->name('message');
 
 Route::post('/register', [UserAuthController::class, 'register'])->name('register');

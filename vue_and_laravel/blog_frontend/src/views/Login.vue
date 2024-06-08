@@ -57,8 +57,8 @@ export default {
             }).then(response => {
               
                 if (response.status == 200) {                   
-                    localStorage.setItem('user_id', response.data.user.id);
-                    localStorage.setItem('user_token', response.data.token);
+                    sessionStorage.setItem('user_id', response.data.user.id);
+                    sessionStorage.setItem('user_token', response.data.token);
                     this.$router.push('/')
                 }
             }).catch(error => {

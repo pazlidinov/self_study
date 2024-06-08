@@ -3,7 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\ArticleResource;
+use App\Http\Resources\CommentsResource;
+use App\Http\Resources\ReplayCommentsResource;
 use App\Models\Article;
+use App\Models\Comments;
+use App\Models\ReplayComments;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 
@@ -61,20 +65,28 @@ class ArticleController extends Controller
 
     /**
      * Display the specified resource.
-     *
+     *     
      * @param  \App\Models\Article  $article
      * @return \Illuminate\Http\Response
      */
-    public function show(Article $article)
+    public function show( Article $article)
     {
-        
-        $article = new ArticleResource($article);
+        $article->view++;
+        $article->save();
+
         $like_article = ArticleResource::collection(
             Article::inRandomOrder()->limit(2)->get()
         );
+        $comments = CommentsResource::collection(Comments::where('article_id', $article->id)->get());
+        $replay_comments = [];
+        foreach ($comments as $comment) {
+            $replay_comments[$comment->id] = ReplayCommentsResource::collection(ReplayComments::where('comments_id', $comment->id)->get());
+        }
         return [
-            'article' => $article,
-            'like_articles' => $like_article
+            'article' => new ArticleResource($article),
+            'like_articles' => $like_article,
+            'comments' => $comments,
+            'replay_comments' => $replay_comments,
         ];
     }
 

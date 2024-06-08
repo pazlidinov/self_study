@@ -37,10 +37,15 @@ class ReplayCommentsController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'user_id' => 'required',
+            'comments_id' => 'required',
+            'replaycomment' => 'required',
+        ]);
         ReplayComments::create([
             'user_id' => $request->user_id,
-            'comments_id'=>$request->comments_id,
-            'replaycomment'=>$request->replaycomment
+            'comments_id' => $request->comments_id,
+            'replaycomment' => $request->replaycomment
         ]);
 
         return ['The replaycomment was successfully created'];
@@ -79,8 +84,8 @@ class ReplayCommentsController extends Controller
     {
         $replayComments->update([
             'user_id' => $request->user_id,
-            'comments_id'=>$request->comments_id,
-            'replaycomment'=>$request->replaycomment
+            'comments_id' => $request->comments_id,
+            'replaycomment' => $request->replaycomment
         ]);
 
         return ['The replaycomment was successfully updated'];

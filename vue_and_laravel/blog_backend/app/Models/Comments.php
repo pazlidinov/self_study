@@ -29,4 +29,11 @@ class Comments extends Model
     {
         return $this->belongsTo(Article::class);
     }
+    /**
+     * Get the replay comments for the comments.
+     */
+    public function replay_comments()
+    {
+        return $this->hasMany(ReplayComments::class);
+    }
 }

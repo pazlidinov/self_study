@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\ArticleResource;
 use App\Http\Resources\CategoryResource;
+use App\Http\Resources\CommentsResource;
 use App\Models\Article;
 use App\Models\Category;
+use App\Models\Comments;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 
@@ -56,4 +58,6 @@ class FilterArticleController extends Controller
     {
         return ArticleResource::collection(Article::where('title', 'LIKE', '%' . $title . '%')->orderBy('id', 'DESC')->paginate(5));
     }
+
+    
 }

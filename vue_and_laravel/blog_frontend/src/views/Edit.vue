@@ -84,7 +84,10 @@ export default {
         async send_article() {
             let domain = await axios.get("../../data/url.txt");
 
-            await axios.put(domain.data + 'article/' + this.$route.params.id + '?title=' + this.title + '&user_id=' + this.user_id + '&category_id=' + this.category_id + '&body=' + this.body, this.data)
+            await axios.put(domain.data + 'article/' + this.$route.params.id + '?title=' + this.title + '&user_id=' + this.user_id + '&category_id=' + this.category_id + '&body=' + this.body, this.data, {headers:{
+                'Accept': 'application/json',
+                'Authorization':'Bearer '+sessionStorage.getItem('user_token'),
+            }})
                 .then(response => {
                     alert('Article created successfully!')
                     this.$router.push('/detail/' + this.$route.params.id);
