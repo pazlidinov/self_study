@@ -42,6 +42,7 @@ class ReplayCommentsController extends Controller
             'comments_id' => 'required',
             'replaycomment' => 'required',
         ]);
+        
         ReplayComments::create([
             'user_id' => $request->user_id,
             'comments_id' => $request->comments_id,

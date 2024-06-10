@@ -51,6 +51,5 @@ export default {
         let response = await axios.get(domain.data + "random_articles");
         this.articles = await response.data.data;
     },
-
 };
 </script>

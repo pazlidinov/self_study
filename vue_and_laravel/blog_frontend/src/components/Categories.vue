@@ -21,13 +21,11 @@ export default {
             comment_categories: null,
         }
     },
-
     async mounted() {
         let domain = await axios.get("../../data/url.txt");
         let response = await axios.get(domain.data + "category");
         this.comment_categories = await response.data.data
     },
-
     methods: {
         redirect_category(id) {
             if (window.location.href.indexOf('/by_category') != -1) {
@@ -38,8 +36,5 @@ export default {
             }
         }
     },
-
 };
-
-
 </script>

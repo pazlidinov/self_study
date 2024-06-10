@@ -42,6 +42,7 @@ class MessageController extends Controller
             'email' => 'required',
             'message' => 'required'
         ]);
+        
         Message::create([
             'name' => $request->name,
             'email' => $request->email,

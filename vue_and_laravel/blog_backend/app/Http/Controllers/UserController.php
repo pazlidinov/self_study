@@ -66,8 +66,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        // return $request;
-        $request->validate([
+            $request->validate([
             'full_name' => 'required|string|max:255',
             'phone_number' => 'required|unique:users|max:50',
             'password' => 'required|max:255'
@@ -77,19 +76,16 @@ class UserController extends Controller
             $name = $request->file('img')->getClientOriginalName();
             $path = $request->file('img')->storeAs('user-img', $name);
         }
+
         $pattern = "/^\\+?[1-9][0-9]{7,14}$/";
         if (preg_match($pattern, $request->phone_number)) {
-
             $user = User::create([
                 'full_name' => $request->full_name,
                 'phone_number' => $request->phone_number,
                 'password' => $request->password,
                 'img' => $path ?? null
-            ]);
-
-            // $token = $user->createToken('LaravelAuthApp')->plainTextToken;
-            return ['The user was successfully created'];
-            // return response()->json(['token' => $token, 200]);
+            ]);            
+            return ['The user was successfully created'];            
         } else {
             return ['User was not created, something is wrong!'];
         }

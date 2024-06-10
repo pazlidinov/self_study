@@ -97,14 +97,11 @@ export default {
             articles: null,
         }
     },
-
-
     async mounted() {
         let domain = await axios.get("../../data/url.txt");
         let response = await axios.get(domain.data + "whatnew");
         this.categories = await response.data.categories;
         this.articles = await response.data.articles;
     },
-
 };
 </script>

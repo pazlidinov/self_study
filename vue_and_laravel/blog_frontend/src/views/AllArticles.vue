@@ -85,7 +85,6 @@ export default {
         this.prev = await response.data.links.prev;
         this.next = await response.data.links.next;
         this.pages = await response.data.meta.links.slice(1, -1);
-
     },
     methods: {
         async laodpage(url) {
@@ -106,7 +105,5 @@ export default {
             }     
         },
     },
-
-
 };
 </script>

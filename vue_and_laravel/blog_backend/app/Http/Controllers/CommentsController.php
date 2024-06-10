@@ -45,7 +45,7 @@ class CommentsController extends Controller
         Comments::create([
             'user_id' => $request->user_id,
             'article_id'=>$request->article_id,
-            'comment'=>$request->comment
+            'comment'=>$request->comment,
         ]);
 
         return ['The comment was successfully created'];

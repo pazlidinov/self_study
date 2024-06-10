@@ -14,7 +14,8 @@
                         </div>
 
                         <div class="col-md-8 d-flex flex-column p-4">
-                            <router-link v-bind:to="'/detail/' + article.id"  class="h4">{{ article.title }}</router-link>
+                            <router-link v-bind:to="'/detail/' + article.id" class="h4">{{ article.title
+                                }}</router-link>
                             <p>{{ article.body.slice(0, 150) }}</p>
                             <div class="d-flex justify-content-between">
                                 <router-link v-bind:to="'/by_author/' + article.user_id.id"
@@ -42,7 +43,8 @@
                                 <div class="input-group w-100 mx-auto d-flex mb-4">
                                     <input type="search" v-model="title" class="form-control p-3" placeholder="keywords"
                                         aria-describedby="search-icon-1">
-                                        <button v-on:click="redirect_title" id="search-icon-1" class="btn btn-primary input-group-text p-3"><i
+                                    <button v-on:click="redirect_title" id="search-icon-1"
+                                        class="btn btn-primary input-group-text p-3"><i
                                             class="fa fa-search text-white"></i></button>
                                 </div>
                                 <categories />
@@ -87,8 +89,7 @@ export default {
         this.prev = await response.data.links.prev;
         this.next = await response.data.links.next;
         this.pages = await response.data.meta.links.slice(1, -1);
-           },
-
+    },
     methods: {
         async laodpage(url) {
             if (url != null) {
@@ -99,16 +100,14 @@ export default {
                 this.pages = await response.data.meta.links.slice(1, -1);
             }
         },
-        redirect_title(){
-            if ( window.location.href.indexOf('by_title')!=-1){
+        redirect_title() {
+            if (window.location.href.indexOf('by_title') != -1) {
                 window.location.href = this.title;
             }
-            else{
-                window.location.href ='by_title/'+ this.title;
-            }     
+            else {
+                window.location.href = 'by_title/' + this.title;
+            }
         },
     },
-
-
 };
 </script>

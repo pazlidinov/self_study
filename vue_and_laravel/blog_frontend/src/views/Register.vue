@@ -24,7 +24,7 @@
                                     number is registered!</span>
                                 <div v-if="next_section">
                                     <div class="col-lg-12">
-                                        <input v-model="full_name" type="text" 
+                                        <input v-model="full_name" type="text"
                                             class="w-100 form-control border-0 py-3 mb-4" name="full_name"
                                             placeholder="Enter Your Full Name" required>
                                     </div>
@@ -69,7 +69,6 @@ export default {
             phone_number: null,
             phone_number_info: '',
             check_phone_number: false,
-
             next_section: false,
             full_name: null,
             password: null,
@@ -88,7 +87,6 @@ export default {
             if (Number.isInteger(Number(val)) && val.length == 9) {
                 this.phone_number_info = 'Correctly'
                 this.text_color = false
-
                 let domain = await axios.get("../../data/url.txt");
                 let response = await axios.get(domain.data + 'check_user/' + val)
 
@@ -98,7 +96,7 @@ export default {
                         break;
                     case 400:
                         this.next_section = true
-                        break
+                        break;
                 }
             }
             else {
@@ -137,7 +135,6 @@ export default {
                 .catch(error => {
                     alert('Something is wrong!')
                 });
-
         }
     }
 }

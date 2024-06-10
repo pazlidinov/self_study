@@ -57,7 +57,6 @@
     <!-- Single Product End -->
 </template>
 
-
 <script>
 import Categories from '@/components/Categories.vue';
 import News from '@/components/News.vue';
@@ -104,7 +103,5 @@ export default {
             }     
         },
     },
-
-
 };
 </script>

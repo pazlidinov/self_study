@@ -89,8 +89,7 @@ export default {
         let domain = await axios.get("../../data/url.txt");
         let response = await axios.get(domain.data + "category");
         this.categories = await response.data.data
-    },
-    
+    },    
     methods: {
          redirect_category(id) {            
             if ( window.location.href.indexOf('by_category')!=-1){

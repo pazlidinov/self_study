@@ -54,8 +54,7 @@ export default {
             let domain =await axios.get("../../data/url.txt");
             await axios.post(domain.data + 'login', {
                 'phone_number': this.phone_number, 'password': this.password
-            }).then(response => {
-              
+            }).then(response => {              
                 if (response.status == 200) {                   
                     sessionStorage.setItem('user_id', response.data.user.id);
                     sessionStorage.setItem('user_token', response.data.token);
@@ -64,8 +63,6 @@ export default {
             }).catch(error => {
                 alert('Something is wrong!')
             });
-
-
         }
     }
 }

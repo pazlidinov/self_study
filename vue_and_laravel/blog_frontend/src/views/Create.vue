@@ -22,8 +22,8 @@
                                 </div>
 
                                 <div class="col-lg-6">
-                                    <input type="file" name="img" class="w-100 form-control border-0 py-3 mb-4" accept="image/*" @change="uploadImage($event)" id="file-input"
-                                        required>
+                                    <input type="file" name="img" class="w-100 form-control border-0 py-3 mb-4"
+                                        accept="image/*" @change="uploadImage($event)" id="file-input" required>
                                 </div>
                                 <div class="col-12">
                                     <textarea v-model="body" name="body" class="w-100 form-control border-0" rows="6"
@@ -79,10 +79,13 @@ export default {
             this.data.append('user_id', this.user_id)
             this.data.append('category_id', this.category_id)
             this.data.append('body', this.body)
-            await axios.post(domain.data + 'article', this.data, {headers:{
-                'Accept': 'application/json',
-                'Authorization':'Bearer '+sessionStorage.getItem('user_token'),
-            }})
+            await axios.post(domain.data + 'article', this.data,
+                {
+                    headers: {
+                        'Accept': 'application/json',
+                        'Authorization': 'Bearer ' + sessionStorage.getItem('user_token'),
+                    }
+                })
                 .then(response => {
                     alert('Article created successfully!')
                     this.$router.push('/detail/' + response.data.article);

@@ -145,7 +145,6 @@ export default {
         async log_out() {
             let domain = await axios.get("../../data/url.txt");
             await axios.get(domain.data + 'logout', { headers: { 'Accept': 'application/json', 'Authorization': 'Bearer ' + this.user_token } }).then(response => {
-
                 if (response.status == 200) {
                     sessionStorage.removeItem("user_token");
                     sessionStorage.removeItem("user_id");                  

@@ -10,6 +10,7 @@ use App\Models\Comments;
 use App\Models\ReplayComments;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\File;
 
 class ArticleController extends Controller
 {
@@ -20,7 +21,9 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        return ArticleResource::collection(Article::orderBy('id', 'DESC')->paginate(5));
+        return ArticleResource::collection(
+            Article::orderBy('id', 'DESC')->paginate(5)
+        );
     }
 
     /**
@@ -47,6 +50,7 @@ class ArticleController extends Controller
             'user_id' => 'required|numeric',
             'category_id' => 'required|numeric',
         ]);
+
         if ($request->hasFile('img')) {
             $name = $request->file('img')->getClientOriginalName();
             $path = $request->file('img')->storeAs('article-img', $name);
@@ -69,7 +73,7 @@ class ArticleController extends Controller
      * @param  \App\Models\Article  $article
      * @return \Illuminate\Http\Response
      */
-    public function show( Article $article)
+    public function show(Article $article)
     {
         $article->view++;
         $article->save();
@@ -77,10 +81,15 @@ class ArticleController extends Controller
         $like_article = ArticleResource::collection(
             Article::inRandomOrder()->limit(2)->get()
         );
-        $comments = CommentsResource::collection(Comments::where('article_id', $article->id)->get());
+        $comments = CommentsResource::collection(
+            Comments::where('article_id', $article->id)->get()
+        );
+
         $replay_comments = [];
         foreach ($comments as $comment) {
-            $replay_comments[$comment->id] = ReplayCommentsResource::collection(ReplayComments::where('comments_id', $comment->id)->get());
+            $replay_comments[$comment->id] = ReplayCommentsResource::collection(
+                ReplayComments::where('comments_id', $comment->id)->get()
+            );
         }
         return [
             'article' => new ArticleResource($article),
@@ -141,6 +150,9 @@ class ArticleController extends Controller
      */
     public function destroy(Article $article)
     {
+        if(File::exists($article->img)) {
+            File::delete($article->img);
+        };
         $article->delete();
         return ['The article was successfully deleted'];
     }
