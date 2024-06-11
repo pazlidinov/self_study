@@ -6,6 +6,7 @@ use App\Http\Resources\UserResource;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\File;
 
 class UserController extends Controller
 {
@@ -26,10 +27,7 @@ class UserController extends Controller
         return UserResource::collection(User::all());
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    /**
+      /**
      * Store a newly created resource in storage.
      */
 
@@ -51,7 +49,7 @@ class UserController extends Controller
      *         in="query",
      *         description="user's phone_number",
      *         required=true,
-     *         @OA\Schema(type="string")
+     *         @OA\Schema(type="int")
      *     ),
      *     @OA\Parameter(
      *         name="password",
@@ -59,6 +57,13 @@ class UserController extends Controller
      *         description="user's password",
      *         required=true,
      *         @OA\Schema(type="string")
+     *     ),
+     *    @OA\Parameter(
+     *         name="img",
+     *         in="query",
+     *         description="user's imgs",
+     *         required=true,
+     *         @OA\Schema(type="file")
      *     ),
      *     @OA\Response(response="200", description="The user was successfully created"),
      *   
@@ -128,14 +133,21 @@ class UserController extends Controller
      *         in="query",
      *         description="user's phone_number",
      *         required=true,
-     *         @OA\Schema(type="string")
+     *         @OA\Schema(type="int")
      *     ),
-     *          *     @OA\Parameter(
+     *     @OA\Parameter(
      *         name="password",
      *         in="query",
      *         description="user's passwords",
      *         required=true,
      *         @OA\Schema(type="string")
+     *     ),
+     *     @OA\Parameter(
+     *         name="img",
+     *         in="query",
+     *         description="user's imgs",
+     *         required=true,
+     *         @OA\Schema(type="file")
      *     ),
      *     @OA\Response(response="200", description="The user was successfully updated"),
      *   
@@ -182,10 +194,26 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
+        if (File::exists($user->img)) {
+            File::delete($user->img);
+        };
         $user->delete();
         return ['The user was successfully deleted'];
     }
-
+    
+    /**
+     * Check the specified resource.
+     */
+     /**
+     * @OA\Get(
+     *     path="/api/check_user/phone_number",
+     *     summary="Check the specified resource of user.",
+     *     tags={"user"},
+     *     @OA\Response(response=200),
+     *     @OA\Response(response=400),
+     *     
+     * )
+     */
     public function check_user($phone_number)
     {
         if (User::where('phone_number', $phone_number)->first()) {

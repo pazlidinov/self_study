@@ -15,6 +15,15 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    /**
+     * @OA\Get(
+     *     path="/api/category",
+     *     summary="Get a list of categorys",
+     *     tags={"category"},
+     *     @OA\Response(response=200, description="Successful operation"),
+     *     @OA\Response(response=400, description="Invalid request")
+     * )
+     */
     public function index()
     {
         return CategoryResource::collection(Category::all());
@@ -36,6 +45,24 @@ class CategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
+    /**
+     * @OA\Post(
+     *     path="/api/category/",
+     *     summary="Store a newl category created resource in storage.",
+     *      tags={"category"},
+     *     @OA\Parameter(
+     *         name="name",
+     *         in="query",
+     *         description="category's name",
+     *         required=true,
+     *         @OA\Schema(type="string")
+     *     ),
+     *          
+     *     @OA\Response(response="200", description="The category was successfully created"),
+     *   
+     * )
+     */
     public function store(Request $request)
     {
         $request->validate([
@@ -54,6 +81,15 @@ class CategoryController extends Controller
      *
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
+     */
+    /**
+     * @OA\Get(
+     *     path="/api/category/id",
+     *     summary="Display the details of category.",
+     *     tags={"category"},
+     *     @OA\Response(response=200, description="Successful operation"),
+     *     
+     * )
      */
     public function show(Category $category)
     {
@@ -78,6 +114,23 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
+    /**
+     * @OA\Put(
+     *     path="/api/category/id",
+     *     summary="Update the  category in storage.",
+     *      tags={"category"},
+     *     @OA\Parameter(
+     *         name="name",
+     *         in="query",
+     *         description="category's name",
+     *         required=true,
+     *         @OA\Schema(type="string")
+     *     ),     *    
+     *        
+     *     @OA\Response(response="200", description="The category was successfully updated"),
+     *   
+     * )
+     */
     public function update(Request $request, Category $category)
     {
         $request->validate([
@@ -96,6 +149,15 @@ class CategoryController extends Controller
      *
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
+     */
+    /**
+     * @OA\Delete(
+     *     path="/api/category/id",
+     *     summary="Remove the category from storage.",
+     *     tags={"category"},
+     *     @OA\Response(response=200, description="The category was successfully deleted"),
+     *     
+     * )
      */
     public function destroy(Category $category)
     {

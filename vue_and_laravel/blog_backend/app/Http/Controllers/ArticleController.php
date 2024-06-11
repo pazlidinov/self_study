@@ -19,6 +19,16 @@ class ArticleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    /**
+     * @OA\Get(
+     *     path="/api/article",
+     *     summary="Get a list of articles",
+     *     tags={"article"},
+     *     @OA\Response(response=200, description="Successful operation"),
+     *     @OA\Response(response=400, description="Invalid request")
+     * )
+     */
     public function index()
     {
         return ArticleResource::collection(
@@ -41,6 +51,51 @@ class ArticleController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
+     */
+
+    /**
+     * @OA\Post(
+     *     path="/api/article/",
+     *     summary="Store a newl article created resource in storage.",
+     *      tags={"article"},
+     *     @OA\Parameter(
+     *         name="title",
+     *         in="query",
+     *         description="article's title",
+     *         required=true,
+     *         @OA\Schema(type="string")
+     *     ),
+     *     @OA\Parameter(
+     *         name="body",
+     *         in="query",
+     *         description="article's body",
+     *         required=true,
+     *         @OA\Schema(type="string")
+     *     ),
+     *     @OA\Parameter(
+     *         name="user_id",
+     *         in="query",
+     *         description="article's user_id",
+     *         required=true,
+     *         @OA\Schema(type="int")
+     *     ),
+     *     @OA\Parameter(
+     *         name="category_id",
+     *         in="query",
+     *         description="article's category_id",
+     *         required=true,
+     *         @OA\Schema(type="int")
+     *     ),
+     *     @OA\Parameter(
+     *         name="img",
+     *         in="query",
+     *         description="article's imgs",
+     *         required=true,
+     *         @OA\Schema(type="file")
+     *     ),
+     *     @OA\Response(response="200", description="The article was successfully created"),
+     *   
+     * )
      */
     public function store(Request $request)
     {
@@ -72,6 +127,16 @@ class ArticleController extends Controller
      *     
      * @param  \App\Models\Article  $article
      * @return \Illuminate\Http\Response
+     */
+
+    /**
+     * @OA\Get(
+     *     path="/api/article/id",
+     *     summary="Display the details of article.",
+     *     tags={"article"},
+     *     @OA\Response(response=200, description="Successful operation"),
+     *     
+     * )
      */
     public function show(Article $article)
     {
@@ -117,6 +182,51 @@ class ArticleController extends Controller
      * @param  \App\Models\Article  $article
      * @return \Illuminate\Http\Response
      */
+
+    /**
+     * @OA\Put(
+     *     path="/api/article/id",
+     *     summary="Update the  article in storage.",
+     *     tags={"article"},
+     *     @OA\Parameter(
+     *         name="title",
+     *         in="query",
+     *         description="article's title",
+     *         required=true,
+     *         @OA\Schema(type="string")
+     *     ),
+     *     @OA\Parameter(
+     *         name="body",
+     *         in="query",
+     *         description="article's body",
+     *         required=true,
+     *         @OA\Schema(type="string")
+     *     ),
+     *     @OA\Parameter(
+     *         name="user_id",
+     *         in="query",
+     *         description="article's user_id",
+     *         required=true,
+     *         @OA\Schema(type="int")
+     *     ),
+     *     @OA\Parameter(
+     *         name="category_id",
+     *         in="query",
+     *         description="article's category_id",
+     *         required=true,
+     *         @OA\Schema(type="int")
+     *     ),
+     *     @OA\Parameter(
+     *         name="img",
+     *         in="query",
+     *         description="article's imgs",
+     *         required=true,
+     *         @OA\Schema(type="file")
+     *     ),
+     *     @OA\Response(response="200", description="The article was successfully updated"),
+     *   
+     * )
+     */
     public function update(Request $request, Article $article)
     {
         $request->validate([
@@ -148,9 +258,18 @@ class ArticleController extends Controller
      * @param  \App\Models\Article  $article
      * @return \Illuminate\Http\Response
      */
+    /**
+     * @OA\Delete(
+     *     path="/api/article/id",
+     *     summary="Remove the article from storage.",
+     *     tags={"article"},
+     *     @OA\Response(response=200, description="The article was successfully deleted"),
+     *     
+     * )
+     */
     public function destroy(Article $article)
     {
-        if(File::exists($article->img)) {
+        if (File::exists($article->img)) {
             File::delete($article->img);
         };
         $article->delete();

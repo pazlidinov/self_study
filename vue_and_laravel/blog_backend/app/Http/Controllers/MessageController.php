@@ -12,7 +12,7 @@ class MessageController extends Controller
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
-     */
+     */    
     public function index()
     {
         //
@@ -33,6 +33,37 @@ class MessageController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
+     */
+    /**
+     * @OA\Post(
+     *     path="/api/message/",
+     *     summary="Store a newl message created resource in storage.",
+     *      tags={"message"},
+     *     @OA\Parameter(
+     *         name="name",
+     *         in="query",
+     *         description="message's name",
+     *         required=true,
+     *         @OA\Schema(type="string")
+     *     ),
+     *     @OA\Parameter(
+     *         name="email",
+     *         in="query",
+     *         description="message's email",
+     *         required=true,
+     *         @OA\Schema(type="string")
+     *     ),
+     *     @OA\Parameter(
+     *         name="message",
+     *         in="query",
+     *         description="message's message",
+     *         required=true,
+     *         @OA\Schema(type="string")
+     *     ),
+     *          
+     *     @OA\Response(response="200", description="The message was successfully created"),
+     *   
+     * )
      */
     public function store(Request $request)
     {
@@ -57,6 +88,7 @@ class MessageController extends Controller
      * @param  \App\Models\Message  $message
      * @return \Illuminate\Http\Response
      */
+   
     public function show(Message $message)
     {
         //

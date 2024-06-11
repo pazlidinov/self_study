@@ -26,7 +26,7 @@ class UserAuthController extends Controller
      *         in="query",
      *         description="User's phone_number",
      *         required=true,
-     *         @OA\Schema(type="string")
+     *         @OA\Schema(type="int")
      *     ),
      *     @OA\Parameter(
      *         name="password",
@@ -34,6 +34,13 @@ class UserAuthController extends Controller
      *         description="User's password",
      *         required=true,
      *         @OA\Schema(type="string")
+     *     ),
+     *   @OA\Parameter(
+     *         name="img",
+     *         in="query",
+     *         description="User's imgs",
+     *         required=true,
+     *         @OA\Schema(type="file")
      *     ),
      *     @OA\Response(response="200", description="User registered successfully"),
      *     @OA\Response(response="401", description="Validation errors")
@@ -79,7 +86,7 @@ class UserAuthController extends Controller
      *         in="query",
      *         description="User's phone_number",
      *         required=true,
-     *         @OA\Schema(type="string")
+     *         @OA\Schema(type="int")
      *     ),
      *     @OA\Parameter(
      *         name="password",
@@ -95,11 +102,9 @@ class UserAuthController extends Controller
 
     public function login(Request $request)
     {
-
         $user = User::where('phone_number', $request->phone_number)->where('password', $request->password)->first();
 
         if ($user) {
-
             $token = $user->createToken('LaravelAuthApp')->accessToken;
             return response()->json(
                 [

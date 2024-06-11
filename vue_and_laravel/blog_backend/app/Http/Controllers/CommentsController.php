@@ -14,6 +14,15 @@ class CommentsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    /**
+     * @OA\Get(
+     *     path="/api/comments",
+     *     summary="Get a list of comments",
+     *     tags={"comments"},
+     *     @OA\Response(response=200, description="Successful operation"),
+     *     @OA\Response(response=400, description="Invalid request")
+     * )
+     */
     public function index()
     {
         return CommentsResource::collection(Comments::all());
@@ -35,17 +44,48 @@ class CommentsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+    /**
+     * @OA\Post(
+     *     path="/api/comments/",
+     *     summary="Store a newl comments created resource in storage.",
+     *      tags={"comments"},
+     *     @OA\Parameter(
+     *         name="user_id",
+     *         in="query",
+     *         description="comments's user_id",
+     *         required=true,
+     *         @OA\Schema(type="int")
+     *     ),
+     *     @OA\Parameter(
+     *         name="article_id",
+     *         in="query",
+     *         description="comments's article_id",
+     *         required=true,
+     *         @OA\Schema(type="int")
+     *     ),
+     *     @OA\Parameter(
+     *         name="comment",
+     *         in="query",
+     *         description="comments's comment",
+     *         required=true,
+     *         @OA\Schema(type="string")
+     *     ),
+     *          
+     *     @OA\Response(response="200", description="The comments was successfully created"),
+     *   
+     * )
+     */
     public function store(Request $request)
     {
-         $request->validate([
+        $request->validate([
             'user_id' => 'required|numeric',
-            'article_id'=>'required|numeric',
-            'comment'=>'required|max:500',
+            'article_id' => 'required|numeric',
+            'comment' => 'required|max:500',
         ]);
         Comments::create([
             'user_id' => $request->user_id,
-            'article_id'=>$request->article_id,
-            'comment'=>$request->comment,
+            'article_id' => $request->article_id,
+            'comment' => $request->comment,
         ]);
 
         return ['The comment was successfully created'];
@@ -56,6 +96,15 @@ class CommentsController extends Controller
      *
      * @param  \App\Models\Comments  $comments
      * @return \Illuminate\Http\Response
+     */
+    /**
+     * @OA\Get(
+     *     path="/api/comments/id",
+     *     summary="Display the details of comments.",
+     *     tags={"comments"},
+     *     @OA\Response(response=200, description="Successful operation"),
+     *     
+     * )
      */
     public function show(Comments $comments)
     {
@@ -80,12 +129,43 @@ class CommentsController extends Controller
      * @param  \App\Models\Comments  $comments
      * @return \Illuminate\Http\Response
      */
+    /**
+     * @OA\Put(
+     *     path="/api/comments/id",
+     *     summary="Update the  comments in storage.",
+     *      tags={"comments"},
+     *     @OA\Parameter(
+     *         name="user_id",
+     *         in="query",
+     *         description="comments's user_id",
+     *         required=true,
+     *         @OA\Schema(type="int")
+     *     ),
+     *     @OA\Parameter(
+     *         name="article_id",
+     *         in="query",
+     *         description="comments's article_id",
+     *         required=true,
+     *         @OA\Schema(type="int")
+     *     ),
+     *     @OA\Parameter(
+     *         name="comment",
+     *         in="query",
+     *         description="comments's comment",
+     *         required=true,
+     *         @OA\Schema(type="string")
+     *     ),
+     *        
+     *     @OA\Response(response="200", description="The comments was successfully updated"),
+     *   
+     * )
+     */
     public function update(Request $request, Comments $comments)
     {
         $comments->update([
             'user_id' => $request->user_id,
-            'article_id'=>$request->article_id,
-            'comment'=>$request->comment
+            'article_id' => $request->article_id,
+            'comment' => $request->comment
         ]);
 
         return ['The comment was successfully updated'];
@@ -96,6 +176,15 @@ class CommentsController extends Controller
      *
      * @param  \App\Models\Comments  $comments
      * @return \Illuminate\Http\Response
+     */
+    /**
+     * @OA\Delete(
+     *     path="/api/comments/id",
+     *     summary="Remove the comments from storage.",
+     *     tags={"comments"},
+     *     @OA\Response(response=200, description="The comments was successfully deleted"),
+     *     
+     * )
      */
     public function destroy(Comments $comments)
     {

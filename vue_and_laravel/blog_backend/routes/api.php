@@ -26,6 +26,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+// Check phonenumber of users
+Route::get('/check_user/{phone_number}', [UserController::class, 'check_user'])->name('check_user');
+
 Route::middleware('auth:api')->group(function () {
     // Users
     Route::apiResources(['user' => UserController::class]);
@@ -61,5 +64,3 @@ Route::post('/register', [UserAuthController::class, 'register'])->name('registe
 Route::post('/login', [UserAuthController::class, 'login'])->name('login');
 Route::get('/logout', [UserAuthController::class, 'logout'])->name('logout');
 
-// Check phonenumber of users
-Route::get('/check_user/{phone_number}', [UserController::class, 'check_user'])->name('check_user');
