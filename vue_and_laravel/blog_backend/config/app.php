@@ -168,6 +168,7 @@ return [
          * Package Service Providers...
          */
 
+        // L5Swagger\L5SwaggerServiceProviderProvider::class,
         /*
          * Application Service Providers...
          */

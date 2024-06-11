@@ -10,7 +10,7 @@ use Illuminate\Routing\Controller as BaseController;
 /**
  * @OA\Info(
  *    title="Swagger with Laravel",
- *    version="1.0.0",
+ *    version="2.0.0",
  * )
  * @OA\SecurityScheme(
  *     type="http",

@@ -209,8 +209,8 @@ class UserController extends Controller
      *     path="/api/check_user/phone_number",
      *     summary="Check the specified resource of user.",
      *     tags={"user"},
-     *     @OA\Response(response=200),
-     *     @OA\Response(response=400),
+     *     @OA\Response(response=200, description="This phone number is registered!"),
+     *     @OA\Response(response=400, description="This phone number is not registered!"),
      *     
      * )
      */

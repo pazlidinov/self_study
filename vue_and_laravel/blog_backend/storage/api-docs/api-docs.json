@@ -1,0 +1,842 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Swagger with Laravel",
+        "version": "2.0.0"
+    },
+    "paths": {
+        "/api/article": {
+            "get": {
+                "tags": [
+                    "article"
+                ],
+                "summary": "Get a list of articles",
+                "operationId": "07db2b26f66d03844900e453afc8623b",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Invalid request"
+                    }
+                }
+            }
+        },
+        "/api/article/": {
+            "post": {
+                "tags": [
+                    "article"
+                ],
+                "summary": "Store a newl article created resource in storage.",
+                "operationId": "7b0beea7f23e00c64f58f7f9ba91ba5a",
+                "parameters": [
+                    {
+                        "name": "title",
+                        "in": "query",
+                        "description": "article's title",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "body",
+                        "in": "query",
+                        "description": "article's body",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "user_id",
+                        "in": "query",
+                        "description": "article's user_id",
+                        "required": true,
+                        "schema": {
+                            "type": "int"
+                        }
+                    },
+                    {
+                        "name": "category_id",
+                        "in": "query",
+                        "description": "article's category_id",
+                        "required": true,
+                        "schema": {
+                            "type": "int"
+                        }
+                    },
+                    {
+                        "name": "img",
+                        "in": "query",
+                        "description": "article's imgs",
+                        "required": true,
+                        "schema": {
+                            "type": "file"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "The article was successfully created"
+                    }
+                }
+            }
+        },
+        "/api/article/id": {
+            "get": {
+                "tags": [
+                    "article"
+                ],
+                "summary": "Display the details of article.",
+                "operationId": "9089694604d3e47e850e7779694d3169",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "article"
+                ],
+                "summary": "Update the  article in storage.",
+                "operationId": "14304906ecd494b51032b54b76a538d6",
+                "parameters": [
+                    {
+                        "name": "title",
+                        "in": "query",
+                        "description": "article's title",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "body",
+                        "in": "query",
+                        "description": "article's body",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "user_id",
+                        "in": "query",
+                        "description": "article's user_id",
+                        "required": true,
+                        "schema": {
+                            "type": "int"
+                        }
+                    },
+                    {
+                        "name": "category_id",
+                        "in": "query",
+                        "description": "article's category_id",
+                        "required": true,
+                        "schema": {
+                            "type": "int"
+                        }
+                    },
+                    {
+                        "name": "img",
+                        "in": "query",
+                        "description": "article's imgs",
+                        "required": true,
+                        "schema": {
+                            "type": "file"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "The article was successfully updated"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "article"
+                ],
+                "summary": "Remove the article from storage.",
+                "operationId": "2fa0044b40aa5432cbb5e621155f5a73",
+                "responses": {
+                    "200": {
+                        "description": "The article was successfully deleted"
+                    }
+                }
+            }
+        },
+        "/api/category": {
+            "get": {
+                "tags": [
+                    "category"
+                ],
+                "summary": "Get a list of categorys",
+                "operationId": "327644f4d836240fa297b2822ab6ca92",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Invalid request"
+                    }
+                }
+            }
+        },
+        "/api/category/": {
+            "post": {
+                "tags": [
+                    "category"
+                ],
+                "summary": "Store a newl category created resource in storage.",
+                "operationId": "8febb46cf37d96bde2858d10449fa84b",
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "description": "category's name",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "The category was successfully created"
+                    }
+                }
+            }
+        },
+        "/api/category/id": {
+            "get": {
+                "tags": [
+                    "category"
+                ],
+                "summary": "Display the details of category.",
+                "operationId": "37dae24428c4cd93877ce9acf7405b86",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "category"
+                ],
+                "summary": "Update the  category in storage.",
+                "operationId": "fdb9a7c148393e9b450d8c663e9f3b4b",
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "description": "category's name",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "The category was successfully updated"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "category"
+                ],
+                "summary": "Remove the category from storage.",
+                "operationId": "645b49cef98ad1618985e8a5fda5b3d8",
+                "responses": {
+                    "200": {
+                        "description": "The category was successfully deleted"
+                    }
+                }
+            }
+        },
+        "/api/comments": {
+            "get": {
+                "tags": [
+                    "comments"
+                ],
+                "summary": "Get a list of comments",
+                "operationId": "0e6682d8bd58b950fba21edbfa745800",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Invalid request"
+                    }
+                }
+            }
+        },
+        "/api/comments/": {
+            "post": {
+                "tags": [
+                    "comments"
+                ],
+                "summary": "Store a newl comments created resource in storage.",
+                "operationId": "e604fc34f114077ea5ef869c06ad99df",
+                "parameters": [
+                    {
+                        "name": "user_id",
+                        "in": "query",
+                        "description": "comments's user_id",
+                        "required": true,
+                        "schema": {
+                            "type": "int"
+                        }
+                    },
+                    {
+                        "name": "article_id",
+                        "in": "query",
+                        "description": "comments's article_id",
+                        "required": true,
+                        "schema": {
+                            "type": "int"
+                        }
+                    },
+                    {
+                        "name": "comment",
+                        "in": "query",
+                        "description": "comments's comment",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "The comments was successfully created"
+                    }
+                }
+            }
+        },
+        "/api/comments/id": {
+            "get": {
+                "tags": [
+                    "comments"
+                ],
+                "summary": "Display the details of comments.",
+                "operationId": "b6bf7c0c5b6c3ec76da11b74fa93dd3c",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "comments"
+                ],
+                "summary": "Update the  comments in storage.",
+                "operationId": "38aec9089d4cf997b10163d6ac808099",
+                "parameters": [
+                    {
+                        "name": "user_id",
+                        "in": "query",
+                        "description": "comments's user_id",
+                        "required": true,
+                        "schema": {
+                            "type": "int"
+                        }
+                    },
+                    {
+                        "name": "article_id",
+                        "in": "query",
+                        "description": "comments's article_id",
+                        "required": true,
+                        "schema": {
+                            "type": "int"
+                        }
+                    },
+                    {
+                        "name": "comment",
+                        "in": "query",
+                        "description": "comments's comment",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "The comments was successfully updated"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "comments"
+                ],
+                "summary": "Remove the comments from storage.",
+                "operationId": "deb7424746b2f0d72801f18087b45758",
+                "responses": {
+                    "200": {
+                        "description": "The comments was successfully deleted"
+                    }
+                }
+            }
+        },
+        "/api/message/": {
+            "post": {
+                "tags": [
+                    "message"
+                ],
+                "summary": "Store a newl message created resource in storage.",
+                "operationId": "5bd36933f6f48bf596dc76788aedfbad",
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "description": "message's name",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "email",
+                        "in": "query",
+                        "description": "message's email",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "message",
+                        "in": "query",
+                        "description": "message's message",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "The message was successfully created"
+                    }
+                }
+            }
+        },
+        "/api/replaycomments": {
+            "get": {
+                "tags": [
+                    "replaycomments"
+                ],
+                "summary": "Get a list of replaycommentss",
+                "operationId": "ba6fa663673f05a58cf2fa5bef53628c",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Invalid request"
+                    }
+                }
+            }
+        },
+        "/api/replaycomments/": {
+            "post": {
+                "tags": [
+                    "replaycomments"
+                ],
+                "summary": "Store a newl replaycomments created resource in storage.",
+                "operationId": "80ceac47919a28e468a7e4139b50e56b",
+                "parameters": [
+                    {
+                        "name": "user_id",
+                        "in": "query",
+                        "description": "replaycomments's user_id",
+                        "required": true,
+                        "schema": {
+                            "type": "int"
+                        }
+                    },
+                    {
+                        "name": "comments_id",
+                        "in": "query",
+                        "description": "replaycomments's comments_id",
+                        "required": true,
+                        "schema": {
+                            "type": "int"
+                        }
+                    },
+                    {
+                        "name": "replaycomment",
+                        "in": "query",
+                        "description": "replaycomments's replaycomment",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "The replaycomments was successfully created"
+                    }
+                }
+            }
+        },
+        "/api/replaycomments/id": {
+            "get": {
+                "tags": [
+                    "replaycomments"
+                ],
+                "summary": "Display the details of replaycomments.",
+                "operationId": "67982d0bca3075134af78f32b0e053ee",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "replaycomments"
+                ],
+                "summary": "Update the  replaycomments in storage.",
+                "operationId": "d04ede305c88bddc76ff7c95dc1d7868",
+                "parameters": [
+                    {
+                        "name": "user_id",
+                        "in": "query",
+                        "description": "replaycomments's user_id",
+                        "required": true,
+                        "schema": {
+                            "type": "int"
+                        }
+                    },
+                    {
+                        "name": "comments_id",
+                        "in": "query",
+                        "description": "replaycomments's comments_id",
+                        "required": true,
+                        "schema": {
+                            "type": "int"
+                        }
+                    },
+                    {
+                        "name": "replaycomment",
+                        "in": "query",
+                        "description": "replaycomments's replaycomment",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "The replaycomments was successfully updated"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "replaycomments"
+                ],
+                "summary": "Remove the replaycomments from storage.",
+                "operationId": "a28003c955d9e33044b7478e49f78c21",
+                "responses": {
+                    "200": {
+                        "description": "The replaycomments was successfully deleted"
+                    }
+                }
+            }
+        },
+        "/api/register": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Register a new user",
+                "operationId": "c0354e671ce642c7b4ff996bc4e475a0",
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "description": "User's name",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "phone_number",
+                        "in": "query",
+                        "description": "User's phone_number",
+                        "required": true,
+                        "schema": {
+                            "type": "int"
+                        }
+                    },
+                    {
+                        "name": "password",
+                        "in": "query",
+                        "description": "User's password",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "img",
+                        "in": "query",
+                        "description": "User's imgs",
+                        "required": true,
+                        "schema": {
+                            "type": "file"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "User registered successfully"
+                    },
+                    "401": {
+                        "description": "Validation errors"
+                    }
+                }
+            }
+        },
+        "/api/login": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Authenticate user and generate JWT token",
+                "operationId": "dde0e6a0694ae97f804fba7d40433c68",
+                "parameters": [
+                    {
+                        "name": "phone_number",
+                        "in": "query",
+                        "description": "User's phone_number",
+                        "required": true,
+                        "schema": {
+                            "type": "int"
+                        }
+                    },
+                    {
+                        "name": "password",
+                        "in": "query",
+                        "description": "User's password",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Login successful"
+                    },
+                    "401": {
+                        "description": "Unauthorised. Invalid credentials"
+                    }
+                }
+            }
+        },
+        "/api/logout": {
+            "get": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Get logout user.",
+                "operationId": "6ed3b558c7c74e809518c164c4e3a1a6",
+                "responses": {
+                    "200": {
+                        "description": "Yuo are logout."
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/user": {
+            "get": {
+                "tags": [
+                    "user"
+                ],
+                "summary": "Get a list of users",
+                "operationId": "971db9bc974c0e607288cfe7ecc10096",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Invalid request"
+                    }
+                }
+            }
+        },
+        "/api/user/": {
+            "post": {
+                "tags": [
+                    "user"
+                ],
+                "summary": "Store a newl user created resource in storage.",
+                "operationId": "5db1ab81dbc69e2e6d6b811a3d5f35ac",
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "description": "user's name",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "phone_number",
+                        "in": "query",
+                        "description": "user's phone_number",
+                        "required": true,
+                        "schema": {
+                            "type": "int"
+                        }
+                    },
+                    {
+                        "name": "password",
+                        "in": "query",
+                        "description": "user's password",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "img",
+                        "in": "query",
+                        "description": "user's imgs",
+                        "required": true,
+                        "schema": {
+                            "type": "file"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "The user was successfully created"
+                    }
+                }
+            }
+        },
+        "/api/user/id": {
+            "get": {
+                "tags": [
+                    "user"
+                ],
+                "summary": "Display the details of user.",
+                "operationId": "04f65273b5ef0aaf11360a7e9a768b6b",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "user"
+                ],
+                "summary": "Update the  user in storage.",
+                "operationId": "1dcf0396be6e572fb79829fab1b1d158",
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "description": "user's name",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "phone_number",
+                        "in": "query",
+                        "description": "user's phone_number",
+                        "required": true,
+                        "schema": {
+                            "type": "int"
+                        }
+                    },
+                    {
+                        "name": "password",
+                        "in": "query",
+                        "description": "user's passwords",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "img",
+                        "in": "query",
+                        "description": "user's imgs",
+                        "required": true,
+                        "schema": {
+                            "type": "file"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "The user was successfully updated"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "user"
+                ],
+                "summary": "Remove the user from storage.",
+                "operationId": "d61875f395fe5ac1f803329915d28c6e",
+                "responses": {
+                    "200": {
+                        "description": "The user was successfully deleted"
+                    }
+                }
+            }
+        },
+        "/api/check_user/phone_number": {
+            "get": {
+                "tags": [
+                    "user"
+                ],
+                "summary": "Check the specified resource of user.",
+                "operationId": "4ac676564cc477c54847ad17529fc9cf",
+                "responses": {
+                    "200": {
+                        "description": "This phone number is registered!"
+                    },
+                    "400": {
+                        "description": "This phone number is not registered!"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "http",
+                "bearerFormat": "JWT",
+                "scheme": "bearer"
+            }
+        }
+    }
+}
